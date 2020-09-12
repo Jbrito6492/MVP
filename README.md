@@ -1,0 +1,2 @@
+# MVP
+Inventory Management App
