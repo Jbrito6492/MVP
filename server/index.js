@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 
 const server = require('http').createServer(app)
+const routes = require('./routes/routes.js');
 
 const io = require('socket.io')(server)
 
@@ -20,11 +21,17 @@ io.on('connection', socket => {
     io.emit('message', 'A user has left the chat')
   })
 })
-// const routes = require('./routes/routes.js');
+
 const port = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, '../public/dist')));
+app.get('*', (req, res) => {
+  res.send('<h2>whats the move?</h2>')
+})
+
 // app.use('/', routes);
+
+app.use(express.static(path.join(__dirname, '../public/dist')));
+
 server.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
