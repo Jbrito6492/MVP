@@ -1,27 +1,59 @@
 const path = require('path')
-const SRC_DIR = path.join(__dirname, '/client');
-const DIST_DIR = path.join(__dirname, '/public/dist');
-const SRV_DIR = path.join(__dirname, '/server');
 const nodeExternals = require('webpack-node-externals');
+const assetsPath = path.join(__dirname, 'public', 'dist')
+const serverPath = path.join(__dirname, 'server')
 
-module.exports = {
-  entry: `${SRV_DIR}/index.js`,
-  output: {
-    filename: 'bundle.js',
-    path: DIST_DIR,
-  },
-  module: {
-    rules: [
-      {
-        test: [/\.js$/, /\.jsx?$/],
-        exclude: /node_modules/,
-        include: SRC_DIR,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-react', '@babel/preset-env', 'react', 'stage-0'],
+module.exports = [
+    {
+        name: 'browser',
+        entry: './src/client/index.jsx',
+        output: {
+            path: assetsPath,
+            filename: 'bundle.js'
         },
-      }
-    ],
-  },
-  externals: [nodeExternals()]
-};
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            query: {
+                                presets: ['@babel/preset-env', '@babel/preset-react'],
+                                plugins: ['@babel/plugin-transform-runtime'],
+                            },
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        name: 'server-side rending',
+        target: "node",
+        entry: './server/server.js',
+        output: {
+            path: serverPath,
+            filename: 'index.js',
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            query: {
+                                presets: ['@babel/preset-env', '@babel/preset-react'],
+                                plugins: ['@babel/plugin-transform-runtime'],
+                            },
+                        }
+                    ]
+                }
+            ]
+        },
+        externals: [nodeExternals()]
+    }
+]
