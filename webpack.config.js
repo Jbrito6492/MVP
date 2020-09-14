@@ -1,15 +1,18 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals');
-const assetsPath = path.join(__dirname, 'public', 'dist')
+const assetsPath = path.join(__dirname, 'public')
 const serverPath = path.join(__dirname, 'server')
 
 module.exports = [
     {
         name: 'browser',
-        entry: './src/client/index.jsx',
+        target: 'node',
+        entry: './client/src/index.jsx',
         output: {
             path: assetsPath,
-            filename: 'bundle.js'
+            filename: 'client_bundle.js',
+            publicPath: '/',
+            libraryTarget: 'commonjs2',
         },
         module: {
             rules: [
@@ -27,15 +30,18 @@ module.exports = [
                     ]
                 }
             ]
-        }
+        },
+        externals: [nodeExternals()]
     },
     {
         name: 'server-side rending',
         target: "node",
-        entry: './server/server.js',
+        entry: './server/index.js',
         output: {
             path: serverPath,
-            filename: 'index.js',
+            filename: 'server_bundle.js',
+            publicPath: '/',
+            libraryTarget: 'commonjs2',
         },
         module: {
             rules: [
@@ -57,3 +63,4 @@ module.exports = [
         externals: [nodeExternals()]
     }
 ]
+
