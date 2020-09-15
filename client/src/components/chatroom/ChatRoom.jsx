@@ -3,29 +3,29 @@ import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:5000');
 
-const ChatRoom = () => {
-  const [state, setState] = useState({ message: '', name: '' });
+const ChatRoom = (props) => {
+  const [state, setState] = useState({ message: '', name: props.name });
   const [chat, setChat] = useState([]);
 
-
   const handleChange = (e) => {
-    setState(...state, { [e.target.name]: e.target.value });
+    setState({ ...state, [e.target.name]: e.target.value });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, message } = state;
     socket.emit('message', { name, message })
-    this.setState({ message: '', name })
+    setState({ name, message: '' })
   }
 
   const renderChat = () => {
-    return chat.map(({ name, message }, index) => {
+    return chat.map(({ name, message }, index) => (
       <div key={index}>
         <h3>
           {name}: <span>{message}</span>
         </h3>
       </div>
-    })
+    ))
   }
 
   useEffect(() => {
@@ -33,16 +33,16 @@ const ChatRoom = () => {
       setChat([...chat, { name, message }])
     })
   })
+
   const form = (
     <form onSubmit={handleSubmit}>
-      <input name="name" onChange={handleChange} required />
-      <input name="message" type="text" placeholder="whats the move" onChange={handleChange} required />
+      <label name="name" value={name} />
+      <input name="message" type="text" placeholder="whats the move" onChange={e => handleChange(e)} value={state.message} required />
       <input type="submit" value="Submit" />
     </form>
   )
 
   return (
-
     < div id="chatroom" >
       <div>{form}</div>
       <div id="chat">

@@ -1,18 +1,17 @@
-const path = require('path')
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const assetsPath = path.join(__dirname, 'public')
-const serverPath = path.join(__dirname, 'server')
+const assetsPath = path.join(__dirname, 'public');
+const serverPath = path.join(__dirname, 'server');
+const webpack = require('webpack');
 
 module.exports = [
     {
         name: 'browser',
-        target: 'node',
         entry: './client/src/index.jsx',
         output: {
             path: assetsPath,
             filename: 'client_bundle.js',
-            publicPath: '/',
-            libraryTarget: 'commonjs2',
+            publicPath: '/public',
         },
         module: {
             rules: [
@@ -28,10 +27,37 @@ module.exports = [
                             },
                         }
                     ]
-                }
-            ]
+                },
+                {
+                    test: /\.css$/,
+                    exclude: /node_modules/,
+                    use: [
+                        { loader: 'style-loader' },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                modules: {
+                                    localIdentName: '[name]__[local]__[hash:base64:5]'
+                                }
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                ident: 'postcss',
+                                plugins: () => [autoprefixer()]
+                            }
+                        }
+                    ]
+                }]
+
         },
-        externals: [nodeExternals()]
+        plugins: [
+            new webpack.DefinePlugin({
+                __isBrowser__: "true"
+            })
+        ],
     },
     {
         name: 'server-side rending',
@@ -40,7 +66,7 @@ module.exports = [
         output: {
             path: serverPath,
             filename: 'server_bundle.js',
-            publicPath: '/',
+            publicPath: '/server',
             libraryTarget: 'commonjs2',
         },
         module: {
@@ -60,6 +86,11 @@ module.exports = [
                 }
             ]
         },
+        plugins: [
+            new webpack.DefinePlugin({
+                __isBrowser__: "false"
+            })
+        ],
         externals: [nodeExternals()]
     }
 ]

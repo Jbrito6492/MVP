@@ -1,4 +1,4 @@
-module.exports = (title, content, scripts) =>`
+module.exports = (title, content) =>`
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -6,10 +6,8 @@ module.exports = (title, content, scripts) =>`
       <title>${title}</title>
     </head>
     <body>
-    <div id="root">
-    ${content}
-    </div>
-    ${scripts}
+    <div id="root">${content}</div>
+    <script type="text/javascript" src="client_bundle.js"></script>
     </body>
   </html>
 `
