@@ -1,1 +1,3 @@
 node_modules
+public/client_bundle.js
+server/server_bundle.js
