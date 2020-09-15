@@ -1,5 +1,27 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Button = styled.button`
+font-family: sans-serif;
+font-size: 1.3rem;
+border: none;
+border-radius: 5px;
+padding: 7px 10px;
+background: black;
+color: white;
+&:hover {
+  background: #FFA500;
+}
+`;
+
+const Input = styled.div`
+font-family: sans-serif;
+max-width: 1100px;
+background: #fff;
+margin: 30px auto;
+overflow: hidden;
+`;
 
 class Auth extends React.Component {
   constructor(props) {
@@ -37,9 +59,9 @@ class Auth extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className="form">
         <h1>Join</h1>
-        <div id="username"><input placeholder="username" name="name" type="text" onChange={this.handleChange} required /></div>
-        <div id="password"><input placeholder="password" name="password" type="password" onChange={this.handleChange} required /></div>
-        <button type="Submit">Join</button>
+        <Input id="username"><input placeholder="username" name="name" type="text" onChange={this.handleChange} required /></Input>
+        <Input id="password"><input placeholder="password" name="password" type="password" onChange={this.handleChange} required /></Input>
+        <Button type="Submit">Join</Button>
       </form>
     )
   }

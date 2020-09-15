@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import styled from 'styled-components';
 
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect('http://80');
+
+const Button = styled.button`
+font-family: sans-serif;
+font-size: 1.3rem;
+border: none;
+border-radius: 5px;
+padding: 7px 10px;
+background: black;
+color: white;
+&:hover {
+  background: #FFA500;
+}
+`;
+const Input = styled.div`
+font-family: sans-serif;
+max-width: 1100px;
+background: #fff;
+margin: 30px auto;
+overflow: hidden;
+`;
 
 const ChatRoom = (props) => {
   const [state, setState] = useState({ message: '', name: props.name });
@@ -37,8 +58,8 @@ const ChatRoom = (props) => {
   const form = (
     <form onSubmit={handleSubmit}>
       <label name="name" value={name} />
-      <input name="message" type="text" placeholder="whats the move" onChange={e => handleChange(e)} value={state.message} required />
-      <input type="submit" value="Submit" />
+      <Input><input name="message" type="text" placeholder="whats the move" onChange={e => handleChange(e)} value={state.message} required /></Input>
+      <Button type="Submit">Send It</Button>
     </form>
   )
 
