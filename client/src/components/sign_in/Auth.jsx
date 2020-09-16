@@ -11,7 +11,7 @@ padding: 7px 10px;
 background: black;
 color: white;
 &:hover {
-  background: #FFA500;
+  background: red;
 }
 `;
 
@@ -21,6 +21,7 @@ max-width: 1100px;
 background: #fff;
 margin: 30px auto;
 overflow: hidden;
+border-radius: 5px;
 `;
 
 class Auth extends React.Component {
@@ -58,9 +59,9 @@ class Auth extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="form">
-        <h1>Join</h1>
-        <Input id="username"><input placeholder="username" name="name" type="text" onChange={this.handleChange} required /></Input>
-        <Input id="password"><input placeholder="password" name="password" type="password" onChange={this.handleChange} required /></Input>
+        <h1>sign-in</h1>
+        <Input id="username"><input size="40" placeholder="username" name="name" type="text" onChange={this.handleChange} required /></Input>
+        <Input id="password"><input size="40" placeholder="password" name="password" type="password" onChange={this.handleChange} required /></Input>
         <Button type="Submit">Join</Button>
       </form>
     )

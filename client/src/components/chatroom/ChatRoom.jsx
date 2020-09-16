@@ -1,8 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import styled from 'styled-components';
+import { css, keyframes } from 'styled-components'
 
-const socket = io.connect('http://80');
+const pulse = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const animation = props =>
+  css`
+    ${pulse} ${props.animationLength} infinite alternate;
+  `
+
+const PulseButton = styled.div`
+  animation: ${animation};
+`
+const socket = io.connect('http://localhost:5000');
+
+const Comp = styled.div`
+  color: ${props =>
+    props.$draggable || 'black'};
+`;
+
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+const FadeInButton = styled.div`
+  animation: 1s ${fadeIn} ease-out;
+`
 
 const Button = styled.button`
 font-family: sans-serif;
@@ -13,7 +49,7 @@ padding: 7px 10px;
 background: black;
 color: white;
 &:hover {
-  background: #FFA500;
+  background: red;
 }
 `;
 const Input = styled.div`
@@ -22,6 +58,7 @@ max-width: 1100px;
 background: #fff;
 margin: 30px auto;
 overflow: hidden;
+border-radius: 5px;
 `;
 
 const ChatRoom = (props) => {
@@ -41,11 +78,9 @@ const ChatRoom = (props) => {
 
   const renderChat = () => {
     return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3>
+        <PulseButton key={index}>
           {name}: <span>{message}</span>
-        </h3>
-      </div>
+        </PulseButton>
     ))
   }
 
@@ -58,7 +93,7 @@ const ChatRoom = (props) => {
   const form = (
     <form onSubmit={handleSubmit}>
       <label name="name" value={name} />
-      <Input><input name="message" type="text" placeholder="whats the move" onChange={e => handleChange(e)} value={state.message} required /></Input>
+      <Input><input size="350" name="message" type="text" placeholder="whats the move" onChange={e => handleChange(e)} value={state.message} required /></Input>
       <Button type="Submit">Send It</Button>
     </form>
   )
@@ -67,7 +102,7 @@ const ChatRoom = (props) => {
     < div id="chatroom" >
       <div>{form}</div>
       <div id="chat">
-        <h1>Chat Log</h1>
+        <PulseButton><FadeInButton>#Whats the Move?</FadeInButton></PulseButton>
         {renderChat()}
       </div>
     </div >

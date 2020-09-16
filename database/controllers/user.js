@@ -9,6 +9,6 @@ exports.create = (req, res) => {
   })
   .catch(err => {
     console.log(err);
-    res.send(200);
+    res.send(500);
   });
 }

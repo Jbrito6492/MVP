@@ -8,13 +8,19 @@ import Auth from '../sign_in/Auth.jsx';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+position:relative;
+justify-content: center;
 font-family: sans-serif;
 display: flex;
 flex-flow: no-wrap;
 background-color:#333;
 color:#fff;
 padding:20px;
-margin:20px 0;
+align-content: center;
+margin:20px;
+height: 100%;
+width: 100%;
+height: 1000vh;
 `;
 
 
