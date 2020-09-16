@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/App.jsx';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
 const root = document.getElementById("root")
 
@@ -10,6 +10,14 @@ if (root && root.innerHTML !== "") {
   renderMethod = ReactDOM.hydrate
 } else {
   renderMethod = ReactDOM.render
+}
+const context = {
+  insertCss: (...styles) => {
+    const removeCss = styles.map(x => x._insertCss());
+    return () => {
+      removeCss.forEach(f => f());
+    };
+  },
 }
 
 renderMethod(<App />, document.getElementById("root"))

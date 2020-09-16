@@ -1,0 +1,6 @@
+{
+  "marked": {},
+  "chunks": {
+    "main": "client_bundle.js"
+  }
+}

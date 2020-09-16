@@ -5,6 +5,25 @@ import Main from '../home/Main.jsx';
 import axios from 'axios';
 import ChatRoom from '../chatroom/ChatRoom.jsx';
 import Auth from '../sign_in/Auth.jsx';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+position:relative;
+justify-content: center;
+font-family: sans-serif;
+display: flex;
+flex-flow: no-wrap;
+background-color:#333;
+color:#fff;
+padding:20px;
+align-content: center;
+margin:20px;
+height: 100%;
+width: 100%;
+height: 1000vh;
+`;
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -32,19 +51,21 @@ class App extends React.Component {
     } else {
       return (
         <div>
-        <ChatRoom name={this.state.username} changeView={this.changeView} />
+          <ChatRoom name={this.state.username} changeView={this.changeView} />
         </div>
       )
     }
   }
   render() {
-    console.log(this.state);
     return (
+      <Wrapper>
       <div>
         { this.renderView()}
       </div>
+      </Wrapper>
     )
   }
 }
 
 export default App;
+

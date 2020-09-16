@@ -1,7 +1,7 @@
+
 const express = require('express');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const { StaticRouter } = require('react-router');
 const App = require('../client/src/components/app/App.jsx').default;
 const path = require('path');
 const http = require('http');
@@ -39,7 +39,7 @@ app.use(cors());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  const context = {};
+
   const title = 'Whats the Move';
   const content = ReactDOMServer.renderToString(<App />);
   res.send(layout(title, content))

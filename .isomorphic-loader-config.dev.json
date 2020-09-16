@@ -1,0 +1,12 @@
+{
+  "valid": true,
+  "version": "4.1.0",
+  "timestamp": 1600203100827,
+  "context": "",
+  "output": {
+    "path": "server",
+    "filename": "server_bundle.js",
+    "publicPath": "/server"
+  },
+  "assetsFile": "server/isomorphic-assets.json"
+}
