@@ -1,4 +1,11 @@
-module.exports = (title, content) =>`
+import React from 'react';
+import {renderToString} from 'react-dom/server';
+import App from '../../client/components/app/App.jsx';
+
+export default () => {
+  const content = renderToString(<App />)
+  const title = 'Whats the Move?'
+return `
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -10,5 +17,5 @@ module.exports = (title, content) =>`
     <script type="text/javascript" src="client.bundle.js"></script>
     </body>
   </html>
-`
-;
+`;
+};

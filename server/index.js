@@ -1,14 +1,11 @@
 
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import App from '../src/components/app/App.jsx';
+import renderReact from './helpers/renderReact.js';
 
 const path = require('path');
 const http = require('http');
 const app = express();
 const cors = require('cors');
-const layout = require('./templates/layout.js')
 const server = require('http').createServer(app)
 const routes = require('./routes/routes.js');
 const morgan = require('morgan');
@@ -37,9 +34,7 @@ app.use(cors());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  const title = 'Whats the Move';
-  const content = renderToString(<App />);
-  res.send(layout(title, content))
+  res.send(renderReact());
 });
 
 app.use('/', routes);
