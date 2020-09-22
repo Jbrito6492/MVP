@@ -21,4 +21,4 @@ const context = {
   },
 }
 
-renderMethod(<App />, document.getElementById("root"))
+renderMethod(<App />, document.querySelector("#root"))
