@@ -1,12 +1,12 @@
 
-const express = require('express');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const App = require('../client/src/components/app/App.jsx').default;
+import express from 'express';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import App from '../src/components/app/App.jsx';
+
 const path = require('path');
 const http = require('http');
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const layout = require('./templates/layout.js')
 const server = require('http').createServer(app)
@@ -16,10 +16,9 @@ const db = require('../database/index.js');
 const io = require('socket.io')(server);
 
 io.on('connection', socket => {
-  // welcome user
+
   socket.emit('message', 'Whats the move?')
 
-  // runs when client disconnects
   socket.on('disconnect', () => {
     io.emit('message', 'A user has left the chat')
   })
@@ -33,15 +32,13 @@ const port = process.env.PORT || 5000;
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.json());
 app.use(cors());
 
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-
   const title = 'Whats the Move';
-  const content = ReactDOMServer.renderToString(<App />);
+  const content = renderToString(<App />);
   res.send(layout(title, content))
 });
 

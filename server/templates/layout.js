@@ -7,7 +7,7 @@ module.exports = (title, content) =>`
     </head>
     <body>
     <div id="root">${content}</div>
-    <script type="text/javascript" src="client_bundle.js"></script>
+    <script type="text/javascript" src="client.bundle.js"></script>
     </body>
   </html>
 `
