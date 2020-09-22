@@ -1,11 +1,18 @@
 import React from 'react';
-import {renderToString} from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import App from '../../client/components/app/App.jsx';
+import Routes from '../../client/Routes.jsx';
 
-export default () => {
-  const content = renderToString(<App />)
-  const title = 'Whats the Move?'
-return `
+export default (req) => {
+  const content = renderToString(
+    <StaticRouter location={req.path} context={{}}>
+      <Routes />
+    </StaticRouter>)
+
+  const title = 'Whats the Move?';
+
+  return `
 <!DOCTYPE html>
   <html lang="en">
     <head>

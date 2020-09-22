@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/App.jsx';
-import { Container } from '@material-ui/core';
+import Routes from './Routes.jsx';
+import { BrowserRouter } from 'react-router-dom';
+
 
 const root = document.getElementById("root")
 
@@ -12,13 +14,7 @@ if (root && root.innerHTML !== "") {
   renderMethod = ReactDOM.render
 }
 
-const context = {
-  insertCss: (...styles) => {
-    const removeCss = styles.map(x => x._insertCss());
-    return () => {
-      removeCss.forEach(f => f());
-    };
-  },
-}
-
-renderMethod(<App />, document.querySelector("#root"))
+renderMethod(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>, document.querySelector("#root"))
