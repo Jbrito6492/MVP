@@ -78,9 +78,9 @@ const ChatRoom = (props) => {
 
   const renderChat = () => {
     return chat.map(({ name, message }, index) => (
-        <PulseButton key={index}>
-          {name}: <span>{message}</span>
-        </PulseButton>
+      <PulseButton key={index}>
+        {name}: <span>{message}</span>
+      </PulseButton>
     ))
   }
 
@@ -99,13 +99,13 @@ const ChatRoom = (props) => {
   )
 
   return (
-    < div id="chatroom" >
+    <div id="chatroom">
       <div>{form}</div>
       <div id="chat">
-        <PulseButton><FadeInButton>#Whats the Move?</FadeInButton></PulseButton>
+        <PulseButton>#Whats the Move?</PulseButton>
         {renderChat()}
       </div>
-    </div >
+    </div>
   )
 }
 export default ChatRoom;

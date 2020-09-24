@@ -1,4 +1,7 @@
+import '@babel/polyfill';
 import express from 'express';
+import { matchRoutes } from 'react-router-config';
+import Routes from '../client/Routes.js';
 import renderer from './helpers/render.js';
 import createStore from './helpers/createStore.js';
 
@@ -25,17 +28,16 @@ io.on('connection', socket => {
 const port = process.env.PORT || 5000;
 
 app.use(morgan('dev'));
-
 app.use(cors());
-
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
   const store = createStore();
+  matchRoutes(Routes, req.path);
   res.send(renderer(req, store));
 });
 
-app.use('/', routes);
+// app.use('/', routes);
 
 server.listen(port, () => {
   console.log(`listening on port ${port}`);
