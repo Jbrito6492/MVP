@@ -13,7 +13,6 @@ class UsersList extends React.Component {
     });
   }
 
-
   render() {
     return (
       <div>
@@ -33,6 +32,5 @@ function loadData(store) {
 }
 
 export default {
-  loadData,
   component: connect(mapStateToProps, { fetchUsers })(UsersList)
 };
