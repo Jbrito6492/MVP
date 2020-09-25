@@ -1,52 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import StudyBuddy from '../rooms/StudyBuddy.jsx';
-import Main from '../home/Main.jsx';
-import axios from 'axios';
-import ChatRoom from '../chatroom/ChatRoom.jsx';
-import Auth from '../sign_in/Auth.jsx';
+import { renderRoutes } from 'react-router-config';
+import {fetchCurrentUser} from '../../redux/actions/index.js';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: '',
-      username: '',
-    }
-    this.changeView = this.changeView.bind(this);
-  }
-
-  changeView(option) {
-    this.setState({
-      username: option
-    })
-  }
-
-  renderView() {
-    if (this.state.username === '') {
-      return (
-        <div><Auth changeView={this.changeView} /></div>
-      )
-    } else if (this.state.view === 'main') {
-      return (
-        <div><Main changeView={this.changeView} /></div>
-      )
-    } else {
-      return (
-        <div>
-          <ChatRoom name={this.state.username} changeView={this.changeView} />
-        </div>
-      )
-    }
-  }
-  render() {
-    return (
-      <div>
-        test
-      </div>
-    )
-  }
+const App = ({ route }) => {
+  return (
+    <div>
+      {renderRoutes(route.routes)}
+    </div>
+  )
 }
 
-export default App;
+export default {
+  component: App,
+  loadData: ({dispatch}) => dispatch(fetchCurrentUser())
+};
 

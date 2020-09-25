@@ -10,7 +10,6 @@ const http = require('http');
 const app = express();
 const cors = require('cors');
 const server = require('http').createServer(app)
-const routes = require('./routes/routes.js');
 const morgan = require('morgan');
 const db = require('../database/index.js');
 const io = require('socket.io')(server);
@@ -33,11 +32,13 @@ app.use(express.static('public'));
 
 app.get('*', (req, res) => {
   const store = createStore();
-  matchRoutes(Routes, req.path);
-  res.send(renderer(req, store));
+  const promises = matchRoutes(Routes, req.path).map(({ route }) => (
+    route.loadData ? route.loadData(store) : null
+  ));
+  Promise.all(promises).then(() => {
+    res.send(renderer(req, store));
+  })
 });
-
-// app.use('/', routes);
 
 server.listen(port, () => {
   console.log(`listening on port ${port}`);

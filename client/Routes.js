@@ -1,15 +1,16 @@
 import React from 'react';
 import App from './components/app/App.jsx';
-import UserList from './components/user_list/UserList.jsx';
+import UserList, { loadData } from './components/user_list/UserList.jsx';
 
 export default [
   {
+    ...App,
     path: '/',
-    component: App,
     exact: true
   },
   {
+    ...UserList,
+    loadData,
     path: '/users',
-    component: UserList
   }
 ];
