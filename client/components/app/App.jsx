@@ -1,20 +1,17 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import StudyBuddy from '../rooms/StudyBuddy.jsx';
-// import Main from '../home/Main.jsx';
-// import axios from 'axios';
-// import ChatRoom from '../chatroom/ChatRoom.jsx';
-import Auth from '../sign_in/Auth.jsx';
+import { renderRoutes } from 'react-router-config';
+import {fetchCurrentUser} from '../../redux/actions/index.js';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        test
-      </div>
-    )
-  }
+const App = ({ route }) => {
+  return (
+    <div>
+      {renderRoutes(route.routes)}
+    </div>
+  )
 }
 
-export default App;
+export default {
+  component: App,
+  loadData: ({dispatch}) => dispatch(fetchCurrentUser())
+};
 
