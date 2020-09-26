@@ -1,6 +1,5 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-// import {fetchCurrentUser} from '../../redux/actions/index.js';
 
 const App = ({ route }) => {
   return (
