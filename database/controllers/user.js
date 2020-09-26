@@ -9,6 +9,18 @@ exports.create = (req, res) => {
   })
   .catch(err => {
     console.log(err);
-    res.send(500);
+    res.sendStatus(500);
+  });
+}
+
+exports.retrieve = (req, res) => {
+  User.find({})
+  .then(results => {
+    console.log('test', results)
+    res.json(results);
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(500);
   });
 }

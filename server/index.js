@@ -5,6 +5,7 @@ import Routes from '../client/Routes.js';
 import renderer from './helpers/render.js';
 import createStore from './helpers/createStore.js';
 
+const router = require('./routes/router.js');
 const path = require('path');
 const http = require('http');
 const app = express();
@@ -29,7 +30,7 @@ const port = process.env.PORT || 5000;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
-
+app.use('/', router);
 app.get('*', (req, res) => {
   const store = createStore();
   const promises = matchRoutes(Routes, req.path).map(({ route }) => (

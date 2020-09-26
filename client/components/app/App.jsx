@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import {fetchCurrentUser} from '../../redux/actions/index.js';
+// import {fetchCurrentUser} from '../../redux/actions/index.js';
 
 const App = ({ route }) => {
   return (
@@ -12,6 +12,5 @@ const App = ({ route }) => {
 
 export default {
   component: App,
-  loadData: ({dispatch}) => dispatch(fetchCurrentUser())
 };
 
