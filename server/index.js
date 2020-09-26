@@ -30,9 +30,9 @@ const port = process.env.PORT || 5000;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
-app.use('/', router);
+app.use('/api', router);
 app.get('*', (req, res) => {
-  const store = createStore();
+  const store = createStore(req);
   const promises = matchRoutes(Routes, req.path).map(({ route }) => (
     route.loadData ? route.loadData(store) : null
   ));
