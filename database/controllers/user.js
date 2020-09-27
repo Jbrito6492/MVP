@@ -24,3 +24,8 @@ exports.retrieve = (req, res) => {
     res.sendStatus(500);
   });
 }
+
+exports.auth = (req, res) => {
+  console.log('we made it');
+  res.end()
+}
