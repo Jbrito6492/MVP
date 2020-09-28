@@ -33,6 +33,7 @@
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "body-parser": "1.18.3",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",

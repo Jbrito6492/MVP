@@ -4,6 +4,8 @@ import { matchRoutes } from 'react-router-config';
 import Routes from '../client/Routes.js';
 import renderer from './helpers/render.js';
 import createStore from './helpers/createStore.js';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 const router = require('./routes/router.js');
 const path = require('path');
@@ -30,6 +32,8 @@ const port = process.env.PORT || 5000;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use('/api', router);
 app.get('*', (req, res) => {
   const store = createStore(req);
