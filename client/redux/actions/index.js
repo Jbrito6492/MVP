@@ -21,6 +21,6 @@ export const logIn = (creds) => async (dispatch, getState, api) => {
   const res = await api.post('/login', creds);
   dispatch({
     type: SET_USER,
-    payload: res
+    payload: creds
   })
 }
