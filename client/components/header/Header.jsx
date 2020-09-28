@@ -9,7 +9,7 @@ const Header = ({ auth }) => {
 
   return (
     <div>
-      <Link to="/">{authButton}</Link>
+      <li>{authButton}</li>
     </div>
   );
 };
