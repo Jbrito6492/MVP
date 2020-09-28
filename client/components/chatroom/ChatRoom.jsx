@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 const socket = io.connect('http://localhost:5000');
 
 const ChatRoom = (props) => {
-  const [state, setState] = useState({ message: '', name: props.name });
+  const [state, setState] = useState({ message: '', name: 'test'});
   const [chat, setChat] = useState([]);
 
   const handleChange = (e) => {
@@ -50,4 +50,6 @@ const ChatRoom = (props) => {
     </div>
   )
 }
+
+const mapStateToProps()
 export default ChatRoom;

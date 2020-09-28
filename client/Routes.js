@@ -1,8 +1,8 @@
 import React from 'react';
 import App from './components/app/App.jsx';
-import UserList from './components/user_list/UserList.jsx';
 import Home from './components/home/Home.jsx';
 import LogIn from './components/log_in/LogIn.jsx';
+import ChatRoom from './components/chatroom/ChatRoom.jsx';
 
 export default [
   {
@@ -18,8 +18,8 @@ export default [
         path: '/login'
       },
       {
-        ...UserList,
-        path: '/users'
+        ...ChatRoom,
+        path: '/chat'
       }
     ]
   }

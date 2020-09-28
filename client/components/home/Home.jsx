@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Home = () => {
+const Home = (props) => {
+
+//   const changeView = (state) => {
+// if(auth)
+//   };
+
   return (
     <div>
       <h3>Welcome</h3>
@@ -9,5 +14,5 @@ const Home = () => {
 };
 
 export default {
-  component: Home
+  component: Home,
 };
