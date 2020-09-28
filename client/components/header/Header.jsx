@@ -9,8 +9,7 @@ const Header = ({ auth }) => {
 
   return (
     <div>
-      <Link to="/chat" />
-        Header
+      <Link to="/">{authButton}</Link>
     </div>
   );
 };
