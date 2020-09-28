@@ -18,7 +18,7 @@ export default [
         path: '/login'
       },
       {
-        ...ChatRoom,
+        component: ChatRoom,
         path: '/chat'
       }
     ]

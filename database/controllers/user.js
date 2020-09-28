@@ -12,17 +12,24 @@ exports.retrieve = (req, res) => {
 }
 
 exports.validate = (req, res) => {
-  const { cookies } = req;
-  res.end();
+  const { session_id } = req.cookies;
+  User.findById(session_id, 'username')
+    .then(({ username }) => {
+      res.json(username);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
 }
 
 exports.login = (req, res) => {
   const { user } = req.body;
   User.create({
-    user: user
+    username: user
   })
-    .then(() => {
-      res.json({
+    .then(({ _id }) => {
+      res.cookie('session_id', `${_id}`).json({
         user: user,
         isAuthenticated: true
       });
