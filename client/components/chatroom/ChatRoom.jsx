@@ -5,47 +5,55 @@ import { fetchCurrentUser } from "../../store/actions/index.js";
 
 const socket = io.connect("http://localhost:5000");
 
-const ChatRoom = (props, { auth }) => {
-  const [name, setName] = useState({ name: "" });
-  const [message, setMessage] = useState({ message: "" });
+const ChatRoom = ({ auth }) => {
+  const [state, setState] = useState({ message: "" });
   const [chat, setChat] = useState([]);
 
   const handleChange = (e) => {
-    setMessage({ [e.target.name]: e.target.value });
+    setState({ [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name } = name;
-    const { message } = message;
-    socket.emit("message", { name, message });
-    setMessage({ message: "" });
+    const { message } = state;
+    socket.emit("message", { message });
   };
 
   const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        {name}: <span>{message}</span>
-      </div>
-    ));
+    const { message } = state;
+    return message ? (
+      chat.map(({ message }, index) => (
+        <div key={index}>
+          <h3>
+            {auth}: <span>{message}</span>
+          </h3>
+        </div>
+      ))
+    ) : (
+      <div>Enter a message!</div>
+    );
   };
 
   useEffect(() => {
-    socket.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
-    });
+    fetchCurrentUser();
+    const { message } = state;
+    if (message) {
+      socket.on("message", ({ message }) => {
+        setChat([...chat, { message }]);
+      });
+    }
   });
 
   const form = (
     <form onSubmit={handleSubmit}>
-      <label name="name" value={name} />
+      <label name="name" value={auth} />
       <input
         size="350"
         name="message"
         type="text"
         placeholder="whats the move"
         onChange={(e) => handleChange(e)}
-        value={message}
+        value={state.message}
         required
       />
       <button type="Submit">Send It</button>
