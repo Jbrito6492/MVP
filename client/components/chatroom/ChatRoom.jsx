@@ -16,22 +16,18 @@ const ChatRoom = ({ auth }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { message } = state;
+    setState({ message: "" });
     socket.emit("message", { message });
   };
 
   const renderChat = () => {
-    const { message } = state;
-    return message ? (
-      chat.map(({ message }, index) => (
-        <div key={index}>
-          <h3>
-            {auth}: <span>{message}</span>
-          </h3>
-        </div>
-      ))
-    ) : (
-      <div>Enter a message!</div>
-    );
+    return chat.map(({ message }, index) => (
+      <div key={index}>
+        <h3>
+          {auth}: <span>{message}</span>
+        </h3>
+      </div>
+    ));
   };
 
   useEffect(() => {
