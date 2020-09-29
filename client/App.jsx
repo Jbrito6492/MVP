@@ -1,9 +1,7 @@
-
-import React from 'react';
-import { renderRoutes } from 'react-router-config';
-import Header from '../header/Header.jsx';
-import { connect } from 'react-redux';
-import { fetchCurrentUser } from '../../redux/actions/index.js';
+import React from "react";
+import { renderRoutes } from "react-router-config";
+import { connect } from "react-redux";
+import { fetchCurrentUser } from "./store/actions/index.js";
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,12 +11,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         {renderRoutes(this.props.route.routes)}
       </div>
     );
   }
-};
+}
 
 function mapStateToProps(state) {
   return { auth: state.auth };
@@ -28,9 +25,7 @@ function loadData(store) {
   return store.dispatch(fetchCurrentUser());
 }
 
-export { loadData }
+export { loadData };
 export default {
-  component: connect(mapStateToProps, { fetchCurrentUser })(App)
+  component: connect(mapStateToProps, { fetchCurrentUser })(App),
 };
-
-

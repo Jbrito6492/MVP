@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
-import { fetchCurrentUser } from '../../client/redux/actions/index.js';
+import { fetchCurrentUser } from '../../client/store/actions/index.js';
 import Routes from '../../client/Routes.js';
 
 export default (req, store) => {

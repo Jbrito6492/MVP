@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { logIn } from "../../redux/actions/index.js";
+import { logIn } from "../store/actions/index.js";
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logIn(this.state)
+    this.props.logIn(this.state);
   }
 
   render() {

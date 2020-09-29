@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import io from "socket.io-client";
-import { fetchCurrentUser } from "../../redux/actions/index.js";
+import { fetchCurrentUser } from "../../store/actions/index.js";
 
 const socket = io.connect("http://localhost:5000");
 
-const ChatRoom = (props) => {
-  const [state, setState] = useState({ message: "", name: props.fetchCurrentUser() });
+const ChatRoom = (props, { auth }) => {
+  const [name, setName] = useState({ name: "" });
+  const [message, setMessage] = useState({ message: "" });
   const [chat, setChat] = useState([]);
 
   const handleChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
+    setMessage({ [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, message } = state;
+    const { name } = name;
+    const { message } = message;
     socket.emit("message", { name, message });
-    setState({ name, message: "" });
+    setMessage({ message: "" });
   };
 
   const renderChat = () => {
@@ -42,7 +45,7 @@ const ChatRoom = (props) => {
         type="text"
         placeholder="whats the move"
         onChange={(e) => handleChange(e)}
-        value={state.message}
+        value={message}
         required
       />
       <button type="Submit">Send It</button>
@@ -60,4 +63,13 @@ const ChatRoom = (props) => {
   );
 };
 
-export default ChatRoom;
+function mapStateToProps(state) {
+  return { auth: state.auth };
+}
+
+function loadData(store) {
+  return store.dispatch(fetchCurrentUser());
+}
+
+export { loadData };
+export default connect(mapStateToProps, { fetchCurrentUser })(ChatRoom);

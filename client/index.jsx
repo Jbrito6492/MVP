@@ -8,7 +8,7 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import axios from "axios";
 import Routes from "./Routes.js";
-import reducers from "./redux/reducers/index.js";
+import reducers from "./store/reducers/index.js";
 
 const axiosInstance = axios.create({
   baseURL: "/api"

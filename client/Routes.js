@@ -1,7 +1,7 @@
 import React from 'react';
-import App from './components/app/App.jsx';
-import Home from './components/home/Home.jsx';
-import LogIn from './components/log_in/LogIn.jsx';
+import App from './App.jsx';
+import HomePage from './pages/HomePage.jsx';
+import LogInPage from './pages/LogInPage.jsx';
 import ChatRoom from './components/chatroom/ChatRoom.jsx';
 
 export default [
@@ -9,17 +9,13 @@ export default [
     ...App,
     routes: [
       {
-        ...Home,
+        ...HomePage,
         path: '/',
         exact: true
       },
       {
-        ...LogIn,
+        ...LogInPage,
         path: '/login'
-      },
-      {
-        component: ChatRoom,
-        path: '/chat'
       }
     ]
   }
