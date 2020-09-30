@@ -2,9 +2,15 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { logIn } from "../store/actions/index.js";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import Header from "../components/header/Header.jsx";
 
-class LogIn extends React.Component {
+@connect((store) => {
+  return {
+    startSession: store.startSession,
+  };
+})
+export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +22,7 @@ class LogIn extends React.Component {
   }
 
   handleChange(e) {
+    console.log(this.state);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -23,30 +30,33 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logIn(this.state);
+    console.log(this.state);
+    console.log(this.props);
+    return this.props.dispatch(logIn(this.state));
   }
 
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="form">
-          <h1 className="center-align">Log In</h1>
-          <input
-            placeholder="username"
-            name="user"
-            type="text"
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            placeholder="password"
-            name="password"
-            type="password"
-            onChange={this.handleChange}
-            required
-          />
-          <div className="center-align">
-            <Link to="/">
+      <div>
+        <Header />
+        <div className="container">
+          <form onSubmit={this.handleSubmit} className="form">
+            <h1 className="center-align">Log In</h1>
+            <input
+              placeholder="username"
+              name="user"
+              type="text"
+              onChange={this.handleChange}
+              required
+            />
+            <input
+              placeholder="password"
+              name="password"
+              type="password"
+              onChange={this.handleChange}
+              required
+            />
+            <div className="center-align">
               <button
                 className="btn waves-effect waves-light red lighten-1"
                 type="submit"
@@ -54,23 +64,15 @@ class LogIn extends React.Component {
               >
                 Join
               </button>
-            </Link>
-          </div>
-        </form>
+              {this.props.startSession.isAuthenticated ? (
+                <Redirect to="/" />
+              ) : null}
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { user: state.user };
-}
 
-function loadData(store) {
-  return store.dispatch(logIn(creds));
-}
-
-export { loadData };
-export default {
-  component: connect(mapStateToProps, { logIn })(LogIn),
-};

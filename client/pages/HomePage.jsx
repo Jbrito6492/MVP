@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchCurrentUser } from "../store/actions/index.js";
 import ChatRoom from "../components/chatroom/ChatRoom.jsx";
 import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
-import LogInPage from "./LogInPage.jsx";
+import { Link } from "react-router-dom";
 
 const Home = ({ auth }) => {
   const renderView = () => {
@@ -33,7 +33,7 @@ const Home = ({ auth }) => {
             <Header />
           </div>
           <div className="container">
-            <LogInPage />
+            <Link to="/login">LogIn</Link>
           </div>
         </div>
       );

@@ -6,7 +6,7 @@ import ChatRoom from './components/chatroom/ChatRoom.jsx';
 
 export default [
   {
-    ...App,
+    component: App,
     routes: [
       {
         ...HomePage,
@@ -14,7 +14,7 @@ export default [
         exact: true
       },
       {
-        ...LogInPage,
+        component: LogInPage,
         path: '/login'
       }
     ]

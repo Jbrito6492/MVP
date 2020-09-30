@@ -7,6 +7,6 @@ import logOutReducer from './logOutReducer.js';
 export default combineReducers({
   users: usersReducer,
   auth: authReducer,
-  user: logInReducer,
-  expire: logOutReducer
+  startSession: logInReducer,
+  endSession: logOutReducer
 });

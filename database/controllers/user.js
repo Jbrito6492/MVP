@@ -12,6 +12,7 @@ exports.retrieve = (req, res) => {
 }
 
 exports.validate = (req, res) => {
+  console.log(req.body)
   const { session_id } = req.cookies;
   User.findById(session_id, 'username')
     .then(({ username }) => {
@@ -24,6 +25,7 @@ exports.validate = (req, res) => {
 }
 
 exports.login = (req, res) => {
+  console.log(req.body)
   const { user } = req.body;
   User.create({
     username: user

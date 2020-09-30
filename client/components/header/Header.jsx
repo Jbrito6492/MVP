@@ -3,51 +3,72 @@ import { connect } from "react-redux";
 import { fetchCurrentUser, logOut } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 
-const Header = (props, { auth }) => {
-  const handleClick = () => {
-    props.logOut();
-  };
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.header = this.header.bind(this);
+    this.loading = this.loading.bind(this);
+    this.renderView = this.renderView.bind(this);
+  }
 
-  const header = (button) => (
-    <nav>
-      <div className="nav-wrapper red lighten-1">
-        <a className="brand-logo">#WhatsTheMove?</a>
-        <ul id="nav-desktop" className="right hide-on-med-and-down">
-          <li>
-            <Link to='/login' onClick={handleClick}>{button}</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
+  componentDidUpdate() {
+    this.props.fetchCurrentUser();
+  }
 
-  const loading = () => (
-    <nav>
-      <div className="nav-wrapper">
-        <a href="" className="brand-logo">
-          Whats The Move?
-        </a>
-        <ul id="nav-desktop" className="right hide-on-med-and-down">
-          <li>
-            <a>...Loading</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
+  handleClick() {
+    this.props.logOut();
+  }
 
-  const renderView = () => {
+  header(button) {
+    return (
+      <nav>
+        <div className="nav-wrapper red lighten-1">
+          <a className="brand-logo">#Whats The Move?</a>
+          <ul id="nav-desktop" className="right hide-on-med-and-down">
+            <li>
+              <Link to="/login" onClick={()=> this.handleClick()}>
+                {button}
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+
+  loading() {
+    return (
+      <nav>
+        <div className="nav-wrapper red lighten-1">
+          <a href="" className="brand-logo">
+            #Whats The Move?
+          </a>
+          <ul id="nav-desktop" className="right hide-on-med-and-down">
+            <li>
+              <a>...Loading</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+
+  renderView() {
+    const {auth} = this.props;
     if (auth === null) {
-      return loading();
+      return this.loading();
     } else if (auth === false) {
-      return header("LogIn");
+      return this.header("LogIn");
     } else {
-      return header("LogOut");
+      console.log(auth);
+      return this.header("LogOut");
     }
-  };
-
-  return <div>{renderView()}</div>;
-};
+  }
+  render() {
+    return <div>{this.renderView()}</div>;
+  }
+}
 
 function mapStateToProps(state) {
   return { auth: state.auth, expire: state.expire };
