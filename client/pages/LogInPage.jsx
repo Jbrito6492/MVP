@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { logIn } from "../store/actions/index.js";
+import { Link } from "react-router-dom";
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -27,9 +28,9 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <form onSubmit={this.handleSubmit} className="form">
-          <h1>Log In</h1>
+          <h1 className="center-align">Log In</h1>
           <input
             placeholder="username"
             name="user"
@@ -44,7 +45,17 @@ class LogIn extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <button type="Submit">Join</button>
+          <div className="center-align">
+            <Link to="/">
+              <button
+                className="btn waves-effect waves-light red lighten-1"
+                type="submit"
+                name="action"
+              >
+                Join
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     );

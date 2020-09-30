@@ -12,9 +12,9 @@ const Header = (props, { auth }) => {
     <nav>
       <div className="nav-wrapper red lighten-1">
         <a className="brand-logo">#WhatsTheMove?</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <ul id="nav-desktop" className="right hide-on-med-and-down">
           <li>
-            <a onClick={handleClick}>{button}</a>
+            <Link to='/login' onClick={handleClick}>{button}</Link>
           </li>
         </ul>
       </div>
@@ -27,9 +27,9 @@ const Header = (props, { auth }) => {
         <a href="" className="brand-logo">
           Whats The Move?
         </a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <ul id="nav-desktop" className="right hide-on-med-and-down">
           <li>
-            <a href="sass.html">...Loading</a>
+            <a>...Loading</a>
           </li>
         </ul>
       </div>
