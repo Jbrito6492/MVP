@@ -39,3 +39,15 @@ exports.login = (req, res) => {
       res.sendStatus(500);
     });
 }
+
+exports.logout = (req, res) => {
+  try {
+    res.clearCookie('session_id').json({
+      user: {},
+      isAuthenticated: false
+    })
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(500)
+  }
+}

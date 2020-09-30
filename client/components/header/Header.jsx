@@ -1,16 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentUser } from "../../store/actions/index.js";
+import { fetchCurrentUser, logOut } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 
-const Header = ({ auth }) => {
+const Header = (props, { auth }) => {
+  const handleClick = () => {
+    props.logOut();
+  };
+
   const header = (button) => (
     <nav>
       <div className="nav-wrapper red lighten-1">
         <a className="brand-logo">#WhatsTheMove?</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
-            <a href="sass.html">{button}</a>
+            <a onClick={handleClick}>{button}</a>
           </li>
         </ul>
       </div>
@@ -46,12 +50,12 @@ const Header = ({ auth }) => {
 };
 
 function mapStateToProps(state) {
-  return { auth: state.auth };
+  return { auth: state.auth, expire: state.expire };
 }
 
 function loadData(store) {
-  return store.dispatch(fetchCurrentUser());
+  return store.dispatch(fetchCurrentUser(), logOut());
 }
 
 export { loadData };
-export default connect(mapStateToProps, { fetchCurrentUser })(Header);
+export default connect(mapStateToProps, { fetchCurrentUser, logOut })(Header);

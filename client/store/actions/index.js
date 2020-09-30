@@ -24,3 +24,12 @@ export const logIn = (creds) => async (dispatch, getState, api) => {
     payload: creds
   })
 }
+
+export const END_SESSION = 'end_session';
+export const logOut = () => async (dispatch, getState, api) => {
+  const res = await api.post('/logout');
+  dispatch({
+    type: END_SESSION,
+    payload: res
+  })
+}
