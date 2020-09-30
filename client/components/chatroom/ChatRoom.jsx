@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import { fetchCurrentUser } from "../../store/actions/index.js";
+import { GrSend } from "react-icons/gr";
 
 const socket = io.connect("http://localhost:5000");
 
@@ -42,7 +43,6 @@ const ChatRoom = ({ auth }) => {
 
   const form = (
     <form onSubmit={handleSubmit}>
-      <label name="name" value={auth} />
       <input
         size="350"
         name="message"
@@ -52,15 +52,19 @@ const ChatRoom = ({ auth }) => {
         value={state.message}
         required
       />
-      <button type="Submit">Send It</button>
+      <a
+        className="waves-effect waves-light btn red lighten-1"
+        onClick={handleSubmit}
+      >
+        Send It
+      </a>
     </form>
   );
 
   return (
-    <div id="chatroom">
+    <div>
       <div>{form}</div>
-      <div id="chat">
-        <span>#Whats the Move?</span>
+      <div>
         {renderChat()}
       </div>
     </div>

@@ -9,24 +9,48 @@ import LogInPage from "./LogInPage.jsx";
 const Home = ({ auth }) => {
   const renderView = () => {
     if (auth === null) {
-      return <div>...Loading</div>;
+      return (
+        <div>
+          <div className="preloader-wrapper big active">
+            <div className="spinner-layer spinner-blue">
+              <div className="circle-clipper left">
+                <div className="circle"></div>
+              </div>
+              <div className="gap-patch">
+                <div className="circle"></div>
+              </div>
+              <div className="circle-clipper right">
+                <div className="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
     } else if (auth === false) {
       return (
         <div>
-          <Header />
-          <LogInPage />
+          <div>
+            <Header />
+          </div>
+          <div className="container">
+            <LogInPage />
+          </div>
         </div>
       );
     } else {
       return (
         <div>
-          <Header />
-          <ChatRoom />
+          <div>
+            <Header />
+          </div>
+          <div className="container">
+            <ChatRoom />
+          </div>
         </div>
       );
     }
   };
-return <div>{renderView()}</div>;
+  return <div>{renderView()}</div>;
 };
 
 function mapStateToProps(state) {

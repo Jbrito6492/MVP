@@ -20,6 +20,8 @@ export default (req, store) => {
 <!DOCTYPE html>
   <html lang="en">
     <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <meta charset="UTF-8">
       <title>${title}</title>
     </head>
@@ -27,6 +29,13 @@ export default (req, store) => {
     <div id="root">${content}</div>
     <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
     <script type="text/javascript" src="client.bundle.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+      direction: 'right',
+      hoverEnabled: false
+      });
+    });</script>
     </body>
   </html>
 `;
