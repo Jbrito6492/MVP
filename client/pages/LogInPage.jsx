@@ -30,8 +30,6 @@ export default class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.props);
     return this.props.dispatch(logIn(this.state));
   }
 
@@ -58,7 +56,7 @@ export default class LogIn extends React.Component {
             />
             <div className="center-align">
               <button
-                className="btn waves-effect waves-light red lighten-1"
+                className="btn waves-effect waves-light pink lighten-3"
                 type="submit"
                 name="action"
               >
@@ -74,5 +72,3 @@ export default class LogIn extends React.Component {
     );
   }
 }
-
-

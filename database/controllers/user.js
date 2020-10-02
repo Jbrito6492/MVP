@@ -12,7 +12,6 @@ exports.retrieve = (req, res) => {
 }
 
 exports.validate = (req, res) => {
-  console.log(req.body)
   const { session_id } = req.cookies;
   User.findById(session_id, 'username')
     .then(({ username }) => {
@@ -25,7 +24,6 @@ exports.validate = (req, res) => {
 }
 
 exports.login = (req, res) => {
-  console.log(req.body)
   const { user } = req.body;
   User.create({
     username: user
@@ -44,10 +42,7 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
   try {
-    res.clearCookie('session_id').json({
-      user: {},
-      isAuthenticated: false
-    })
+    res.sendStatus(200)
   } catch (err) {
     console.log(err)
     res.sendStatus(500)

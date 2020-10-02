@@ -1,9 +1,13 @@
 import { END_SESSION } from '../actions/index.js';
 
+
 export default (state = null, action) => {
   switch (action.type) {
     case END_SESSION:
-      return action.payload.data
+      return {
+        isAuthenticated: false,
+        user: {}
+      };
     default:
       return state;
   }

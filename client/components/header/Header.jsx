@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { fetchCurrentUser, logOut } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 
+@connect((store) => {
+  return {
+    auth: store.auth,
+  };
+})
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -13,21 +18,22 @@ class Header extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.fetchCurrentUser();
+    this.props.dispatch(fetchCurrentUser());
   }
 
   handleClick() {
-    this.props.logOut();
+    this.props.dispatch(logOut());
+    console.log(this.props.auth);
   }
 
   header(button) {
     return (
       <nav>
-        <div className="nav-wrapper red lighten-1">
+        <div className="nav-wrapper pink lighten-3">
           <a className="brand-logo">#Whats The Move?</a>
           <ul id="nav-desktop" className="right hide-on-med-and-down">
             <li>
-              <Link to="/login" onClick={()=> this.handleClick()}>
+              <Link to="/login" onClick={() => this.handleClick()}>
                 {button}
               </Link>
             </li>
@@ -40,7 +46,7 @@ class Header extends React.Component {
   loading() {
     return (
       <nav>
-        <div className="nav-wrapper red lighten-1">
+        <div className="nav-wrapper pink lighten-3">
           <a href="" className="brand-logo">
             #Whats The Move?
           </a>
@@ -55,7 +61,8 @@ class Header extends React.Component {
   }
 
   renderView() {
-    const {auth} = this.props;
+    console.log(this.props);
+    const { auth } = this.props;
     if (auth === null) {
       return this.loading();
     } else if (auth === false) {

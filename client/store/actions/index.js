@@ -16,11 +16,11 @@ export const fetchCurrentUser = () => async (dispatch, getState, api) => {
   })
 }
 
-export const SET_USER = 'set_user';
+export const START_SESSION = 'start_session';
 export const logIn = (creds) => async (dispatch, getState, api) => {
   const res = await api.post('/login', creds);
   dispatch({
-    type: SET_USER,
+    type: START_SESSION,
     payload: creds
   })
 }
@@ -33,3 +33,12 @@ export const logOut = () => async (dispatch, getState, api) => {
     payload: res
   })
 }
+
+// export const CONNECT_SOCKET = 'connect_socket':
+// export const connectToSocket = () async (dispatch) => {
+//   const res = await io.connect('http://localhost:5000');
+//   dispatch({
+//     type: CONNECT_SOCKET,
+//     payload: res
+//   })
+// }

@@ -1,4 +1,4 @@
-import { SET_USER } from '../actions/index.js';
+import { START_SESSION } from '../actions/index.js';
 
 const initialState = {
   isAuthenticated: false,
@@ -7,7 +7,7 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_USER:
+    case START_SESSION:
       return {
         user: action.payload.user,
         isAuthenticated: true

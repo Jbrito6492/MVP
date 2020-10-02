@@ -1,13 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchCurrentUser } from "../store/actions/index.js";
-import ChatRoom from "../components/chatroom/ChatRoom.jsx";
+import Room from "../components/room/Room.jsx";
 import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-const Home = ({ auth }) => {
-  const renderView = () => {
+@connect((store) => {
+  return {
+    auth: store.auth,
+  };
+})
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderView = this.renderView.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchCurrentUser());
+  }
+
+  renderView() {
+    const { auth } = this.props;
+    console.log(auth)
     if (auth === null) {
       return (
         <div>
@@ -33,7 +49,7 @@ const Home = ({ auth }) => {
             <Header />
           </div>
           <div className="container">
-            <Link to="/login">LogIn</Link>
+            <Redirect to="/login" />
           </div>
         </div>
       );
@@ -44,24 +60,14 @@ const Home = ({ auth }) => {
             <Header />
           </div>
           <div className="container">
-            <ChatRoom />
+            <Room />
           </div>
         </div>
       );
     }
-  };
-  return <div>{renderView()}</div>;
-};
+  }
 
-function mapStateToProps(state) {
-  return { auth: state.auth };
+  render() {
+    return <div>{this.renderView()}</div>;
+  }
 }
-
-function loadData(store) {
-  return store.dispatch(fetchCurrentUser());
-}
-
-export { loadData };
-export default {
-  component: connect(mapStateToProps, { fetchCurrentUser })(Home),
-};
