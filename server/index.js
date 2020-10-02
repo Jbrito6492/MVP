@@ -12,10 +12,8 @@ const path = require('path');
 const http = require('http');
 const app = express();
 const cors = require('cors');
-const server = require('http').createServer(app)
 const morgan = require('morgan');
 const db = require('../database/index.js');
-const io = require('socket.io')(server);
 const socketConfig = require('./websocketConfig/socketIO.js');
 const port = process.env.PORT || 5000;
 

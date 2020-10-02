@@ -22,15 +22,16 @@ const Room = ({ auth }) => {
       setChat((prevChats) => [data, ...prevChats]);
     });
     return () => {
+      setChat((prevChats) => []);
       disconnectSocket();
     };
   }, [room]);
 
   return (
     <div>
-      <h1>room: {room}</h1>
+      <h1>{room}</h1>
       {rooms.map((room, index) => (
-        <button onClick={setRoom(room)} key={index}>
+        <button onClick={() => setRoom(room)} key={index}>
           {room}
         </button>
       ))}
@@ -44,7 +45,7 @@ const Room = ({ auth }) => {
       />
       <button onClick={() => sendMessage(room, message)}>send it</button>
       {chat.map((message, index) => (
-        <p key={index}>{m}</p>
+        <p key={index}>{message}</p>
       ))}
     </div>
   );
