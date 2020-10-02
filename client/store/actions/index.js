@@ -33,12 +33,3 @@ export const logOut = () => async (dispatch, getState, api) => {
     payload: res
   })
 }
-
-// export const CONNECT_SOCKET = 'connect_socket':
-// export const connectToSocket = () async (dispatch) => {
-//   const res = await io.connect('http://localhost:5000');
-//   dispatch({
-//     type: CONNECT_SOCKET,
-//     payload: res
-//   })
-// }

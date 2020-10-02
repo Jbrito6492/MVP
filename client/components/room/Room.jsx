@@ -27,23 +27,47 @@ const Room = ({ auth }) => {
     };
   }, [room]);
 
-  return (
-    <div>
-      <h1>{room}</h1>
-      {rooms.map((room, index) => (
-        <button onClick={() => setRoom(room)} key={index}>
-          {room}
-        </button>
-      ))}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMessage(room, message);
+    setMessage((prevMessage) => "");
+  };
 
-      <h1>chat</h1>
-      <input
-        type="text"
-        name="name"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={() => sendMessage(room, message)}>send it</button>
+  return (
+    <div className="container">
+      <div className="center-align">
+        <h1>{room}</h1>
+        {rooms.map((room, index) => (
+          <button
+            className="waves-effect waves-light btn-small pink lighten-3"
+            onClick={() => setRoom(room)}
+            key={index}
+          >
+            {room}
+          </button>
+        ))}
+        <div className="row">
+          <form className="col s12" onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="input-field col s12"></div>
+              <input
+                id="icon_prefix"
+                className="validate"
+                name="name"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button
+                className="waves-effect waves-light btn-small pink lighten-3"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                send it
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
       {chat.map((message, index) => (
         <p key={index}>{message}</p>
       ))}
