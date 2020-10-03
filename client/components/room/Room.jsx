@@ -10,7 +10,7 @@ import {
 } from "../../helpers/socketio.js";
 
 const Room = ({ auth, dispatch }) => {
-  const rooms = ["StudyBuddy", "NetflixAndChill", "Excersize"];
+  const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
   const name = useSelector((state) => state.auth);
   const [room, setRoom] = useState(rooms[0]);
   const [message, setMessage] = useState("");

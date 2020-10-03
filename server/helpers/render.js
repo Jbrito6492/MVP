@@ -6,6 +6,7 @@ import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
 import { fetchCurrentUser } from '../../client/store/actions/index.js';
 import Routes from '../../client/Routes.js';
+require('dotenv').config();
 
 export default (req, store) => {
   const content = renderToString(
