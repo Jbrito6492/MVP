@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import mapStyles from "./mapStyles.js";
 import {
   GoogleMap,
   useLoadScript,
@@ -8,12 +9,20 @@ import {
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  width: "100vh",
-  height: "100vh",
+  width: "94vh",
+  height: "60vh",
+};
+
+const options = {
+  styles: mapStyles,
+  disableDefaultUI: true,
+  zoomControl: true,
 };
 
 const Map = (props) => {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const [markers, setMarkers] = useState([]);
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries,
@@ -33,14 +42,24 @@ const Map = (props) => {
 
   if (loadError) return "error loading maps";
   if (!isLoaded) return "loading maps";
-  console.log(center);
   return (
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={13}
         center={center}
-      ></GoogleMap>
+        options={options}
+        onClick={(e) => {
+          setMarkers((current) => [
+            ...current,
+            { lat: e.latLng.lat(), lng: e.latLng.lng() },
+          ]);
+        }}
+      >
+        {markers.map((marker, index) => (
+          <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} />
+        ))}
+      </GoogleMap>
     </div>
   );
 };
