@@ -23,7 +23,6 @@ export default class Home extends React.Component {
 
   renderView() {
     const { auth } = this.props;
-    console.log(auth)
     if (auth === null) {
       return (
         <div>

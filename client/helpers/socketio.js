@@ -21,8 +21,8 @@ export const subscribeToChat = (cb) => {
   })
 }
 
-export const sendMessage = (room, message) => {
-  if (socket) socket.emit('chat', { message, room });
+export const sendMessage = (room, name, message) => {
+  if (socket) socket.emit('chat', {room, name, message  });
 }
 
 

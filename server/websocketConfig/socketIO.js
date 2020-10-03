@@ -13,8 +13,8 @@ module.exports = socketConfig = (app, port) => {
       socket.join(room);
     })
     socket.on('chat', data => {
-      const { message, room } = data;
-      console.log(`msg: ${message}, room: ${room}`);
+      const { name, message, room } = data;
+      console.log(`name: ${name}, msg: ${message}, room: ${room}`);
       io.to(room).emit('chat', message);
     })
   })

@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchCurrentUser, logOut } from "../../store/actions/index.js";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 @connect((store) => {
   return {
     auth: store.auth,
   };
 })
-class Header extends React.Component {
+// change this to functional component with hooks and use withRouter
+export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.header = this.header.bind(this);
     this.loading = this.loading.bind(this);
     this.renderView = this.renderView.bind(this);
@@ -21,11 +21,6 @@ class Header extends React.Component {
     this.props.dispatch(fetchCurrentUser());
   }
 
-  handleClick() {
-    this.props.dispatch(logOut());
-    console.log(this.props.auth);
-  }
-
   header(button) {
     return (
       <nav>
@@ -33,7 +28,7 @@ class Header extends React.Component {
           <a className="brand-logo">#Whats The Move?</a>
           <ul id="nav-desktop" className="right hide-on-med-and-down">
             <li>
-              <Link to="/login" onClick={() => this.handleClick()}>
+              <Link to="/login" onClick={() => this.props.dispatch(logOut())}>
                 {button}
               </Link>
             </li>
@@ -61,7 +56,6 @@ class Header extends React.Component {
   }
 
   renderView() {
-    console.log(this.props);
     const { auth } = this.props;
     if (auth === null) {
       return this.loading();
@@ -76,14 +70,3 @@ class Header extends React.Component {
     return <div>{this.renderView()}</div>;
   }
 }
-
-function mapStateToProps(state) {
-  return { auth: state.auth, expire: state.expire };
-}
-
-function loadData(store) {
-  return store.dispatch(fetchCurrentUser(), logOut());
-}
-
-export { loadData };
-export default connect(mapStateToProps, { fetchCurrentUser, logOut })(Header);

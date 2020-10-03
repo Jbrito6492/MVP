@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { fetchCurrentUser } from "./store/actions/index.js";
 
 @connect((store) => {
-  return { auth: store.auth};
+  return { auth: store.auth };
 })
 export default class App extends React.Component {
   render() {
-    console.log(this.props.auth)
     return <div>{renderRoutes(this.props.route.routes)}</div>;
   }
 }
