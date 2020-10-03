@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   module: {
     rules: [
@@ -12,8 +14,10 @@ module.exports = {
             ["@babel/plugin-proposal-decorators", { legacy: true }],
           ]
         },
-
       }
     ]
-  }
+  },
+  plugins: [
+    new Dotenv()
+  ]
 }

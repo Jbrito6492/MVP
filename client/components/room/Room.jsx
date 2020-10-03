@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Map from "../map/Map.jsx";
 import { useSelector } from "react-redux";
 import { fetchCurrentUser } from "../../store/actions/index.js";
 import { GrSend } from "react-icons/gr";
@@ -17,7 +18,7 @@ const Room = ({ auth, dispatch }) => {
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    name
+    name;
     console.log("useEffect hook", name);
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
@@ -79,6 +80,7 @@ const Room = ({ auth, dispatch }) => {
           {message}
         </p>
       ))}
+      <Map />
     </div>
   );
 };
