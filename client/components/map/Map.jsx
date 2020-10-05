@@ -6,7 +6,7 @@ import {
   Marker,
   Circle,
 } from "@react-google-maps/api";
-import { FaMapMarkerAlt } from "react-icons/fa";
+
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "100%",
@@ -22,7 +22,7 @@ const options = {
 const Map = (props) => {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [marker, setMarker] = useState(null);
-  const [selected, setSelected] = useState(null);
+  // const [radius, setRadius] = useState(1609.34); // 1 mile
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
@@ -77,7 +77,14 @@ const Map = (props) => {
             <Circle
               options={{ fillColor: "red" }}
               center={{ lat: marker.lat, lng: marker.lng }}
-              radius={1200}
+              onLoad={(circle) => {
+                circle.setRadius(1609.34);
+                const bounds = circle.getBounds();
+                console.log(bounds);
+              }}
+              onUnmount={(circle) => {
+                console.log("unmounted");
+              }}
             />
           </div>
         ) : null}
