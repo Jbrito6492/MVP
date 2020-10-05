@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import mapStyles from "./mapStyles.js";
 import {
   GoogleMap,
@@ -9,7 +9,7 @@ import {
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  width: "94vh",
+  width: "100%",
   height: "60vh",
 };
 
@@ -22,6 +22,7 @@ const options = {
 const Map = (props) => {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [markers, setMarkers] = useState([]);
+  const [path, setPath] = useState([{}]);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
