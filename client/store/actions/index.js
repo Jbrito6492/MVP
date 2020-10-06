@@ -16,24 +16,6 @@ export const fetchCurrentUser = () => async (dispatch, getState, api) => {
   })
 }
 
-export const START_SESSION = 'start_session';
-export const logIn = (creds) => async (dispatch, getState, api) => {
-  const res = await api.post('/login', creds);
-  dispatch({
-    type: START_SESSION,
-    payload: creds
-  })
-}
-
-export const END_SESSION = 'end_session';
-export const logOut = () => async (dispatch, getState, api) => {
-  const res = await api.post('/logout');
-  dispatch({
-    type: END_SESSION,
-    payload: res
-  })
-}
-
 export const GET_LOCATION = 'get_location';
 export function getLocation() {
   return dispatch => {
@@ -47,5 +29,65 @@ export function getLocation() {
     });
   };
 }
+/////////////////////////////////////
+/////////  AUTHENTICATION  /////////
+////////////////////////////////////
+export const LOGIN_REQUEST = 'login_request';
+export const LOGIN_SUCCESS = 'login_success';
+export const LOGIN_FAILURE = 'login_failure';
+const requestLogIn = (credentials) => {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: true,
+    isAuthenticated: false,
+  }
+};
+const receiveLogin = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token
+  }
+}
 
+const loginFailure = (message) => {
+  return {
+    type: LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
+  }
+}
 
+export const loginUser = (credentials) => {
+  const { username, password } = credentials;
+  let config = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `username=${username}&password=${password}`
+  }
+  return dispatch => {
+    dispatch(requestLogIn(credentials))
+    axios.post('/auth', config)
+      .then(response => ({ user, response }))
+      .then(({ user, response }) => {
+        if (!response.ok) {
+          dispatch(loginFailure(user.message))
+        } else {
+          localStorage.setItem('id_token', user.id_token)
+          localStorage.setItem('id_token', user.access_token)
+          dispatch(receiveLogin(user))
+        }
+      }).catch(err => console.log("error ", err))
+  }
+}
+
+export const END_SESSION = 'end_session';
+export const logOut = () => async (dispatch, getState, api) => {
+  const res = await api.post('/logout');
+  dispatch({
+    type: END_SESSION,
+    payload: res
+  });
+}
