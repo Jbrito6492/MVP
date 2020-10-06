@@ -5,8 +5,10 @@ import {
   useLoadScript,
   Marker,
   Circle,
+  DistanceMatrixService,
 } from "@react-google-maps/api";
-
+import { getLocation } from "../../store/actions/index.js";
+import { useSelector, useDispatch } from "react-redux";
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "100%",
@@ -20,9 +22,9 @@ const options = {
 };
 
 const Map = (props) => {
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  const [marker, setMarker] = useState(null);
-  // const [radius, setRadius] = useState(1609.34); // 1 mile
+  const dispatch = useDispatch();
+  const location = useSelector((state) => state.coords);
+  const [marker, setMarker] = useState({ location, visible: false });
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
@@ -30,23 +32,20 @@ const Map = (props) => {
   });
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
-  }, [setMarker]);
-
-  const success = (pos) => {
-    const { latitude: lat, longitude: lng } = pos.coords;
-    setCenter({
-      lat,
-      lng,
-    });
-  };
-
-  const onMapClick = useCallback((e) => {
-    setMarker({
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
-    });
+    dispatch(getLocation());
   }, []);
+
+  const onMapClick = useCallback(
+    (e) => {
+      const coords = {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+      };
+      const { lat, lng } = coords;
+      setMarker({ ...marker, visible: true, location: { lat, lng } });
+    },
+    [marker]
+  );
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -61,30 +60,23 @@ const Map = (props) => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={13}
-        center={center}
+        center={location}
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {marker ? (
+        {marker.visible ? (
           <div>
             <Marker
-              position={{ lat: marker.lat, lng: marker.lng }}
+              position={{ lat: marker.location.lat, lng: marker.location.lng }}
               onClick={() => {
-                setMarker(null);
+                setMarker({ ...marker, visible: false });
               }}
             />
             <Circle
               options={{ fillColor: "red" }}
-              center={{ lat: marker.lat, lng: marker.lng }}
-              onLoad={(circle) => {
-                circle.setRadius(1609.34);
-                const bounds = circle.getBounds();
-                console.log(bounds);
-              }}
-              onUnmount={(circle) => {
-                console.log("unmounted");
-              }}
+              center={{ lat: marker.location.lat, lng: marker.location.lng }}
+              radius={1200}
             />
           </div>
         ) : null}

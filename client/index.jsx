@@ -11,7 +11,7 @@ import Routes from "./Routes.js";
 import reducers from "./store/reducers/index.js";
 
 const axiosInstance = axios.create({
-  baseURL: "/api"
+  baseURL: "/api",
 });
 
 const store = createStore(
@@ -26,7 +26,7 @@ const store = createStore(
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-        <div>{renderRoutes(Routes)}</div>
+      <div>{renderRoutes(Routes)}</div>
     </BrowserRouter>
   </Provider>,
   document.querySelector("#root")

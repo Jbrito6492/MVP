@@ -33,3 +33,19 @@ export const logOut = () => async (dispatch, getState, api) => {
     payload: res
   })
 }
+
+export const GET_LOCATION = 'get_location';
+export function getLocation() {
+  return dispatch => {
+    const geolocation = navigator.geolocation;
+    geolocation.getCurrentPosition((position) => {
+      const { latitude: lat, longitude: lng } = position.coords;
+      dispatch({
+        type: GET_LOCATION,
+        payload: { lat, lng }
+      });
+    });
+  };
+}
+
+

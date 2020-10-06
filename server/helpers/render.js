@@ -31,13 +31,6 @@ export default (req, store) => {
     <div id="root">${content}</div>
     <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
     <script type="text/javascript" src="client.bundle.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.fixed-action-btn');
-      var instances = M.FloatingActionButton.init(elems, {
-      direction: 'right',
-      hoverEnabled: false
-      });
-    });</script>
     </body>
   </html>
 `;

@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentUser, logOut } from "../../store/actions/index.js";
+import {
+  fetchCurrentUser,
+  logOut,
+  getLocation,
+} from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
 
 @connect((store) => {
@@ -24,9 +28,17 @@ export default class Header extends React.Component {
   header(button) {
     return (
       <nav>
-        <div className="nav-wrapper pink lighten-3">
+        <div className="nav-wrapper grey darken-3">
           <a className="brand-logo">#Whats The Move?</a>
           <ul id="nav-desktop" className="right hide-on-med-and-down">
+            <li>
+              <Link
+                to="/map"
+                onClick={() => this.props.dispatch(getLocation())}
+              >
+                Map
+              </Link>
+            </li>
             <li>
               <Link to="/login" onClick={() => this.props.dispatch(logOut())}>
                 {button}
@@ -41,7 +53,7 @@ export default class Header extends React.Component {
   loading() {
     return (
       <nav>
-        <div className="nav-wrapper pink lighten-3">
+        <div className="nav-wrapper grey darken-3">
           <a href="" className="brand-logo">
             #Whats The Move?
           </a>

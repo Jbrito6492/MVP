@@ -48,3 +48,11 @@ exports.logout = (req, res) => {
     res.sendStatus(500)
   }
 }
+
+exports.saveLocation = (req, res) => {
+  console.log(req.body)
+  res.sendStatus(200);
+}
+
+exports.getLocation = (req, res) => {
+}

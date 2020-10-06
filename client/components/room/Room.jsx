@@ -44,7 +44,7 @@ const Room = ({ auth, dispatch }) => {
         <h1>{room}</h1>
         {rooms.map((room, index) => (
           <button
-            className="waves-effect waves-light btn-small pink lighten-3"
+            className="waves-effect waves-light btn-small grey lighten-1"
             onClick={() => setRoom(room)}
             key={index}
           >
