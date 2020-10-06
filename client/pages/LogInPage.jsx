@@ -56,7 +56,7 @@ export default class LogIn extends React.Component {
             />
             <div className="center-align">
               <button
-                className="btn waves-effect waves-light pink lighten-3"
+                className="btn waves-effect waves-light grey lighten-1"
                 type="submit"
                 name="action"
               >
