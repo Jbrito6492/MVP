@@ -10,9 +10,8 @@ import { Link, withRouter } from "react-router-dom";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const [isAuthenticated, setAuth] = useState(true);
+  const { isAuthenticated, username } = useSelector((state) => state.auth);
 
-  // const isAuthenticated = useSelector((state) => state.auth);
   return (
     <nav>
       <div className="nav-wrapper grey darken-3">
@@ -23,14 +22,14 @@ const Header = (props) => {
           </li>
           {!isAuthenticated && (
             <li>
-              <Link to="/" onClick={() => console.log("login fn")}>
+              <Link to="/home" onClick={() => dispatch(startSession())}>
                 Login
               </Link>
             </li>
           )}
           {isAuthenticated && (
             <li>
-              <Link to="/login" onClick={() => console.log("logout fn")}>
+              <Link to="/" onClick={() => dispatch(endSession())}>
                 Logout
               </Link>
             </li>
