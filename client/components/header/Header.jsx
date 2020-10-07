@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCurrentUser,
-  loginUser,
-  logoutUser,
+  startSession,
+  createUser,
+  endSession,
   getLocation,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";

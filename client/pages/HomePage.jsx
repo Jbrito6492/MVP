@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrentUser } from "../store/actions/index.js";
+import { startSession } from "../store/actions/index.js";
 import Room from "../components/room/Room.jsx";
 import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
@@ -18,7 +18,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCurrentUser());
+    this.props.dispatch(startSession());
   }
 
   renderView() {

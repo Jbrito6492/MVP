@@ -1,9 +1,31 @@
-import { FETCH_CURRENT_USER } from '../actions/index.js';
+import {
+  START_SESSION,
+  END_SESSION,
+  CREATE_USER
+} from '../actions/index.js';
 
-export default (state = null, action) => {
+const initialState = {
+  token: null,
+  isAuthenticated: false,
+  username: null
+}
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CURRENT_USER:
-      return action.payload.data || false;
+    case START_SESSION:
+      return {
+        ...state, ...action.payload.data, isAuthenticated: true
+      };
+    case END_SESSION:
+      return {
+        token: null,
+        isAuthenticated: false,
+        usename: null
+      };
+    case CREATE_USER:
+      return {
+        ...state, ...action.payload.data
+      }
     default:
       return state;
   }

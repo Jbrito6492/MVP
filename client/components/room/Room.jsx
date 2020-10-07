@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "../map/Map.jsx";
 import { useSelector } from "react-redux";
-import { fetchCurrentUser } from "../../store/actions/index.js";
+import { startSession } from "../../store/actions/index.js";
 import { GrSend } from "react-icons/gr";
 import {
   connectSocket,

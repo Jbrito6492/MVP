@@ -18,7 +18,6 @@ const db = require('../database/index.js');
 const socketConfig = require('./websocketConfig/socketIO.js');
 const port = process.env.PORT || 5000;
 
-app.use('/api', proxy('http://localhost:5000'))
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));

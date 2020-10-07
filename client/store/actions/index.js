@@ -7,15 +7,6 @@ export const fetchUsers = () => async (dispatch, getState, api) => {
   })
 };
 
-export const FETCH_CURRENT_USER = 'fetch_current_user';
-export const fetchCurrentUser = () => async (dispatch, getState, api) => {
-  const res = await api.get('/current_user')
-  dispatch({
-    type: FETCH_CURRENT_USER,
-    payload: res
-  })
-}
-
 export const GET_LOCATION = 'get_location';
 export function getLocation() {
   return dispatch => {
@@ -32,82 +23,25 @@ export function getLocation() {
 /////////////////////////////////////
 /////////  AUTHENTICATION  /////////
 ////////////////////////////////////
-export const LOGIN_REQUEST = 'login_request';
-export const LOGIN_SUCCESS = 'login_success';
-export const LOGIN_FAILURE = 'login_failure';
-const requestLogIn = (credentials) => {
-  return {
-    type: LOGIN_SUCCESS,
-    isFetching: true,
-    isAuthenticated: false,
-  }
-};
-const receiveLogin = (user) => {
-  return {
-    type: LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token
-  }
+export const START_SESSION = 'start_session';
+export const startSession = () => async (dispatch, getState, api) => {
+  const res = await api.get('/authenticate')
+  dispatch({
+    type: START_SESSION,
+    payload: res
+  })
 }
 
-const loginFailure = (message) => {
-  return {
-    type: LOGIN_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
-    message
-  }
+export const CREATE_USER = 'create_user';
+export const createUser = (credentials) => async (dispatch, getState, api) => {
+  const res = await api.post('/authenticate', credentials)
+  dispatch({
+    type: CREATE_USER,
+    payload: res
+  })
 }
 
-export const loginUser = (credentials) => {
-  const { username, password } = credentials;
-  let config = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=${username}&password=${password}`
-  }
-  return dispatch => {
-    dispatch(requestLogIn(credentials))
-    axios.post('/auth', config)
-      .then(response => ({ user, response }))
-      .then(({ user, response }) => {
-        if (!response.ok) {
-          dispatch(loginFailure(user.message))
-        } else {
-          localStorage.setItem('id_token', user.id_token)
-          localStorage.setItem('id_token', user.access_token)
-          dispatch(receiveLogin(user))
-        }
-      }).catch(err => console.log("error ", err))
-  }
-}
-
-export const LOGOUT_REQUEST = 'logout_request';
-export const LOGOUT_SUCCESS = 'logout_success';
-export const LOGOUT_FAILURE = 'logout_failure';
-
-const requestLogout = () => {
-  return {
-    type: LOGOUT_REQUEST,
-    isFetching: true,
-    isAuthenticated: true
-  }
-}
-
-const recieveLogout = () => {
-  return {
-    type: LOGOUT_SUCCESS,
-    isFetching: false,
-    isAuthenticated: false
-  }
-}
-
-export const logoutUser = () => {
-  return dispatch => {
-    dispatch(requestLogout())
-    localStorage.removeItem('id_token')
-    localStorage.removeItem('access_token')
-    dispatch(receiveLogout())
-  }
+export const END_SESSION = 'end_session';
+export const endSession = () => (dispatch, getState, api) => {
+  dispatch({ type: END_SESSION });
 }

@@ -3,7 +3,6 @@ const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 
 const config = {
-  mode: 'development',
   target:'web',
   entry: './client/index.jsx',
   output: {

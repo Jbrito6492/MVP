@@ -9,18 +9,13 @@ export default [
     component: App,
     routes: [
       {
-        component: HomePage,
-        path: '/',
-        exact: true
-      },
-      {
         component: LogInPage,
         path: '/login'
       },
-      // {
-      //   component: Map,
-      //   path: '/map'
-      // }
+      {
+        component: HomePage,
+        path: '/home'
+      }
     ]
   }
 ];
