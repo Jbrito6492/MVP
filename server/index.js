@@ -6,6 +6,7 @@ import renderer from './helpers/render.js';
 import createStore from './helpers/createStore.js';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import proxy from 'express-http-proxy';
 
 const router = require('./routes/router.js');
 const path = require('path');
@@ -17,6 +18,7 @@ const db = require('../database/index.js');
 const socketConfig = require('./websocketConfig/socketIO.js');
 const port = process.env.PORT || 5000;
 
+app.use('/api', proxy('http://localhost:5000'))
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('public'));

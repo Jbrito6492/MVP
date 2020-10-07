@@ -1,84 +1,44 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCurrentUser,
-  logOut,
+  loginUser,
+  logoutUser,
   getLocation,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
 
-@connect((store) => {
-  return {
-    auth: store.auth,
-  };
-})
-// change this to functional component with hooks and use withRouter
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.header = this.header.bind(this);
-    this.loading = this.loading.bind(this);
-    this.renderView = this.renderView.bind(this);
-  }
+const Header = (props) => {
+  const dispatch = useDispatch();
+  const [isAuthenticated, setAuth] = useState(true);
 
-  componentDidUpdate() {
-    this.props.dispatch(fetchCurrentUser());
-  }
-
-  header(button) {
-    return (
-      <nav>
-        <div className="nav-wrapper grey darken-3">
-          <a className="brand-logo">#Whats The Move?</a>
-          <ul id="nav-desktop" className="right hide-on-med-and-down">
+  // const isAuthenticated = useSelector((state) => state.auth);
+  return (
+    <nav>
+      <div className="nav-wrapper grey darken-3">
+        <a className="brand-logo">#Whats The Move?</a>
+        <ul id="nav-desktop" className="right hide-on-med-and-down">
+          <li>
+            <Link to="/map">Map</Link>
+          </li>
+          {!isAuthenticated && (
             <li>
-              <Link
-                to="/map"
-                onClick={() => this.props.dispatch(getLocation())}
-              >
-                Map
+              <Link to="/" onClick={() => console.log("login fn")}>
+                Login
               </Link>
             </li>
+          )}
+          {isAuthenticated && (
             <li>
-              <Link to="/login" onClick={() => this.props.dispatch(logOut())}>
-                {button}
+              <Link to="/login" onClick={() => console.log("logout fn")}>
+                Logout
               </Link>
             </li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
+          )}
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
-  loading() {
-    return (
-      <nav>
-        <div className="nav-wrapper grey darken-3">
-          <a href="" className="brand-logo">
-            #Whats The Move?
-          </a>
-          <ul id="nav-desktop" className="right hide-on-med-and-down">
-            <li>
-              <a>...Loading</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-
-  renderView() {
-    const { auth } = this.props;
-    if (auth === null) {
-      return this.loading();
-    } else if (auth === false) {
-      return this.header("LogIn");
-    } else {
-      console.log(auth);
-      return this.header("LogOut");
-    }
-  }
-  render() {
-    return <div>{this.renderView()}</div>;
-  }
-}
+export default Header;

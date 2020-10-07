@@ -83,11 +83,31 @@ export const loginUser = (credentials) => {
   }
 }
 
-export const END_SESSION = 'end_session';
-export const logOut = () => async (dispatch, getState, api) => {
-  const res = await api.post('/logout');
-  dispatch({
-    type: END_SESSION,
-    payload: res
-  });
+export const LOGOUT_REQUEST = 'logout_request';
+export const LOGOUT_SUCCESS = 'logout_success';
+export const LOGOUT_FAILURE = 'logout_failure';
+
+const requestLogout = () => {
+  return {
+    type: LOGOUT_REQUEST,
+    isFetching: true,
+    isAuthenticated: true
+  }
+}
+
+const recieveLogout = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
+
+export const logoutUser = () => {
+  return dispatch => {
+    dispatch(requestLogout())
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('access_token')
+    dispatch(receiveLogout())
+  }
 }
