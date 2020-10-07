@@ -6,24 +6,33 @@ import Header from "../components/header/Header.jsx";
 
 const LogIn = (props) => {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const [state, setState] = useState({ username: "", password: "" });
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const [state, setState] = useState({
+    username: "",
+    password: "",
+    joined: false,
+  });
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleJoin = (e) => {
     e.preventDefault();
     dispatch(createUser(state));
-    dispatch(startSession);
+    setState({ ...state, joined: true });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(startSession());
   };
 
   return (
     <div>
       <Header />
       <div className="container">
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={state.joined ? handleLogin : handleJoin} className="form">
           <h1 className="center-align">Log In</h1>
           <input
             placeholder="username"
@@ -40,15 +49,26 @@ const LogIn = (props) => {
             required
           />
           <div className="center-align">
-            <button
-              onClick={handleSubmit}
-              className="btn waves-effect waves-light grey lighten-1"
-              type="submit"
-              name="action"
-            >
-              Join
-            </button>
-            {auth.isAuthenticated ? <Redirect to="/home" /> : null}
+            {state.joined ? (
+              <button
+                onClick={handleLogin}
+                className="btn waves-effect waves-light grey lighten-1"
+                type="submit"
+                name="action"
+              >
+                LogIn
+              </button>
+            ) : (
+              <button
+                onClick={handleJoin}
+                className="btn waves-effect waves-light grey lighten-1"
+                type="submit"
+                name="action"
+              >
+                Join
+              </button>
+            )}
+            {isAuthenticated ? <Redirect to="/home" /> : null}
           </div>
         </form>
       </div>
