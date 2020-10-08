@@ -20,6 +20,15 @@ export function getLocation() {
     });
   };
 }
+
+export const CHANGE_THEME_DARK = 'change_theme_dark';
+export const CHANGE_THEME_LIGHT = 'change_theme_light';
+export const toDarkMode = () => (dispatch, getState, api) => {
+  dispatch({ type: CHANGE_THEME_DARK });
+}
+export const toLightMode = () => (dispatch, getState, api) => {
+  dispatch({ type: CHANGE_THEME_LIGHT });
+}
 /////////////////////////////////////
 /////////  AUTHENTICATION  /////////
 ////////////////////////////////////

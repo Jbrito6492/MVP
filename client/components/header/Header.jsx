@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CgPin } from "react-icons/cg";
+import { FaMoon } from "react-icons/fa";
+import { RiLightbulbFlashLine } from "react-icons/ri";
 import {
   startSession,
   createUser,
@@ -8,6 +10,7 @@ import {
   getLocation,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
+import { toDarkMode, toLightMode } from "../../store/actions/index.js";
 import Navigation from "../navigation/Navigation.jsx";
 
 const Header = (props) => {
@@ -17,8 +20,20 @@ const Header = (props) => {
   return (
     <nav>
       <div className="nav-wrapper grey darken-3">
-        <div className="brand-logo">#<CgPin /></div>
+        <div className="brand-logo">
+          #<CgPin />
+        </div>
         <ul id="nav-desktop" className="right hide-on-med-and-down">
+          <li>
+            <a href="#">
+              <FaMoon onClick={() => dispatch(toDarkMode())}/>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <RiLightbulbFlashLine onClick={() => dispatch(toLightMode())} />
+            </a>
+          </li>
           <li>
             <a
               href="#"

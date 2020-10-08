@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import { FaMoon } from "react-icons/fa";
+import { RiLightbulbFlashLine } from "react-icons/ri";
 
 const Navigation = (props) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     const M = window.M;
     document.addEventListener("DOMContentLoaded", function () {
@@ -10,6 +13,10 @@ const Navigation = (props) => {
       const instances = M.Sidenav.init(elems, {});
     });
   }, []);
+
+  const changeMode = () => {
+    setD;
+  };
 
   let nav = (
     <div>
@@ -24,13 +31,15 @@ const Navigation = (props) => {
             </a>
           </div>
         </li>
-        <li>
+        <li onClick={changeMode}>
           <a href="#!">
             <FaMoon /> Dark Mode
           </a>
         </li>
         <li>
-          <a href="#!">Second Link</a>
+          <a href="#!">
+            <RiLightbulbFlashLine /> Light Mode
+          </a>
         </li>
         <li>
           <div className="divider"></div>
