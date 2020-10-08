@@ -6,12 +6,18 @@ import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
 import { startSession } from '../../client/store/actions/index.js';
 import Routes from '../../client/Routes.js';
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 export default (req, store) => {
+  const css = new Set();
+  const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()))
+
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
-        <div>{renderRoutes(Routes)}</div>
+        <StyleContext.Provider value={{ insertCss }}>
+          <div>{renderRoutes(Routes)}</div>
+        </StyleContext.Provider>
       </StaticRouter>
     </Provider>
   );
@@ -20,6 +26,7 @@ export default (req, store) => {
 <!DOCTYPE html>
   <html lang="en">
     <head>
+      <style>${[...css].join('')}</style>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

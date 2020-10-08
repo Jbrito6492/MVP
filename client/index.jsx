@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import axios from "axios";
 import Routes from "./Routes.js";
 import reducers from "./store/reducers/index.js";
+import StyleContext from "isomorphic-style-loader/StyleContext";
 
 const axiosInstance = axios.create({
   baseURL: "/api",
@@ -23,10 +24,17 @@ const store = createStore(
   )
 );
 
+const insertCss = (...styles) => {
+  const removeCss = styles.map(style => style._insertCss())
+  return () => removeCss.forEach(dispose => dispose())
+}
+
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <div>{renderRoutes(Routes)}</div>
+      <StyleContext.Provider value={{ insertCss }}>
+        <div>{renderRoutes(Routes)}</div>
+      </StyleContext.Provider>
     </BrowserRouter>
   </Provider>,
   document.querySelector("#root")

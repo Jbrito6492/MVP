@@ -14,7 +14,20 @@ module.exports = {
           plugins: [
             ["@babel/plugin-proposal-decorators", { legacy: true }], ["@babel/plugin-proposal-class-properties"]
           ]
-        },
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ]
       }
     ]
   },

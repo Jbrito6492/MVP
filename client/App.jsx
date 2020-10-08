@@ -3,7 +3,7 @@ import { renderRoutes } from "react-router-config";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { startSession } from "./store/actions/index.js";
 
-function App({ route }) {
+function App(props, context) {
   const dispatch = useDispatch();
   const { auth, theme } = useSelector(
     (state) => ({
@@ -17,7 +17,7 @@ function App({ route }) {
     dispatch(startSession());
   }, []);
 
-  return <div style={theme}>{renderRoutes(route.routes)}</div>;
+  return <div style={theme}>{renderRoutes(props.route.routes)}</div>;
 }
 
 export default App;
