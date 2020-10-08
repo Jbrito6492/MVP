@@ -15,16 +15,11 @@ exports.authenticate = (req, res) => {
   const { session_id } = req.cookies;
   User.findById(session_id, 'username')
     .then(({ username, _id }) => {
-      console.log(`id: ${typeof _id} cookie: ${typeof session_id}`)
-      JSON.stringify(_id) !== JSON.stringify(session_id) ? res.json({
-        msg: 'invalid credentials',
-        isAuthenticated: false
-      }) :
-        res.json({
-          id: _id, username,
-          isAuthenticated: true,
-          token: session_id
-        });
+      res.json({
+        id: _id, username,
+        isAuthenticated: true,
+        token: session_id
+      });
     })
     .catch(err => {
       console.log(err);

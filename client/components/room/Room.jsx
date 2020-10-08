@@ -20,7 +20,7 @@ const Room = (props) => {
   useEffect(() => {
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
-      console.log('data', data)
+      console.log("data", data);
       if (err) return;
       setChat((prevChats) => [...prevChats, data.message]);
     });
@@ -39,51 +39,51 @@ const Room = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="center-align">
-        <h1>{room}</h1>
-        {rooms.map((room, index) => (
-          <button
-            className="waves-effect waves-light btn-small grey lighten-1"
-            onClick={() => setRoom(room)}
-            key={index}
-          >
-            {room}
-          </button>
-        ))}
+      <div className="container">
+        <div className="center-align">
+          <h1>{room}</h1>
+          {rooms.map((room, index) => (
+            <button
+              className="waves-effect waves-light btn-small grey lighten-1"
+              onClick={() => setRoom(room)}
+              key={index}
+            >
+              {room}
+            </button>
+          ))}
 
-        <div className="row">
-          <form className="col s12" onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  id="icon_prefix"
-                  type="text"
-                  className="validate"
-                  name="message"
-                  value={state.message}
-                  onChange={(e) => {
-                    setMessage({ ...state, [e.target.name]: e.target.value });
-                  }}
-                  required
-                />
-                <i className="material-icons prefix" onClick={handleSubmit}>
-                  create
-                </i>
-                <label htmlFor="icon_prefix">send it</label>
+          <div className="row">
+            <form className="col s12" onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    id="icon_prefix"
+                    type="text"
+                    className="validate"
+                    name="message"
+                    value={state.message}
+                    onChange={(e) => {
+                      setMessage({ ...state, [e.target.name]: e.target.value });
+                    }}
+                    required
+                  />
+                  <i className="material-icons prefix" onClick={handleSubmit}>
+                    create
+                  </i>
+                  <label htmlFor="icon_prefix">send it</label>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
+        {chat.map((message, index) => (
+          <p key={index}>
+            <span className="flow-text">{username} </span>
+            {message}
+          </p>
+        ))}
+        <Map />
       </div>
-      {chat.map((message, index) => (
-        <p key={index}>
-          <span className="flow-text">{username} </span>
-          {message}
-        </p>
-      ))}
-      <Map />
-    </div>
   );
 };
 

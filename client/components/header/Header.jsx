@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CgPin } from "react-icons/cg";
 import {
   startSession,
   createUser,
@@ -7,6 +8,7 @@ import {
   getLocation,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
+import Navigation from "../navigation/Navigation.jsx";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -15,10 +17,20 @@ const Header = (props) => {
   return (
     <nav>
       <div className="nav-wrapper grey darken-3">
-        <a className="brand-logo">#Whats The Move?</a>
+        <div className="brand-logo">#<CgPin /></div>
         <ul id="nav-desktop" className="right hide-on-med-and-down">
           <li>
-            <Link to="/map">Map</Link>
+            <a
+              href="#"
+              data-target="slide-out"
+              className="sidenav-trigger show-on-large"
+            >
+              <i className="material-icons">menu</i>
+            </a>
+            <Navigation />
+          </li>
+          <li>
+            <Link to="/">Map</Link>
           </li>
           {!isAuthenticated && (
             <li>
