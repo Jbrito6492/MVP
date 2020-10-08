@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import { FaMoon } from "react-icons/fa";
 import { RiLightbulbFlashLine } from "react-icons/ri";
+import { CgPin } from "react-icons/cg";
 import Map from "../map/Map.jsx";
 
 const Navigation = (props) => {
@@ -13,10 +14,14 @@ const Navigation = (props) => {
       const elems = document.querySelectorAll(".sidenav");
       const instances = M.Sidenav.init(elems, {});
     });
+    document.addEventListener("DOMContentLoaded", function () {
+      const elems = document.querySelectorAll(".modal");
+      const instances = M.Modal.init(elems, {});
+    });
   }, []);
 
   const changeMode = () => {
-    setD;
+    console.log("test");
   };
 
   let nav = (
@@ -49,12 +54,13 @@ const Navigation = (props) => {
           <a className="subheader">Subheader</a>
         </li>
         <li>
-          <a className="waves-effect" href="#!">
-            get location
+          <a
+            className="waves-effect waves-light btn modal-trigger"
+            href="#modal1"
+          >
+            <CgPin />
+            show map
           </a>
-        </li>
-        <li>
-          <Map />
         </li>
       </ul>
     </div>

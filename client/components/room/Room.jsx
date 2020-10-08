@@ -8,6 +8,7 @@ import {
   subscribeToChat,
   sendMessage,
 } from "../../helpers/socketio.js";
+import Map from "../map/Map.jsx";
 
 const Room = (props) => {
   const { username } = useSelector((state) => state.auth);
@@ -38,6 +39,7 @@ const Room = (props) => {
   };
 
   return (
+    <div>
       <div className="container">
         <div className="center-align">
           <h1>{room}</h1>
@@ -50,7 +52,6 @@ const Room = (props) => {
               {room}
             </button>
           ))}
-
           <div className="row">
             <form className="col s12" onSubmit={handleSubmit}>
               <div className="row">
@@ -82,6 +83,21 @@ const Room = (props) => {
           </p>
         ))}
       </div>
+
+      <div id="modal1" className="modal bottom-sheet">
+        <div className="modal-content">
+        <Map />
+        </div>
+        <div className="modal-footer">
+          <a
+            href="#!"
+            className="modal-close waves-effect btn-flat grey lighten-1"
+          >
+            Agree
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 
