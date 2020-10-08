@@ -7,7 +7,6 @@ import Header from "../components/header/Header.jsx";
 import { Redirect } from "react-router-dom";
 
 const HomePage = (props) => {
-  const theme = useSelector((state) => state.theme);
   const renderView = () => {
     return (
       <div>

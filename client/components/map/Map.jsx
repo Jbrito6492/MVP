@@ -59,7 +59,7 @@ const Map = (props) => {
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={13}
+        zoom={10}
         center={location}
         options={options}
         onClick={onMapClick}

@@ -44,9 +44,6 @@ const Header = (props) => {
             </a>
             <Navigation />
           </li>
-          <li>
-            <Link to="/">Map</Link>
-          </li>
           {!isAuthenticated && (
             <li>
               <Link to="/home" onClick={() => dispatch(startSession())}>

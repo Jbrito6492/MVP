@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import { FaMoon } from "react-icons/fa";
 import { RiLightbulbFlashLine } from "react-icons/ri";
+import Map from "../map/Map.jsx";
 
 const Navigation = (props) => {
   const dispatch = useDispatch();
@@ -49,8 +50,11 @@ const Navigation = (props) => {
         </li>
         <li>
           <a className="waves-effect" href="#!">
-            Third Link With Waves
+            get location
           </a>
+        </li>
+        <li>
+          <Map />
         </li>
       </ul>
     </div>
