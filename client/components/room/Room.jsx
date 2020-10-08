@@ -20,9 +20,9 @@ const Room = (props) => {
   useEffect(() => {
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
-      console.log("data", data);
+      console.log('data', data)
       if (err) return;
-      setChat((prevChats) => [...prevChats, data]);
+      setChat((prevChats) => [...prevChats, data.message]);
     });
     return () => {
       console.log("clean up");
@@ -80,7 +80,6 @@ const Room = (props) => {
         <p key={index}>
           <span className="flow-text">{username} </span>
           {message}
-          {console.log(message)}
         </p>
       ))}
       <Map />
