@@ -1,12 +1,17 @@
 import React, { useEffect } from "react";
 import { renderRoutes } from "react-router-config";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { startSession } from "./store/actions/index.js";
 
 function App({ route }) {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const theme = useSelector((state) => state.theme);
+  const { auth, theme } = useSelector(
+    (state) => ({
+      auth: state.auth,
+      theme: state.theme,
+    }),
+    shallowEqual
+  );
 
   useEffect(() => {
     dispatch(startSession());

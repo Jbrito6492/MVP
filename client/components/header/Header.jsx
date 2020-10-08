@@ -24,14 +24,14 @@ const Header = (props) => {
           #<CgPin />
         </div>
         <ul id="nav-desktop" className="right hide-on-med-and-down">
-          <li>
+          <li onClick={() => dispatch(toDarkMode())}>
             <a href="#">
-              <FaMoon onClick={() => dispatch(toDarkMode())}/>
+              <FaMoon />
             </a>
           </li>
-          <li>
+          <li onClick={() => dispatch(toLightMode())} >
             <a href="#">
-              <RiLightbulbFlashLine onClick={() => dispatch(toLightMode())} />
+              <RiLightbulbFlashLine />
             </a>
           </li>
           <li>
