@@ -14,13 +14,13 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case START_SESSION:
       return {
-        ...state, ...action.payload.data, isAuthenticated: true
+        ...state, ...action.payload.data
       };
     case END_SESSION:
       return {
         token: null,
         isAuthenticated: false,
-        usename: null
+        username: null
       };
     case CREATE_USER:
       return {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Map from "../map/Map.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
 import { GrSend } from "react-icons/gr";
 import {
@@ -10,18 +10,17 @@ import {
   sendMessage,
 } from "../../helpers/socketio.js";
 
-const Room = ({ auth, dispatch }) => {
+const Room = (props) => {
+  const { username } = useSelector((state) => state.auth);
   const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
-  const name = useSelector((state) => state.auth);
   const [room, setRoom] = useState(rooms[0]);
-  const [message, setMessage] = useState("");
+  const [state, setMessage] = useState({ username, message: "" });
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    name;
-    console.log("useEffect hook", name);
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
+      console.log("data", data);
       if (err) return;
       setChat((prevChats) => [...prevChats, data]);
     });
@@ -30,12 +29,13 @@ const Room = ({ auth, dispatch }) => {
       setChat((prevChats) => []);
       disconnectSocket();
     };
-  }, [room, name]);
+  }, [room]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendMessage(room, name, message);
-    setMessage((prevMessage) => "");
+    const { username, message } = state;
+    sendMessage(room, username, message);
+    setMessage((prevMessage) => ({ ...prevMessage, message: "" }));
   };
 
   return (
@@ -60,9 +60,11 @@ const Room = ({ auth, dispatch }) => {
                   id="icon_prefix"
                   type="text"
                   className="validate"
-                  name="name"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  name="message"
+                  value={state.message}
+                  onChange={(e) => {
+                    setMessage({ ...state, [e.target.name]: e.target.value });
+                  }}
                   required
                 />
                 <i className="material-icons prefix" onClick={handleSubmit}>
@@ -76,8 +78,9 @@ const Room = ({ auth, dispatch }) => {
       </div>
       {chat.map((message, index) => (
         <p key={index}>
-          <span className="flow-text">{name} </span>
+          <span className="flow-text">{username} </span>
           {message}
+          {console.log(message)}
         </p>
       ))}
       <Map />

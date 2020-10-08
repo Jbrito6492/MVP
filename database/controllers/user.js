@@ -15,11 +15,18 @@ exports.authenticate = (req, res) => {
   const { session_id } = req.cookies;
   User.findById(session_id, 'username')
     .then(({ username, _id }) => {
-      res.json({ id: _id, username });
+      res.json({
+        id: _id, username,
+        isAuthenticated: true,
+        token: session_id
+      });
     })
     .catch(err => {
       console.log(err);
-      res.json({ msg: 'invalid credentials' });
+      res.json({
+        msg: 'invalid credentials',
+        isAuthenticated: false
+      });
     })
 }
 
@@ -45,7 +52,7 @@ exports.createAccount = (req, res) => {
     password
   })
     .then(({ _id }) => {
-      res.cookie('session_id', `${_id}`).json({
+      res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
         token: `${_id}`,
         username
       });
