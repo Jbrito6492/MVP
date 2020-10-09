@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
+import { Link } from "react-router-dom";
 import { GrSend } from "react-icons/gr";
 import {
   connectSocket,
@@ -11,6 +12,7 @@ import {
 import Map from "../map/Map.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import r from "../../css/room.css";
+import styled from "styled-components";
 
 const Room = (props) => {
   const { username } = useSelector((state) => state.auth);
@@ -43,16 +45,8 @@ const Room = (props) => {
   return (
     <>
       <div className={r.searchContainer}>
-        <h1>{room}</h1>
-        {rooms.map((room, index) => (
-          <button
-            className="waves-effect waves-light btn-small grey lighten-1"
-            onClick={() => setRoom(room)}
-            key={index}
-          >
-            {room}
-          </button>
-        ))}
+        <svg viewBox="0 0 20 20" width="1rem"></svg>
+        <input type="text" placeholder="search" />
       </div>
       <div className={r.conversationList}>
         conversation list
@@ -63,8 +57,20 @@ const Room = (props) => {
           </p>
         ))}
       </div>
-      <div className={r.newMessageContainer}></div>
+      <div className={r.newMessageContainer}>
+        <Link to="/"></Link>
+      </div>
       <div className={r.chatTitle}></div>
+      <h1>{room}</h1>
+      {rooms.map((room, index) => (
+        <button
+          className="waves-effect waves-light btn-small grey lighten-1"
+          onClick={() => setRoom(room)}
+          key={index}
+        >
+          {room}
+        </button>
+      ))}
       <div className={r.chatMessageList}></div>
       <div className={r.chatForm}>
         <form onSubmit={handleSubmit}>
