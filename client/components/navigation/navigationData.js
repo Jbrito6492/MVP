@@ -1,9 +1,10 @@
 import React from 'react';
 import { AiFillHome } from 'react-icons/ai';
 import { HiOutlineLogout } from 'react-icons/hi';
-import { FaMapPin, FaMoon } from 'react-icons/fa';
+import { FaMoon } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 import { RiLightbulbFlashLine } from "react-icons/ri";
+import { SiOpenstreetmap } from "react-icons/si";
 
 export const SidebarData = [
   {
@@ -15,7 +16,7 @@ export const SidebarData = [
   {
     title: 'Map',
     path: '/',
-    icon: <FaMapPin />,
+    icon: <SiOpenstreetmap />,
     cName: 'navText'
   },
   {

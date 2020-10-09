@@ -1,0 +1,43 @@
+.searchContainer, .conversationList, .newMessageContainer {
+  background: #0048AA;
+}
+
+.searchContainer {
+  grid-area: searchContainer;
+  border-radius: 10px 0 0 0;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.newMessageContainer {
+  grid-area: newMessageContainer;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 0 10px;
+}
+
+.chatTitle, .chatForm {
+  background: #eee;
+}
+
+.chatTitle {
+  grid-area: chatTitle;
+  color: #0048AA;
+  font-weight: bold;
+  font-size: 2.0rem;
+  border-radius: 0 10px 0 0;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
+}
+
+.chatFrom {
+  grid-area: chatForm;
+  border-radius: 0 0 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.conversationList {
+  grid-area: conversationList;
+}
+
+.chatMessageList {
+  grid-area: chatMessageList;
+}

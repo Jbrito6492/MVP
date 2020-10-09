@@ -17,14 +17,14 @@ const HomePage = (props) => {
           <div>
             <Navigation />
           </div>
-          <div>
+          <div className={s.chatContainer}>
             <Room />
           </div>
         </div>
       </>
     );
   };
-  return <div className={s.home}>{renderView()}</div>;
+  return <div>{renderView()}</div>;
 };
 
 export default withStyles(s)(HomePage);

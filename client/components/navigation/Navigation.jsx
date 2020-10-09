@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
-import { FaMoon, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { CgPin } from "react-icons/cg";

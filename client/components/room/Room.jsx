@@ -9,6 +9,8 @@ import {
   sendMessage,
 } from "../../helpers/socketio.js";
 import Map from "../map/Map.jsx";
+import withStyles from "isomorphic-style-loader/withStyles";
+import r from "../../css/room.css";
 
 const Room = (props) => {
   const { username } = useSelector((state) => state.auth);
@@ -39,8 +41,8 @@ const Room = (props) => {
   };
 
   return (
-    <div>
-      <div>
+    <>
+      <div className={r.searchContainer}>
         <h1>{room}</h1>
         {rooms.map((room, index) => (
           <button
@@ -52,35 +54,36 @@ const Room = (props) => {
           </button>
         ))}
       </div>
-      <div className="c.chatContainer">
+      <div className={r.conversationList}>
+        conversation list
         {chat.map((message, index) => (
           <p key={index}>
             <span className="flow-text">{username} </span>
             {message}
           </p>
         ))}
-        <div className="row">
-          <form className="col s12" onSubmit={handleSubmit}>
-            <input
-              id="icon_prefix"
-              type="text"
-              className="validate"
-              name="message"
-              value={state.message}
-              onChange={(e) => {
-                setMessage({ ...state, [e.target.name]: e.target.value });
-              }}
-              required
-            />
-            <i className="material-icons prefix" onClick={handleSubmit}>
-              create
-            </i>
-            <label htmlFor="icon_prefix">send it</label>
-          </form>
-        </div>
       </div>
-    </div>
+      <div className={r.newMessageContainer}></div>
+      <div className={r.chatTitle}></div>
+      <div className={r.chatMessageList}></div>
+      <div className={r.chatForm}>
+        <form onSubmit={handleSubmit}>
+          <input
+            id="icon_prefix"
+            type="text"
+            className="validate"
+            name="message"
+            value={state.message}
+            onChange={(e) => {
+              setMessage({ ...state, [e.target.name]: e.target.value });
+            }}
+            required
+          />
+          <button onClick={handleSubmit}>send it</button>
+        </form>
+      </div>
+    </>
   );
 };
 
-export default Room;
+export default withStyles(r)(Room);
