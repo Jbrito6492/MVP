@@ -3,7 +3,7 @@ import { renderRoutes } from "react-router-config";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { startSession } from "./store/actions/index.js";
 
-function App(props, context) {
+function App(props) {
   const dispatch = useDispatch();
   const { auth, theme } = useSelector(
     (state) => ({

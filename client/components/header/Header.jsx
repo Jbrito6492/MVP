@@ -19,31 +19,10 @@ import { SidebarData } from "../navigation/navigationData.js";
 const Header = (props) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  const [sidebar, setSidebar] = useState(props.show);
+  const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const renderSidebar = () => {
-    return (
-      <nav className={sidebar ? "nav-menu active" : "nav-menu hidden"}>
-        <ul className={"nav-menu-items"}>
-          <li>
-            <Link to="#" className="menu-bars">
-              <AiOutlineClose />
-            </Link>
-          </li>
-          {SidebarData.map((item, index) => (
-            <li key={index} className={item.className}>
-              <Link to={item.path}>
-                {item.icon}
-                <span>{item.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
-  };
 
   return (
     <div>
@@ -53,11 +32,6 @@ const Header = (props) => {
             #<CgPin />
           </div>
           <ul id="nav-desktop" className="right hide-on-med-and-down">
-            <li>
-              <Link to="#" className={"menu-bars"}>
-                <FaBars onClick={showSidebar} />
-              </Link>
-            </li>
             <li onClick={() => dispatch(toDarkMode())}>
               <a href="#">
                 <FaMoon />

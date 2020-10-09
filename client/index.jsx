@@ -25,17 +25,17 @@ const store = createStore(
 );
 
 const insertCss = (...styles) => {
-  const removeCss = styles.map(style => style._insertCss())
-  return () => removeCss.forEach(dispose => dispose())
-}
+  const removeCss = styles.map((style) => style._insertCss());
+  return () => removeCss.forEach((dispose) => dispose());
+};
 
 ReactDOM.hydrate(
-  <Provider store={store}>
-    <BrowserRouter>
-      <StyleContext.Provider value={{ insertCss }}>
+  <StyleContext.Provider value={{ insertCss }}>
+    <Provider store={store}>
+      <BrowserRouter>
         <div>{renderRoutes(Routes)}</div>
-      </StyleContext.Provider>
-    </BrowserRouter>
-  </Provider>,
+      </BrowserRouter>
+    </Provider>
+  </StyleContext.Provider>,
   document.querySelector("#root")
 );

@@ -86,7 +86,7 @@ const Room = (props) => {
 
       <div id="modal1" className="modal bottom-sheet">
         <div className="modal-content">
-        <Map />
+
         </div>
         <div className="modal-footer">
           <a

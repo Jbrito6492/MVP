@@ -17,19 +17,24 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
+        exclude: /node_modules/,
         use: [
           'isomorphic-style-loader',
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              esModule: false,
+              sourceMap: true,
+              modules: {
+                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+              }
             }
-          },
-          'postcss-loader'
+          }
         ]
       }
-    ]
+    ],
   },
   plugins: [
     new Dotenv()
