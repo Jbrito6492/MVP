@@ -40,61 +40,43 @@ const Room = (props) => {
 
   return (
     <div>
-      <div className="container">
-        <div className="center-align">
-          <h1>{room}</h1>
-          {rooms.map((room, index) => (
-            <button
-              className="waves-effect waves-light btn-small grey lighten-1"
-              onClick={() => setRoom(room)}
-              key={index}
-            >
-              {room}
-            </button>
-          ))}
-          <div className="row">
-            <form className="col s12" onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="icon_prefix"
-                    type="text"
-                    className="validate"
-                    name="message"
-                    value={state.message}
-                    onChange={(e) => {
-                      setMessage({ ...state, [e.target.name]: e.target.value });
-                    }}
-                    required
-                  />
-                  <i className="material-icons prefix" onClick={handleSubmit}>
-                    create
-                  </i>
-                  <label htmlFor="icon_prefix">send it</label>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div>
+        <h1>{room}</h1>
+        {rooms.map((room, index) => (
+          <button
+            className="waves-effect waves-light btn-small grey lighten-1"
+            onClick={() => setRoom(room)}
+            key={index}
+          >
+            {room}
+          </button>
+        ))}
+      </div>
+      <div className="c.chatContainer">
         {chat.map((message, index) => (
           <p key={index}>
             <span className="flow-text">{username} </span>
             {message}
           </p>
         ))}
-      </div>
-
-      <div id="modal1" className="modal bottom-sheet">
-        <div className="modal-content">
-
-        </div>
-        <div className="modal-footer">
-          <a
-            href="#!"
-            className="modal-close waves-effect btn-flat grey lighten-1"
-          >
-            Agree
-          </a>
+        <div className="row">
+          <form className="col s12" onSubmit={handleSubmit}>
+            <input
+              id="icon_prefix"
+              type="text"
+              className="validate"
+              name="message"
+              value={state.message}
+              onChange={(e) => {
+                setMessage({ ...state, [e.target.name]: e.target.value });
+              }}
+              required
+            />
+            <i className="material-icons prefix" onClick={handleSubmit}>
+              create
+            </i>
+            <label htmlFor="icon_prefix">send it</label>
+          </form>
         </div>
       </div>
     </div>
