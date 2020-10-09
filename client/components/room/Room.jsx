@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { GrSend } from "react-icons/gr";
+import { BsTrash2 } from "react-icons/bs";
+import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   connectSocket,
   disconnectSocket,
@@ -13,6 +15,7 @@ import Map from "../map/Map.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import r from "../../css/room.css";
 import styled from "styled-components";
+import profilePic from "../../images/example-profile.png";
 
 const Room = (props) => {
   const { username } = useSelector((state) => state.auth);
@@ -45,22 +48,31 @@ const Room = (props) => {
   return (
     <>
       <div className={r.searchContainer}>
-        <svg viewBox="0 0 20 20" width="1rem"></svg>
         <input type="text" placeholder="search" />
       </div>
       <div className={r.conversationList}>
-        conversation list
+        <div className={r.conversation}>
+          <img src={profilePic} />
+          <div className={r.titleText}>Jorge Play Play Garcia</div>
+          <div className={r.createdDate}>Oct 9</div>
+          <div className={r.conversationMessage}>
+            this is a message from the play
+          </div>
+        </div>
         {chat.map((message, index) => (
           <p key={index}>
-            <span className="flow-text">{username} </span>
+            <span>{username} </span>
             {message}
           </p>
         ))}
       </div>
       <div className={r.newMessageContainer}>
-        <Link to="/"></Link>
+        <Link to="/">+</Link>
       </div>
-      <div className={r.chatTitle}></div>
+      <div className={r.chatTitle}>
+        <span>title</span>
+        <BsTrash2 className={r.chatTitleIcon} />
+      </div>
       <h1>{room}</h1>
       {rooms.map((room, index) => (
         <button
@@ -73,20 +85,18 @@ const Room = (props) => {
       ))}
       <div className={r.chatMessageList}></div>
       <div className={r.chatForm}>
-        <form onSubmit={handleSubmit}>
-          <input
-            id="icon_prefix"
-            type="text"
-            className="validate"
-            name="message"
-            value={state.message}
-            onChange={(e) => {
-              setMessage({ ...state, [e.target.name]: e.target.value });
-            }}
-            required
-          />
-          <button onClick={handleSubmit}>send it</button>
-        </form>
+        <HiOutlinePaperClip className={r.chatFormIcon} />
+        <input
+          id="icon_prefix"
+          type="text"
+          name="message"
+          value={state.message}
+          onChange={(e) => {
+            setMessage({ ...state, [e.target.name]: e.target.value });
+          }}
+          required
+        />
+        <button onClick={handleSubmit}>send it</button>
       </div>
     </>
   );
