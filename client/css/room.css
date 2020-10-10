@@ -60,6 +60,11 @@
   cursor: pointer;
 }
 
+.chatFormIcon, .chatFormSendIcon {
+  width: 34px;
+  height: 34px;
+}
+
 .chatTitle {
   display: grid;
   grid: 36px / 2fr 1fr;
@@ -158,7 +163,7 @@
   display: grid;
   align-content: center;
   align-items: center;
-  grid: 51px / 32px 1fr;
+  grid: 51px / 1fr 40px 40px;
   grid-gap: 15px;
   grid-area: chatForm;
   border-radius: 0 0 10px 0;

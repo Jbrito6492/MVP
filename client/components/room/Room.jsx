@@ -100,9 +100,8 @@ const Room = (props) => {
         </div>
       </div>
       <div className={r.chatForm}>
-        <HiOutlinePaperClip className={r.chatFormIcon} />
         <input
-          id="icon_prefix"
+          placeholder="send it"
           type="text"
           name="message"
           value={state.message}
@@ -111,6 +110,7 @@ const Room = (props) => {
           }}
           required
         />
+        <HiOutlinePaperClip className={r.chatFormIcon} />
         <GrSend onClick={handleSubmit} className={r.chatFormSendIcon} />
       </div>
     </>
