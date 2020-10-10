@@ -74,12 +74,14 @@
   padding: 0 20px;
 }
 
+
 .roomButtons {
   outline: none;
   padding: 10px;
   font-weight: bold;
   border: 2px solid #ddd;
-  color: #330;
+  background-color: #0048AA;
+  color: #eee;
   border-radius: 6px;
   font-size: 1.2rem;
 }
@@ -135,7 +137,7 @@
   padding: 20px 20px 20px 15px;
 }
 
-.conversation.active, .conversation:hover {
+.conversation.active, .conversation:hover, .roomButtons:hover {
   background: #002C88;
 }
 
