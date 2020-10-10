@@ -46,7 +46,7 @@ const Room = (props) => {
   };
 
   return (
-    <>
+    <div className={r.chatContainer}>
       <div className={r.searchContainer}>
         <input type="text" placeholder="search" />
       </div>
@@ -113,7 +113,7 @@ const Room = (props) => {
         <HiOutlinePaperClip className={r.chatFormIcon} />
         <GrSend onClick={handleSubmit} className={r.chatFormSendIcon} />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -12,9 +12,8 @@ import {
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
 import { toDarkMode, toLightMode } from "../../store/actions/index.js";
-import Navigation from "../navigation/Navigation.jsx";
-
-import { SidebarData } from "../navigation/navigationData.js";
+import withStyles from "isomorphic-style-loader/withStyles";
+import h from "../../css/header.css";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -23,44 +22,41 @@ const Header = (props) => {
 
   const showSidebar = () => setSidebar(!sidebar);
 
-
   return (
-    <div>
-      <nav>
-        <div className="nav-wrapper grey darken-3">
-          <div className="brand-logo">
-            #<CgPin />
-          </div>
-          <ul id="nav-desktop" className="right hide-on-med-and-down">
-            <li onClick={() => dispatch(toDarkMode())}>
-              <a href="#">
-                <FaMoon />
-              </a>
-            </li>
-            <li onClick={() => dispatch(toLightMode())}>
-              <a href="#">
-                <RiLightbulbFlashLine />
-              </a>
-            </li>
-            {!isAuthenticated && (
-              <li>
-                <Link to="/home" onClick={() => dispatch(startSession())}>
-                  Login
-                </Link>
-              </li>
-            )}
-            {isAuthenticated && (
-              <li>
-                <Link to="/" onClick={() => dispatch(endSession())}>
-                  Logout
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      </nav>
+    <div className={h.navbar}>
+      <ul>
+        <li className={h.headerText}>
+          <Link to="#" className={h.menuBars}>
+            <FaBars onClick={showSidebar} />
+          </Link>
+        </li>
+        <li onClick={() => dispatch(toDarkMode())}>
+          <a href="#">
+            <FaMoon />
+          </a>
+        </li>
+        <li onClick={() => dispatch(toLightMode())}>
+          <a href="#">
+            <RiLightbulbFlashLine />
+          </a>
+        </li>
+        {!isAuthenticated && (
+          <li>
+            <Link to="/home" onClick={() => dispatch(startSession())}>
+              Login
+            </Link>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li>
+            <Link to="/" onClick={() => dispatch(endSession())}>
+              Logout
+            </Link>
+          </li>
+        )}
+      </ul>
     </div>
   );
 };
 
-export default Header;
+export default withStyles(h)(Header);
