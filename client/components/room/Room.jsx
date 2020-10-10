@@ -54,7 +54,7 @@ const Room = (props) => {
         <div className={r.conversation}>
           <img src={profilePic} />
           <div className={r.titleText}>Jorge Play Play Garcia</div>
-          <div className={r.createdDate}>Oct 9</div>
+          <div className={r.createdDate}>Oct 10</div>
           <div className={r.conversationMessage}>
             this is a message from the play
           </div>
@@ -82,9 +82,18 @@ const Room = (props) => {
             </button>
           ))}
           <BsTrash2 className={r.chatTitleIcon} />
-          </div>
+        </div>
       </div>
-      <div className={r.chatMessageList}></div>
+      <div className={r.chatMessageList}>
+        <div className={`${r.youMessage} ${r.messageRow}`}>
+          <div className={r.messageText}>what it do baby</div>
+          <div className={r.messageTime}>Oct 10</div>
+        </div>
+        <div className={`${r.messageRow} ${r.otherMessage}`}>
+          <div className={r.messageText}>hey mayne</div>
+          <div className={r.messageTime}>Oct 10</div>
+        </div>
+      </div>
       <div className={r.chatForm}>
         <HiOutlinePaperClip className={r.chatFormIcon} />
         <input

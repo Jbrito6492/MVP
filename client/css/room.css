@@ -74,7 +74,6 @@
   padding: 0 20px;
 }
 
-
 .roomButtons {
   outline: none;
   padding: 10px;
@@ -93,6 +92,64 @@
   align-content: center;
   align-items: center;
   justify-items: center;
+}
+
+.messageRow {
+  margin-bottom: 20px;
+  display: grid;
+  grid-auto-columns: 70%;
+}
+
+.messageRow img {
+  border-radius: 100%;
+  grid-row: span 2;
+}
+
+.messageTime {
+  font-size: 1.3rem;
+  color: #777;
+}
+
+.messageText {
+  padding: 9px 14px;
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+.youMessage .messageText {
+  background: #0048AA;
+  color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 14px 14px 0px 14px;
+}
+
+.messageContent {
+  display: grid;
+}
+
+.youMessage {
+  justify-content: end;
+  justify-items: end;
+}
+
+.youMessage .messageContent {
+  justify-items: end;
+}
+
+.otherMessage .messageText {
+  background: #eee;
+  color: #111;
+  border: 1px solid #ddd;
+  border-radius: 14px 14px 14px 0;
+}
+
+.otherMessage {
+  justify-items: start;
+}
+
+.otherMessage .messageContent {
+  grid-template-columns: 48px 1fr;
+  grid-column-gap: 15px;
 }
 
 .chatForm {
@@ -177,4 +234,8 @@
 
 .chatMessageList {
   grid-area: chatMessageList;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0 20px;
+  overflow-y: scroll;
 }
