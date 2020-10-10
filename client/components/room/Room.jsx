@@ -86,12 +86,17 @@ const Room = (props) => {
       </div>
       <div className={r.chatMessageList}>
         <div className={`${r.youMessage} ${r.messageRow}`}>
-          <div className={r.messageText}>what it do baby</div>
-          <div className={r.messageTime}>Oct 10</div>
+          <div className={r.messageContent}>
+            <div className={r.messageText}>what it do baby</div>
+            <div className={r.messageTime}>Oct 10</div>
+          </div>
         </div>
         <div className={`${r.messageRow} ${r.otherMessage}`}>
-          <div className={r.messageText}>hey mayne</div>
-          <div className={r.messageTime}>Oct 10</div>
+          <div className={r.messageContent}>
+            <img src={profilePic} />
+            <div className={r.messageText}>hey mayne</div>
+            <div className={r.messageTime}>Oct 10</div>
+          </div>
         </div>
       </div>
       <div className={r.chatForm}>

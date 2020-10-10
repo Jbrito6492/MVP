@@ -103,6 +103,8 @@
 .messageRow img {
   border-radius: 100%;
   grid-row: span 2;
+  height: 40px;
+  width: 40px;
 }
 
 .messageTime {
