@@ -70,19 +70,20 @@ const Room = (props) => {
         <Link to="/">+</Link>
       </div>
       <div className={r.chatTitle}>
-        <span>title</span>
-        <BsTrash2 className={r.chatTitleIcon} />
+        <span>{room}</span>
+        <div className={r.titleIconContainer}>
+          {rooms.map((room, index) => (
+            <button
+              className={r.roomButtons}
+              onClick={() => setRoom(room)}
+              key={index}
+            >
+              {room}
+            </button>
+          ))}
+          <BsTrash2 className={r.chatTitleIcon} />
+          </div>
       </div>
-      <h1>{room}</h1>
-      {rooms.map((room, index) => (
-        <button
-          className="waves-effect waves-light btn-small grey lighten-1"
-          onClick={() => setRoom(room)}
-          key={index}
-        >
-          {room}
-        </button>
-      ))}
       <div className={r.chatMessageList}></div>
       <div className={r.chatForm}>
         <HiOutlinePaperClip className={r.chatFormIcon} />
@@ -96,7 +97,7 @@ const Room = (props) => {
           }}
           required
         />
-        <button onClick={handleSubmit}>send it</button>
+        <GrSend onClick={handleSubmit} className={r.chatFormSendIcon} />
       </div>
     </>
   );

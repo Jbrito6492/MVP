@@ -56,13 +56,13 @@
   background: #eee;
 }
 
-.chatTitleIcon, .chatFormIcon {
+.chatTitleIcon, .chatFormIcon, .chatFormSendIcon, .roomButtons {
   cursor: pointer;
 }
 
 .chatTitle {
   display: grid;
-  grid: 36px / 1fr 36px;
+  grid: 36px / 2fr 1fr;
   align-content: center;
   align-items: center;
   grid-area: chatTitle;
@@ -72,6 +72,25 @@
   border-radius: 0 10px 0 0;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
   padding: 0 20px;
+}
+
+.roomButtons {
+  outline: none;
+  padding: 10px;
+  font-weight: bold;
+  border: 2px solid #ddd;
+  color: #330;
+  border-radius: 6px;
+  font-size: 1.2rem;
+}
+
+.titleIconContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-self: stretch;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
 }
 
 .chatForm {
@@ -97,6 +116,13 @@
 
 .conversationList {
   grid-area: conversationList;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .conversation {
@@ -120,18 +146,31 @@
 .conversation>img {
   grid-row: span 2;
   height: 40px;
+  width: 40px;
   border-radius: 100%;
 }
 
 .titleText {
   font-weight: bold;
   color: #eee;
+  padding-left: 5px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .createdDate {
   color: #ddd;
   white-space: nowrap;
   font-size: 1rem;
+}
+
+.conversationMessage {
+  grid-column: span 2;
+  padding-left: 5px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .chatMessageList {
