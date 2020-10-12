@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { GrSend } from "react-icons/gr";
-import { BsTrash2 } from "react-icons/bs";
 import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   connectSocket,
@@ -47,9 +46,6 @@ const Room = (props) => {
 
   return (
     <div className={r.chatContainer}>
-      <div className={r.searchContainer}>
-        <input type="text" placeholder="search" />
-      </div>
       <div className={r.conversationList}>
         <div className={r.conversation}>
           <img src={profilePic} />
@@ -68,21 +64,6 @@ const Room = (props) => {
       </div>
       <div className={r.newMessageContainer}>
         <Link to="/">+</Link>
-      </div>
-      <div className={r.chatTitle}>
-        <span>{room}</span>
-        <div className={r.titleIconContainer}>
-          {rooms.map((room, index) => (
-            <button
-              className={r.roomButtons}
-              onClick={() => setRoom(room)}
-              key={index}
-            >
-              {room}
-            </button>
-          ))}
-          <BsTrash2 className={r.chatTitleIcon} />
-        </div>
       </div>
       <div className={r.chatMessageList}>
         <div className={`${r.youMessage} ${r.messageRow}`}>

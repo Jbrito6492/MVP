@@ -4,6 +4,7 @@ import { CgPin } from "react-icons/cg";
 import { FaMoon, FaBars } from "react-icons/fa";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
+import { BsTrash2 } from "react-icons/bs";
 import {
   startSession,
   createUser,
@@ -23,7 +24,16 @@ const Header = (props) => {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <div className={h.navbar}>
+    <div className={h.headerContainer}>
+      <div className={h.searchContainer}>
+        <input type="text" placeholder="search" />
+      </div>
+      <div className={h.header}>
+        <span>Example Room</span>
+        <div className={h.titleIconContainer}>
+          <BsTrash2 className={h.chatTitleIcon} />
+        </div>
+      </div>
       <ul>
         <li className={h.headerText}>
           <Link to="#" className={h.menuBars}>

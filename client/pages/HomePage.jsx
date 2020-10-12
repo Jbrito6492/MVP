@@ -6,7 +6,6 @@ import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
 import { Redirect } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation.jsx";
-
 import withStyles from "isomorphic-style-loader/withStyles";
 
 const HomePage = (props) => {
@@ -14,9 +13,8 @@ const HomePage = (props) => {
     return (
       <>
         <div>
-          <div>
-            <Room />
-          </div>
+          <Header />
+          <Room />
         </div>
       </>
     );
