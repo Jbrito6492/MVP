@@ -47,34 +47,24 @@ const Room = (props) => {
 
   return (
     <>
-      <div className={r.conversationList}>
-        <div className={r.conversation}>
-          <img src={profilePic} />
-          <div className={r.titleText}>Jorge Garcia</div>
-          <div className={r.createdDate}>Oct 10</div>
-          <div className={r.conversationMessage}>
-            this is a message from the play
-          </div>
-        </div>
-      </div>
       <div className={r.newMessageContainer}>
         <Link to="/">+</Link>
       </div>
       <div className={r.chatMessageList}>
         <div className={`${r.youMessage} ${r.messageRow}`}>
           <div className={r.messageContent}>
-          {chat.map((message, index) =>
-          <div key={index} className={r.youMessageContainer}>
-          <div className={r.messageText}>{message}</div>
-            <div className={r.messageTime}>Oct 10</div>
-          </div>
-        )}
+            {chat.map((message, index) => (
+              <div key={index} className={r.youMessageContainer}>
+                <div className={r.messageText}>{message}</div>
+                <div className={r.messageTime}>Oct 10</div>
+              </div>
+            ))}
           </div>
         </div>
         <div className={`${r.messageRow} ${r.otherMessage}`}>
           <div className={r.messageContent}>
             <img src={profilePic} />
-            <div className={r.messageText}>hey mayne</div>
+            <div className={r.messageText}>whats hahenen</div>
             <div className={r.messageTime}>Oct 10</div>
           </div>
         </div>

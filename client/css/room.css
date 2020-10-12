@@ -1,4 +1,4 @@
-.conversationList, .newMessageContainer {
+.newMessageContainer {
   background: #1D1D1D;
 }
 
@@ -153,65 +153,12 @@
   font-size: 1.4rem;
 }
 
-.conversationList {
-  grid-area: conversationList;
-  border-right: 1px solid #1D1D1D;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
 
-.conversation {
-  display: grid;
-  grid-template-columns: 40px 1fr max-content;
-  grid-gap: 10px;
-  color: #ddd;
-  background: #1D1D1D;
-  font-size: 1.3rem;
-  border-bottom: 1px solid #2D2D2D;
-  padding: 20px 20px 20px 15px;
-}
-
-.conversation.active, .conversation:hover, .roomButtons:hover {
+.roomButtons:hover {
   background: #2D2D2D;
-}
-
-.conversation:hover {
-  cursor: pointer;
-}
-
-.conversation>img {
-  grid-row: span 2;
-  height: 40px;
-  width: 40px;
-  border-radius: 100%;
-}
-
-.titleText {
-  font-weight: bold;
-  color: #eee;
-  padding-left: 5px;
-  white-space: nowrap;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-}
-
-.createdDate {
-  color: #ddd;
-  white-space: nowrap;
-  font-size: 1rem;
-}
-
-.conversationMessage {
-  grid-column: span 2;
-  padding-left: 5px;
-  white-space: nowrap;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
 }
 
 .chatMessageList {

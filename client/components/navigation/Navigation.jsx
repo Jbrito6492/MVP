@@ -17,15 +17,11 @@ import n from "../../css/navbar.css";
 const Navigation = (props) => {
   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => {
-    setSidebar((preState) => !preState);
-  };
-
   let nav = (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <nav className={sidebar ? `${n.navMenu} ${n.active}` : `${n.navMenu}`}>
-          <ul className={n.navMenuItems} onClick={showSidebar}>
+      <IconContext.Provider value={{ color: "#C38FFF" }}>
+        <nav className={sidebar ? `${n.leftPane} ${n.active}` : `${n.leftPane}`}>
+          <ul className={n.navMenuItems} onClick={pevState=> setSidebar(!preState)}>
             <li className={`${n.headerText} ${n.navbarToggle}`}>
               <Link to="#" className={n.menuBars}>
                 <AiOutlineClose />

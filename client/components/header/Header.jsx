@@ -23,8 +23,6 @@ const Header = (props) => {
   const { isAuthenticated, username } = useSelector((state) => state.auth);
   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
-
   return (
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
@@ -68,7 +66,7 @@ const Header = (props) => {
             )}
             <li className={h.headerIcon}>
               <Link to="#">
-                <FaBars onClick={showSidebar} />
+                <FaBars onClick={(prevState) => setSidebar(!setState)} />
               </Link>
             </li>
           </ul>

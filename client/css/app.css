@@ -23,7 +23,7 @@ global::-webkit-scrollbar {
 
 .appContainer {
   display: grid;
-  grid: 'headerLeft headerRight' 71px 'conversationList chatMessageList' 1fr 'newMessageContainer chatForm' 78px / 275px 1fr;
+  grid: 'headerLeft headerRight' 71px 'leftPane chatMessageList' 1fr 'newMessageContainer chatForm' 78px / 275px 1fr;
   min-width: 800px;
   max-width: 100vw;
   max-height: 100vh;

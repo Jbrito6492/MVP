@@ -1,16 +1,19 @@
-.navMenu {
-  background-color: #424242;
-  width: 250px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+.leftPane {
+  display: grid;
+  grid-template-columns: 40px 1fr max-content;
+  grid-gap: 10px;
+  color: #ddd;
+  background: #1D1D1D;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #2D2D2D;
+  padding: 20px 20px 20px 15px;
   position: fixed;
   top: 0;
-  left: -100%;
+  /* left: -100%; */
   transition: 850ms;
 }
 
-.navMenu.active {
+.leftPane.active {
   left: 0;
   transition: 350ms;
 }
@@ -38,7 +41,7 @@
 .navText a:hover {
   background-color: #212121;
   width: 100%;
-  right:16px;
+  right: 16px;
 }
 
 .headerText {
