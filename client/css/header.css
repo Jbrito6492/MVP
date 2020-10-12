@@ -31,7 +31,6 @@
   grid-template-columns: repeat(5, 1fr);
   align-content: center;
   align-items: center;
-  justify-items: right;
   list-style-type: none;
   max-width: 236px;
 }

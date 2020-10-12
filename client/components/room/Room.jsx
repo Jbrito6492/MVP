@@ -56,12 +56,6 @@ const Room = (props) => {
             this is a message from the play
           </div>
         </div>
-        {chat.map((message, index) => (
-          <p key={index}>
-            <span>{username} </span>
-            {message}
-          </p>
-        ))}
       </div>
       <div className={r.newMessageContainer}>
         <Link to="/">+</Link>
@@ -69,8 +63,12 @@ const Room = (props) => {
       <div className={r.chatMessageList}>
         <div className={`${r.youMessage} ${r.messageRow}`}>
           <div className={r.messageContent}>
-            <div className={r.messageText}>whats up</div>
+          {chat.map((message, index) =>
+          <div key={index} className={r.youMessageContainer}>
+          <div className={r.messageText}>{message}</div>
             <div className={r.messageTime}>Oct 10</div>
+          </div>
+        )}
           </div>
         </div>
         <div className={`${r.messageRow} ${r.otherMessage}`}>
