@@ -1,5 +1,5 @@
 .searchContainer, .conversationList, .newMessageContainer {
-  background: #0048AA;
+  background: #111111;
 }
 
 .chatContainer {
@@ -15,6 +15,7 @@
 }
 
 .searchContainer {
+  background: #242424;
   grid-area: headerLeft;
   display: grid;
   align-items: center;
@@ -46,6 +47,7 @@
 }
 
 .newMessageContainer {
+  background: #242424;
   display: grid;
   grid: 40px / 40px;
   align-content: center;
@@ -53,20 +55,21 @@
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 10px;
   padding: 0 15px;
+  box-shadow: 0 3px -1px -1px rgba(0, 0, 0, 0.75);
 }
 
 .newMessageContainer a {
   display: grid;
   place-content: center center;
-  background: #eee;
+  background: #C38FFF;
   border-radius: 100%;
-  color: #002C88;
+  color: #1D1D1D;
   text-decoration: none;
   font-size: 3.6rem
 }
 
 .chatTitle, .chatForm {
-  background: #eee;
+  background: #292929;
 }
 
 .chatTitleIcon, .chatFormIcon, .chatFormSendIcon, .roomButtons {
@@ -84,12 +87,14 @@
   align-content: center;
   align-items: center;
   grid-area: headerRight;
-  color: #0048AA;
+  color: #eee;
   font-weight: bold;
   font-size: 2.0rem;
   border-radius: 0 10px 0 0;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
   padding: 0 20px;
+  border-bottom: solid;
+  border-bottom: #2d2d2d;
 }
 
 .roomButtons {
@@ -97,7 +102,7 @@
   padding: 10px;
   font-weight: bold;
   border: 2px solid #ddd;
-  background-color: #0048AA;
+  background-color: #1D1D1D;
   color: #eee;
   border-radius: 6px;
   font-size: 1.2rem;
@@ -137,7 +142,7 @@
 }
 
 .youMessage .messageText {
-  background: #0048AA;
+  background: #1D1D1D;
   color: #eee;
   border: 1px solid #ddd;
   border-radius: 14px 14px 0px 14px;
@@ -195,9 +200,11 @@
 
 .conversationList {
   grid-area: conversationList;
+  border-right: 1px solid #1D1D1D;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
 }
 
 ::-webkit-scrollbar {
@@ -209,13 +216,14 @@
   grid-template-columns: 40px 1fr max-content;
   grid-gap: 10px;
   color: #ddd;
+  background: #1D1D1D;
   font-size: 1.3rem;
-  border-bottom: 1px solid #002C88;
+  border-bottom: 1px solid #2D2D2D;
   padding: 20px 20px 20px 15px;
 }
 
 .conversation.active, .conversation:hover, .roomButtons:hover {
-  background: #002C88;
+  background: #2D2D2D;
 }
 
 .conversation:hover {
@@ -254,8 +262,11 @@
 
 .chatMessageList {
   grid-area: chatMessageList;
+  border-bottom: #292929;
+  border-left: 1px solid #292929;
   display: flex;
   flex-direction: column-reverse;
+  background: #1D1D1D;
   padding: 0 20px;
   overflow-y: scroll;
 }

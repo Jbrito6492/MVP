@@ -18,6 +18,6 @@ html:global {
   font-size: 10px;
 }
 
-global::-webkit-scrollbar {
+body:global::-webkit-scrollbar {
   display: none;
 }
