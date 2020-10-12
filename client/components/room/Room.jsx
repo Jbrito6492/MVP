@@ -81,7 +81,7 @@ const Room = (props) => {
           </div>
         </div>
       </div>
-      <div className={r.chatForm}>
+      <form className={r.chatForm} onSubmit={handleSubmit}>
         <input
           placeholder="send it"
           type="text"
@@ -94,7 +94,7 @@ const Room = (props) => {
         />
         <HiOutlinePaperClip className={r.chatFormIcon} />
         <BiSend className={r.chatFormSendIcon} onClick={handleSubmit} />
-      </div>
+      </form>
     </>
   );
 };
