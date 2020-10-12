@@ -12,7 +12,7 @@
 
 .header {
   display: grid;
-  grid: 36px / 2fr 1fr;
+  grid: 36px / 5fr 1fr;
   align-content: center;
   align-items: center;
   grid-area: headerRight;

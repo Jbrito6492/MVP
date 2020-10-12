@@ -29,8 +29,6 @@ const LogIn = (props) => {
   };
 
   return (
-    <div>
-      <Header />
       <div className="container">
         <form onSubmit={state.joined ? handleLogin : handleJoin} className="form">
           <h1 className="center-align">Log In</h1>
@@ -72,7 +70,6 @@ const LogIn = (props) => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
 

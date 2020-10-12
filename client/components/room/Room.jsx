@@ -50,7 +50,7 @@ const Room = (props) => {
       <div className={r.conversationList}>
         <div className={r.conversation}>
           <img src={profilePic} />
-          <div className={r.titleText}>Jorge Play Play Garcia</div>
+          <div className={r.titleText}>Jorge Garcia</div>
           <div className={r.createdDate}>Oct 10</div>
           <div className={r.conversationMessage}>
             this is a message from the play
@@ -69,7 +69,7 @@ const Room = (props) => {
       <div className={r.chatMessageList}>
         <div className={`${r.youMessage} ${r.messageRow}`}>
           <div className={r.messageContent}>
-            <div className={r.messageText}>what it do baby</div>
+            <div className={r.messageText}>whats up</div>
             <div className={r.messageTime}>Oct 10</div>
           </div>
         </div>
