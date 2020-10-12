@@ -15,23 +15,19 @@ import withStyles from "isomorphic-style-loader/withStyles";
 import n from "../../css/navbar.css";
 
 const Navigation = (props) => {
-  const [sidebar, setSidebar] = useState(false);
-
   let nav = (
     <>
-      <IconContext.Provider value={{ color: "#C38FFF" }}>
-        <nav className={sidebar ? `${n.leftPane} ${n.active}` : `${n.leftPane}`}>
-          <ul className={n.navMenuItems} onClick={pevState=> setSidebar(!preState)}>
-            <li className={`${n.headerText} ${n.navbarToggle}`}>
-              <Link to="#" className={n.menuBars}>
-                <AiOutlineClose />
-              </Link>
-            </li>
+      <IconContext.Provider
+        value={{ color: "#C38FFF" }}
+
+      >
+        <nav>
+          <ul>
             {SidebarData.map((item, index) => (
-              <li key={index} className={n[item.cName]}>
+              <li key={index} className={`${n[item.cName]} ${n.navRow}`}>
                 <Link to={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
+                  <div className={n.reactIcon}>{item.icon}</div>
+                  <div>{item.title}</div>
                 </Link>
               </li>
             ))}
@@ -40,7 +36,7 @@ const Navigation = (props) => {
       </IconContext.Provider>
     </>
   );
-  return <div>{nav}</div>;
+  return <div className={n.navContainer}>{nav}</div>;
 };
 
 export default withStyles(n)(Navigation);

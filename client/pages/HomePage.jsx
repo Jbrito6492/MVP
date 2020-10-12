@@ -14,12 +14,21 @@ import r from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 const HomePage = (props) => {
+  const [showNavigation, setShowNavigation] = useState(false);
+
+  const renderLeftPane = () => {
+    return showNavigation ? <Navigation /> : <ConversationList />;
+  };
+
   const renderView = () => {
     return (
       <>
         <div className={r.appContainer}>
-          <Header />
-          <ConversationList />
+          <Header
+            setShowNavigation={setShowNavigation}
+            showNavigation={showNavigation}
+          />
+          {renderLeftPane()}
           <Room />
         </div>
       </>

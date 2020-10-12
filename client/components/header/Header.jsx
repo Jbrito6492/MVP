@@ -21,7 +21,10 @@ import h from "../../css/header.css";
 const Header = (props) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  const [sidebar, setSidebar] = useState(false);
+
+  const handleClick = () => {
+    props.setShowNavigation(!props.showNavigation);
+  };
 
   return (
     <>
@@ -66,7 +69,7 @@ const Header = (props) => {
             )}
             <li className={h.headerIcon}>
               <Link to="#">
-                <FaBars onClick={(prevState) => setSidebar(!setState)} />
+                <FaBars onClick={handleClick} />
               </Link>
             </li>
           </ul>
