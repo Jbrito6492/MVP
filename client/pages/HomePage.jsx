@@ -6,13 +6,14 @@ import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
 import { Redirect } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation.jsx";
+import r from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 const HomePage = (props) => {
   const renderView = () => {
     return (
       <>
-        <div>
+        <div className={r.appContainer}>
           <Header />
           <Room />
         </div>
@@ -22,4 +23,4 @@ const HomePage = (props) => {
   return <div>{renderView()}</div>;
 };
 
-export default HomePage;
+export default withStyles(r)(HomePage);

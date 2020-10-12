@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
 html:global, body:global {
   height: 100%;
   overflow: hidden;
@@ -18,6 +17,18 @@ html:global {
   font-size: 10px;
 }
 
-body:global::-webkit-scrollbar {
+global::-webkit-scrollbar {
   display: none;
+}
+
+.appContainer {
+  display: grid;
+  grid: 'headerLeft headerRight' 71px 'conversationList chatMessageList' 1fr 'newMessageContainer chatForm' 78px / 275px 1fr;
+  min-width: 800px;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  background: #FFF;
+  border-radius: 10px;
+  height: 100vh;
 }

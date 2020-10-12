@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
-import { GrSend } from "react-icons/gr";
+import { BiSend } from "react-icons/bi";
+import { BsTrash2 } from "react-icons/bs";
 import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   connectSocket,
@@ -45,7 +46,7 @@ const Room = (props) => {
   };
 
   return (
-    <div className={r.chatContainer}>
+    <>
       <div className={r.conversationList}>
         <div className={r.conversation}>
           <img src={profilePic} />
@@ -92,9 +93,9 @@ const Room = (props) => {
           required
         />
         <HiOutlinePaperClip className={r.chatFormIcon} />
-        <GrSend onClick={handleSubmit} className={r.chatFormSendIcon} />
+        <BiSend className={r.chatFormSendIcon} onClick={handleSubmit} />
       </div>
-    </div>
+    </>
   );
 };
 

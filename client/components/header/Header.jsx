@@ -5,6 +5,8 @@ import { FaMoon, FaBars } from "react-icons/fa";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsTrash2 } from "react-icons/bs";
+import { HiOutlineLogout } from "react-icons/hi";
+import { IconContext } from "react-icons";
 import {
   startSession,
   createUser,
@@ -24,48 +26,55 @@ const Header = (props) => {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <div className={h.headerContainer}>
-      <div className={h.searchContainer}>
-        <input type="text" placeholder="search" />
-      </div>
-      <div className={h.header}>
-        <span>Example Room</span>
-        <div className={h.titleIconContainer}>
-          <BsTrash2 className={h.chatTitleIcon} />
+    <>
+      <IconContext.Provider value={{ color: "#C38FFF" }}>
+        <div className={h.searchContainer}>
+          <input type="text" placeholder="search" />
         </div>
-      </div>
-      <ul>
-        <li className={h.headerText}>
-          <Link to="#" className={h.menuBars}>
-            <FaBars onClick={showSidebar} />
-          </Link>
-        </li>
-        <li onClick={() => dispatch(toDarkMode())}>
-          <a href="#">
-            <FaMoon />
-          </a>
-        </li>
-        <li onClick={() => dispatch(toLightMode())}>
-          <a href="#">
-            <RiLightbulbFlashLine />
-          </a>
-        </li>
-        {!isAuthenticated && (
-          <li>
-            <Link to="/home" onClick={() => dispatch(startSession())}>
-              Login
-            </Link>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li>
-            <Link to="/" onClick={() => dispatch(endSession())}>
-              Logout
-            </Link>
-          </li>
-        )}
-      </ul>
-    </div>
+        <div className={h.header}>
+          <span>Example Room</span>
+          <ul className={h.headerIconContainer}>
+            <li className={h.headerIcon}>
+              <Link to="#">
+                <BsTrash2 />
+              </Link>
+            </li>
+            <li className={h.headerIcon} onClick={() => dispatch(toDarkMode())}>
+              <Link to="#">
+                <FaMoon />
+              </Link>
+            </li>
+            <li
+              className={h.headerIcon}
+              onClick={() => dispatch(toLightMode())}
+            >
+              <Link to="#">
+                <RiLightbulbFlashLine />
+              </Link>
+            </li>
+            {!isAuthenticated && (
+              <li className={h.headerIcon}>
+                <Link to="/home" onClick={() => dispatch(startSession())}>
+                  Login
+                </Link>
+              </li>
+            )}
+            {isAuthenticated && (
+              <li className={h.headerIcon}>
+                <Link to="/" onClick={() => dispatch(endSession())}>
+                  <HiOutlineLogout />
+                </Link>
+              </li>
+            )}
+            <li className={h.headerIcon}>
+              <Link to="#">
+                <FaBars onClick={showSidebar} />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </IconContext.Provider>
+    </>
   );
 };
 
