@@ -13,8 +13,6 @@ import { IconContext } from "react-icons";
 import styled from "styled-components";
 import withStyles from "isomorphic-style-loader/withStyles";
 import n from "../../css/navbar.css";
-import Header from "../header/Header.jsx";
-
 
 const Navigation = (props) => {
   const [sidebar, setSidebar] = useState(false);
@@ -26,7 +24,6 @@ const Navigation = (props) => {
   let nav = (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
-        <Header />
         <nav className={sidebar ? `${n.navMenu} ${n.active}` : `${n.navMenu}`}>
           <ul className={n.navMenuItems} onClick={showSidebar}>
             <li className={`${n.headerText} ${n.navbarToggle}`}>
