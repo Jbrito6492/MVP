@@ -19,7 +19,6 @@ const Navigation = (props) => {
     <>
       <IconContext.Provider
         value={{ color: "#C38FFF" }}
-
       >
         <nav>
           <ul>

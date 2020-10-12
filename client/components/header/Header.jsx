@@ -34,45 +34,13 @@ const Header = (props) => {
         </div>
         <div className={h.header}>
           <span>Example Room</span>
-          <ul className={h.headerIconContainer}>
-            <li className={h.headerIcon}>
+          <div className={h.headerIconContainer}>
+            <div className={h.headerIcon}>
               <Link to="#">
-                <BsTrash2 />
+                <FaBars onClick={handleClick} size={34}/>
               </Link>
-            </li>
-            <li className={h.headerIcon} onClick={() => dispatch(toDarkMode())}>
-              <Link to="#">
-                <FaMoon />
-              </Link>
-            </li>
-            <li
-              className={h.headerIcon}
-              onClick={() => dispatch(toLightMode())}
-            >
-              <Link to="#">
-                <RiLightbulbFlashLine />
-              </Link>
-            </li>
-            {!isAuthenticated && (
-              <li className={h.headerIcon}>
-                <Link to="/home" onClick={() => dispatch(startSession())}>
-                  Login
-                </Link>
-              </li>
-            )}
-            {isAuthenticated && (
-              <li className={h.headerIcon}>
-                <Link to="/" onClick={() => dispatch(endSession())}>
-                  <HiOutlineLogout />
-                </Link>
-              </li>
-            )}
-            <li className={h.headerIcon}>
-              <Link to="#">
-                <FaBars onClick={handleClick} />
-              </Link>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </IconContext.Provider>
     </>
