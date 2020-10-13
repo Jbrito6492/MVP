@@ -44,8 +44,8 @@
 }
 
 .headerIcon:hover {
-  width: 45px;
-  height: 45px;
+  background: #2D2D2D;
+  cursor: pointer;
 }
 
 .searchContainer {

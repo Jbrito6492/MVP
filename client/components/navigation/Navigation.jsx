@@ -1,35 +1,70 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import ReactDOM from "react-dom";
-import { FaBars } from "react-icons/fa";
-import { RiLightbulbFlashLine } from "react-icons/ri";
-import { AiOutlineClose } from "react-icons/ai";
-import { CgPin } from "react-icons/cg";
+import React from "react";
 import Map from "../map/Map.jsx";
 import Slider from "../slider/Slider.jsx";
+import { AiFillHome } from "react-icons/ai";
+import { HiOutlineLogout } from "react-icons/hi";
+import { FaMoon } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
+import { RiLightbulbFlashLine } from "react-icons/ri";
+import { SiOpenstreetmap } from "react-icons/si";
 import { Link } from "react-router-dom";
-import { SidebarData } from "../navigation/navigationData.js";
 import { IconContext } from "react-icons";
-import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import withStyles from "isomorphic-style-loader/withStyles";
 import n from "../../css/navbar.css";
 
 const Navigation = (props) => {
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch({ type: END_SESSION });
+  };
+
   let nav = (
     <>
-      <IconContext.Provider
-        value={{ color: "#C38FFF" }}
-      >
+      <IconContext.Provider value={{ color: "#C38FFF" }}>
         <nav>
           <ul>
-            {SidebarData.map((item, index) => (
-              <li key={index} className={`${n[item.cName]} ${n.navRow}`}>
-                <Link to={item.path}>
-                  <div className={n.reactIcon}>{item.icon}</div>
-                  <div>{item.title}</div>
-                </Link>
-              </li>
-            ))}
+            <li className={`${n.navText} ${n.navRow}`}>
+              <Link to="/home">
+                <div className={n.reactIcon}>
+                  <AiFillHome />
+                </div>
+                <div>Home</div>
+              </Link>
+            </li>
+            <li className={`${n.navText} ${n.navRow}`}>
+              <Link to="/">
+                <div className={n.reactIcon}>
+                  <SiOpenstreetmap />
+                </div>
+                <div>Map</div>
+              </Link>
+            </li>
+            <li className={`${n.navText} ${n.navRow}`}>
+              <Link to="/login">
+                <div className={n.reactIcon}>
+                  <HiOutlineLogout />
+                </div>
+                <div>Log Out</div>
+              </Link>
+            </li>
+            <li className={`${n.navText} ${n.navRow}`}>
+              <Link to="#">
+                <div className={n.reactIcon}>
+                  <RiLightbulbFlashLine />
+                </div>
+                <div>Light Mode</div>
+              </Link>
+            </li>
+            <li className={`${n.navText} ${n.navRow}`}>
+              <Link to="#">
+                <div className={n.reactIcon}>
+                  <FaMoon />
+                </div>
+                <div>Dark Mode</div>
+              </Link>
+            </li>
           </ul>
         </nav>
       </IconContext.Provider>
