@@ -7,18 +7,15 @@ import { FaMoon } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { SiOpenstreetmap } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useDispatch } from "react-redux";
+import { endSession } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import n from "../../css/navbar.css";
 
 const Navigation = (props) => {
   const dispatch = useDispatch();
-
-  const logOut = () => {
-    dispatch({ type: END_SESSION });
-  };
 
   let nav = (
     <>
@@ -42,9 +39,9 @@ const Navigation = (props) => {
               </Link>
             </li>
             <li className={`${n.navText} ${n.navRow}`}>
-              <Link to="/login">
+              <Link to="/">
                 <div className={n.reactIcon}>
-                  <HiOutlineLogout />
+                  <HiOutlineLogout onClick={() => dispatch(endSession())} />
                 </div>
                 <div>Log Out</div>
               </Link>

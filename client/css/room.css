@@ -162,7 +162,7 @@
 }
 
 .chatMessageList {
-  grid-area: chatMessageList;
+  grid-area: mainContent;
   background: #111111;
   scrollbar-width: none;
   border-bottom: #292929;

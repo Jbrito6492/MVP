@@ -4,7 +4,7 @@ import { startSession } from "../store/actions/index.js";
 import Room from "../components/room/Room.jsx";
 import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation.jsx";
 import ConversationList from "../components/room/ConversationList.jsx";
 

@@ -1,0 +1,20 @@
+.chatFormContainer {
+  grid-area: leftPane;
+  background: #111111;
+  scrollbar-width: none;
+  border-bottom: #292929;
+  border-right: 1px solid #292929;
+  display: flex;
+  flex-direction: row;
+  background: #1D1D1D;
+  padding: 0 20px;
+  overflow-y: scroll;
+}
+
+.chatForm{
+
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
