@@ -12,6 +12,17 @@
   font: Arial, Helvetica, sans-serif;
 }
 
+.footer {
+  grid-area: newMessageContainer;
+  background: #242424;
+  width: 100vw;
+}
+
+.leftPane {
+  background: #1D1D1D;
+  grid-area: leftPane;
+}
+
 .chatForm h1 {
   color: #eee;
   font-size: 18px;

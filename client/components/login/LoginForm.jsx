@@ -29,40 +29,44 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className={classes.chatFormContainer}>
-      <form
-        className={classes.chatForm}
-        onSubmit={state.joined ? handleLogin : handleJoin}
-      >
-        <h1>Login</h1>
-        <input
-          placeholder="username"
-          name="username"
-          type="text"
-          onChange={handleChange}
-          required
-        />
-        <input
-          placeholder="password"
-          name="password"
-          type="password"
-          onChange={handleChange}
-          required
-        />
-        <div>
-          {state.joined ? (
-            <button onClick={handleLogin} type="submit">
-              LogIn
-            </button>
-          ) : (
-            <button onClick={handleJoin} type="submit">
-              Join
-            </button>
-          )}
-          {props.isAuthenticated ? <Redirect to="/home" /> : null}
-        </div>
-      </form>
-    </div>
+    <>
+      <div className={classes.chatFormContainer}>
+        <form
+          className={classes.chatForm}
+          onSubmit={state.joined ? handleLogin : handleJoin}
+        >
+          <h1>Login</h1>
+          <input
+            placeholder="username"
+            name="username"
+            type="text"
+            onChange={handleChange}
+            required
+          />
+          <input
+            placeholder="password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            required
+          />
+          <div>
+            {state.joined ? (
+              <button onClick={handleLogin} type="submit">
+                LogIn
+              </button>
+            ) : (
+              <button onClick={handleJoin} type="submit">
+                Join
+              </button>
+            )}
+            {props.isAuthenticated ? <Redirect to="/home" /> : null}
+          </div>
+        </form>
+      </div>
+      <div className={classes.footer}></div>
+      <div className={classes.leftPane}></div>
+    </>
   );
 };
 
