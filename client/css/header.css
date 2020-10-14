@@ -78,6 +78,10 @@
   background-size: 20px 20px;
 }
 
+.searchContainer input:focus {
+  border-bottom: 2px solid #C38FFF !important;
+}
+
 .searchContainer input::placeholder {
   color: #ddd;
   font-weight: bold;

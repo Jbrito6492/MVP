@@ -36,20 +36,24 @@ const LoginForm = (props) => {
           onSubmit={state.joined ? handleLogin : handleJoin}
         >
           <h1>Login</h1>
-          <input
-            placeholder="username"
-            name="username"
-            type="text"
-            onChange={handleChange}
-            required
-          />
-          <input
-            placeholder="password"
-            name="password"
-            type="password"
-            onChange={handleChange}
-            required
-          />
+          <div className={classes.inputContainer}>
+            <input
+              placeholder="username"
+              name="username"
+              type="text"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={classes.inputContainer}>
+            <input
+              placeholder="password"
+              name="password"
+              type="password"
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div>
             {state.joined ? (
               <button onClick={handleLogin} type="submit">

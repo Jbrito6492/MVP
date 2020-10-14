@@ -9,7 +9,7 @@
   justify-content: center;
   background: #1D1D1D;
   padding: 30px;
-  font: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer {
@@ -52,12 +52,12 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid #ddd !important;
-  padding: 10px 15px 0 15px;
+  padding: 10px 15px;
   background: transparent;
   font-size: 16px;
 }
 
-.chatForm input:active {
+.chatForm input:focus {
   border-bottom: 2px solid #C38FFF !important;
 }
 
@@ -66,13 +66,16 @@
   color: #eee;
   padding: 17px 10px;
   font-size: 14px;
-  line-height: max-content;
   border-radius: 500px;
   border-width: 0;
   letter-spacing: 2px;
   min-width: 160px;
   text-transform: uppercase;
   white-space: normal;
+}
+
+.inputContainer {
+  padding: 0 15px;
 }
 
 ::-webkit-scrollbar {
