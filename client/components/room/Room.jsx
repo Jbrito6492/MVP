@@ -23,6 +23,7 @@ const Room = (props) => {
   const [room, setRoom] = useState(rooms[0]);
   const [state, setMessage] = useState({ username, message: "" });
   const [chat, setChat] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     if (room) connectSocket(room);
@@ -43,6 +44,7 @@ const Room = (props) => {
     const { username, message } = state;
     sendMessage(room, username, message);
     setMessage((prevMessage) => ({ ...prevMessage, message: "" }));
+    setIsTyping(false);
   };
 
   return (
@@ -59,6 +61,11 @@ const Room = (props) => {
                 <div className={r.messageTime}>Oct 10</div>
               </div>
             ))}
+            {isTyping && (
+              <div className={r.youMessageContainer}>
+                <div className={`${r.loading} ${r.messageText}`}></div>
+              </div>
+            )}
           </div>
         </div>
         <div className={`${r.messageRow} ${r.otherMessage}`}>
@@ -77,6 +84,7 @@ const Room = (props) => {
           value={state.message}
           onChange={(e) => {
             setMessage({ ...state, [e.target.name]: e.target.value });
+            setIsTyping(true);
           }}
           required
         />

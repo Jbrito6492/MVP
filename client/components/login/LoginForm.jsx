@@ -50,6 +50,7 @@ const LoginForm = (props) => {
               placeholder="password"
               name="password"
               type="password"
+              autoComplete="on"
               onChange={handleChange}
               required
             />

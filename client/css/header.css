@@ -5,8 +5,7 @@
   align-items: center;
   padding: 0 20px;
   border-radius: 10px 0 0 0;
-  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
-  z-index: 1;
+  border-bottom: 1px solid #111111;
 }
 
 .header {
@@ -20,8 +19,7 @@
   font-size: 2.0rem;
   border-radius: 0 10px 0 0;
   padding: 0 20px;
-  border-bottom: solid;
-  border-bottom: #2d2d2d;
+  border-bottom: 1px solid #111111;
   background: #242424;
 }
 
@@ -47,20 +45,9 @@
   cursor: pointer;
 }
 
-.searchContainer {
+/* .searchContainer {
   background: #111111;
-}
-
-.searchContainer {
-  background: #242424;
-  grid-area: headerLeft;
-  display: grid;
-  align-items: center;
-  padding: 0 20px;
-  border-radius: 10px 0 0 0;
-  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
-  z-index: 1;
-}
+} */
 
 .searchContainer input {
   color: #eee;

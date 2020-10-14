@@ -27,12 +27,15 @@ export default (req, store) => {
     <head>
      <title>${title}</title>
      <meta charset="UTF-8">
-     <script src="client.bundle.js" defer></script>
-     <style>${[...css].join('')}</style>
+     <script src="client.bundle.js" defer>
+     </script>
+     <style>${[...css].join('')}
+     </style>
     </head>
     <body>
     <div id="root">${content}</div>
-    <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
+    <script>window.INITIAL_STATE = ${serialize(store.getState())}
+    </script>
     </body>
   </html>
 `;

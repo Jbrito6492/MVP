@@ -30,14 +30,14 @@ const Header = (props) => {
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
         <div className={h.searchContainer}>
-          <input type="text" placeholder="search" />
+          {isAuthenticated && <input type="text" placeholder="search" />}
         </div>
         <div className={h.header}>
-          <span>Example Room</span>
+          <span></span>
           <div className={h.headerIconContainer}>
             <div className={h.headerIcon}>
               <Link to="#">
-                <FaBars onClick={handleClick} size={34}/>
+                <FaBars onClick={handleClick} size={34} />
               </Link>
             </div>
           </div>
