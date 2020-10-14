@@ -64,7 +64,7 @@ const Room = (props) => {
         <div className={`${r.messageRow} ${r.otherMessage}`}>
           <div className={r.messageContent}>
             <img src={profilePic} />
-            <div className={r.messageText}>whats hahenen</div>
+            <div className={r.messageText}>whats happening</div>
             <div className={r.messageTime}>Oct 10</div>
           </div>
         </div>
