@@ -27,6 +27,7 @@ export default (req, store) => {
     <head>
      <title>${title}</title>
      <meta charset="UTF-8">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
      <script src="client.bundle.js" defer></script>
      <style>${[...css].join('')}</style>
     </head>

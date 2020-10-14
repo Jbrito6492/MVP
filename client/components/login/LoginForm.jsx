@@ -30,8 +30,11 @@ const LoginForm = (props) => {
 
   return (
     <div className={classes.chatFormContainer}>
-      <form onSubmit={state.joined ? handleLogin : handleJoin}>
-        <h1>Log In</h1>
+      <form
+        className={classes.chatForm}
+        onSubmit={state.joined ? handleLogin : handleJoin}
+      >
+        <h1>Login</h1>
         <input
           placeholder="username"
           name="username"
