@@ -39,7 +39,7 @@ const Navigation = (props) => {
               </Link>
             </li>
             <li className={`${n.navText} ${n.navRow}`}>
-              <Link to="/">
+              <Link to="/login">
                 <div className={n.reactIcon}>
                   <HiOutlineLogout onClick={() => dispatch(endSession())} />
                 </div>

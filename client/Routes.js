@@ -10,7 +10,7 @@ export default [
     routes: [
       {
         component: LogInPage,
-        path: '/',
+        path: '/login',
         exact: true
       },
       {
