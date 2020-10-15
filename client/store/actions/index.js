@@ -21,6 +21,19 @@ export function getLocation() {
   };
 }
 
+
+export const HIDE_MAP = 'hide_map';
+export const SHOW_MAP = 'show_map';
+export const showMap = () => async (dispatch, getState, api) => {
+  dispatch({ type: SHOW_MAP });
+};
+export const hideMap = () => async (dispatch, getState, api) => {
+  dispatch({ type: HIDE_MAP });
+};
+
+
+
+
 export const CHANGE_THEME_DARK = 'change_theme_dark';
 export const CHANGE_THEME_LIGHT = 'change_theme_light';
 export const toDarkMode = () => (dispatch, getState, api) => {

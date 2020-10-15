@@ -14,7 +14,7 @@
 }
 
 .footer {
-  grid-area: newMessageContainer;
+  grid-area: footer;
   background: #242424;
   width: 100vw;
 }

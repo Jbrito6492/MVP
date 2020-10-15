@@ -1,0 +1,17 @@
+.mapContainer {
+  grid-area: mainContent;
+  background: #111111;
+  scrollbar-width: none;
+  border-bottom: #292929;
+  border-left: 1px solid #292929;
+  display: flex;
+  justify-content: center;
+  background: #1D1D1D;
+  padding: 30px 275px 0 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

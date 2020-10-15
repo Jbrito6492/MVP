@@ -18,13 +18,9 @@ import { toDarkMode, toLightMode } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import h from "../../css/header.css";
 
-const Header = (props) => {
+const Header = ({ setShowNavigation, showNavigation }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-
-  const handleClick = () => {
-    props.setShowNavigation(!props.showNavigation);
-  };
 
   return (
     <>
@@ -36,9 +32,11 @@ const Header = (props) => {
           <span></span>
           <div className={h.headerIconContainer}>
             <div className={h.headerIcon}>
-              <Link to="#">
-                <FaBars onClick={handleClick} size={34} />
-              </Link>
+              {isAuthenticated && (
+                <Link to="#" onClick={() => setShowNavigation(!showNavigation)}>
+                  <FaBars size={34} />
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import Header from "../components/header/Header.jsx";
 import { Link, Redirect } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation.jsx";
 import ConversationList from "../components/room/ConversationList.jsx";
+import Map from "../components/map/Map.jsx";
 
 import ReactCSSTransitionGroup from "react-transition-group";
 
@@ -14,6 +15,7 @@ import r from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 const HomePage = (props) => {
+  const showMap = useSelector((state) => state.map);
   const [showNavigation, setShowNavigation] = useState(false);
 
   const renderLeftPane = () => {
@@ -29,7 +31,7 @@ const HomePage = (props) => {
             showNavigation={showNavigation}
           />
           {renderLeftPane()}
-          <Room />
+          {showMap ? <Map /> : <Room />}
         </div>
       </>
     );

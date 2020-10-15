@@ -10,7 +10,7 @@ import { SiOpenstreetmap } from "react-icons/si";
 import { Link, Redirect } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useDispatch } from "react-redux";
-import { endSession } from "../../store/actions/index.js";
+import { endSession, showMap, hideMap } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import n from "../../css/navbar.css";
 
@@ -23,7 +23,7 @@ const Navigation = (props) => {
         <nav>
           <ul>
             <li className={`${n.navText} ${n.navRow}`}>
-              <Link to="/home">
+              <Link to="/home" onClick={() => dispatch(hideMap())}>
                 <div className={n.reactIcon}>
                   <AiFillHome />
                 </div>
@@ -31,7 +31,7 @@ const Navigation = (props) => {
               </Link>
             </li>
             <li className={`${n.navText} ${n.navRow}`}>
-              <Link to="/">
+              <Link to="#" onClick={() => dispatch(showMap())}>
                 <div className={n.reactIcon}>
                   <SiOpenstreetmap />
                 </div>

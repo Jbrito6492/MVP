@@ -9,10 +9,16 @@ import {
 } from "@react-google-maps/api";
 import { getLocation } from "../../store/actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
+import Footer from "../footer/Footer.jsx";
+
+import withStyles from "isomorphic-style-loader/withStyles";
+import classes from "../../css/map.css";
+
 const libraries = ["places"];
 const mapContainerStyle = {
-  width: "100%",
-  height: "60vh",
+  width: "750px",
+  height: "750px",
+  borderRadius: "7px"
 };
 
 const options = {
@@ -56,33 +62,39 @@ const Map = (props) => {
   if (!isLoaded) return "loading maps";
 
   return (
-    <div>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={10}
-        center={location}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {marker.visible ? (
-          <div>
-            <Marker
-              position={{ lat: marker.location.lat, lng: marker.location.lng }}
-              onClick={() => {
-                setMarker({ ...marker, visible: false });
-              }}
-            />
-            <Circle
-              options={{ fillColor: "red" }}
-              center={{ lat: marker.location.lat, lng: marker.location.lng }}
-              radius={1200}
-            />
-          </div>
-        ) : null}
-      </GoogleMap>
-    </div>
+    <>
+      <div className={classes.mapContainer}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={10}
+          center={location}
+          options={options}
+          onClick={onMapClick}
+          onLoad={onMapLoad}
+        >
+          {marker.visible ? (
+            <div>
+              <Marker
+                position={{
+                  lat: marker.location.lat,
+                  lng: marker.location.lng,
+                }}
+                onClick={() => {
+                  setMarker({ ...marker, visible: false });
+                }}
+              />
+              <Circle
+                options={{ fillColor: "red" }}
+                center={{ lat: marker.location.lat, lng: marker.location.lng }}
+                radius={1200}
+              />
+            </div>
+          ) : null}
+        </GoogleMap>
+      </div>
+      <Footer />
+    </>
   );
 };
 
-export default Map;
+export default withStyles(classes)(Map);
