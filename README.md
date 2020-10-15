@@ -29,22 +29,22 @@ What's the Move is a communication application utilizng hashtags to see what is 
 ---
 
 ## How To Use
+
 1. log-in with a random password (encryption and salt has not yet been added to passwords on server)
 2. begin a hashtag trend by searching on in the header
 3. make some plans!
 
 #### Installation
 
-open your terminal in the base directory and run the following:
+1. clone repository onto local machine
+2. open your terminal in the root directory of project and run the following:
+
 ```html
-    npm install
-    npm run dev
+npm install npm run dev
 ```
+
 you will need to make sure the server side code has been compiled before using the application in the browser
 
 [Back To The Top](#read-me)
 
 ---
-
-
-
