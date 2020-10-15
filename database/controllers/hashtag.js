@@ -1,9 +1,16 @@
-const Hashtag = require('../models/user.js');
+const Hashtag = require('../models/hashtag.js');
 
 exports.createHashtag = (req, res) => {
   const { hashtag } = req.body;
   // check to see if hashtag exists
-  // if not creat a chatroom, increase active user number
-  // if so join chatroom, initiate active user number to 1
-  res.sendStatus(200);
+  let options = { upsert: true, new: true, setDefaultsOnInsert: true };
+  Hashtag.findOneAndUpdate({ hashtag }, { $inc: { activeUsers: 1 } }, options).exec()
+    .then(result => {
+      console.log(result);
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(500);
+    })
 }

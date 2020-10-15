@@ -25,7 +25,7 @@ const Header = ({ setShowNavigation, showNavigation }) => {
   const [search, setSearch] = useState({});
 
   const handleChange = (e) => {
-    setSearch({ ...search, [e.target.name]: [e.target.value] });
+    setSearch({ ...search, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
