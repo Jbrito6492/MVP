@@ -31,7 +31,7 @@ What's the Move is a communication application utilizng hashtags to see what is 
 ## How To Use
 
 1. log-in with a random password (encryption and salt has not yet been added to passwords on server)
-2. begin a hashtag trend by searching on in the header
+2. begin a hashtag trend by searching one
 3. make some plans!
 
 #### Installation
