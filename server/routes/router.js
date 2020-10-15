@@ -1,12 +1,16 @@
 const router = require('express').Router();
-const controller = require('../../database/controllers/user.js');
+const userController = require('../../database/controllers/user.js');
+const hashtagController = require('../../database/controllers/hashtag.js');
 
-router.get('/users', controller.retrieve)
-router.post('/coords', controller.saveLocation)
+router.get('/users', userController.retrieve)
+router.post('/coords', userController.saveLocation)
 
 // authentication
-router.get('/authenticate', controller.authenticate)
-router.post('/authenticate', controller.createAccount)
-router.post('/logout', controller.logout)
+router.get('/authenticate', userController.authenticate)
+router.post('/authenticate', userController.createAccount)
+router.post('/logout', userController.logout)
+
+// hashtag
+router.post('/hashtag', hashtagController.createHashtag)
 
 module.exports = router;

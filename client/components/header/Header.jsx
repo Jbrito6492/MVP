@@ -12,6 +12,7 @@ import {
   createUser,
   endSession,
   getLocation,
+  setHashtag,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
 import { toDarkMode, toLightMode } from "../../store/actions/index.js";
@@ -27,14 +28,17 @@ const Header = ({ setShowNavigation, showNavigation }) => {
     setSearch({ ...search, [e.target.name]: [e.target.value] });
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setHashtag(search));
+  };
 
   return (
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
         <div className={h.searchContainer}>
           {isAuthenticated && (
-            <form onSubmit={() => console.log("test")}>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="search"

@@ -19,7 +19,7 @@ export function getLocation() {
       });
     });
   };
-}
+};
 
 
 export const HIDE_MAP = 'hide_map';
@@ -31,7 +31,14 @@ export const hideMap = () => async (dispatch, getState, api) => {
   dispatch({ type: HIDE_MAP });
 };
 
-
+export const SET_HASHTAG = 'set_hashtag';
+export const setHashtag = (hashtag) => async (dispatch, getState, api) => {
+  const res = await api.post('/hashtag', hashtag);
+  dispatch({
+    type: SET_HASHTAG,
+    payload: res.data
+  });
+};
 
 
 export const CHANGE_THEME_DARK = 'change_theme_dark';
@@ -42,9 +49,11 @@ export const toDarkMode = () => (dispatch, getState, api) => {
 export const toLightMode = () => (dispatch, getState, api) => {
   dispatch({ type: CHANGE_THEME_LIGHT });
 }
+
 /////////////////////////////////////
 /////////  AUTHENTICATION  /////////
 ////////////////////////////////////
+
 export const START_SESSION = 'start_session';
 export const startSession = () => async (dispatch, getState, api) => {
   const res = await api.get('/authenticate')
