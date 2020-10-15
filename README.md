@@ -1,6 +1,6 @@
 # Read Me
 
-![Project Image](project-image-url)
+![](README.gif)
 
 > Welcome to Whats the Move, an application to find your plans for the night
 
