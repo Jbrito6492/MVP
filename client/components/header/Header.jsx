@@ -21,12 +21,28 @@ import h from "../../css/header.css";
 const Header = ({ setShowNavigation, showNavigation }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
+  const [search, setSearch] = useState({});
+
+  const handleChange = (e) => {
+    setSearch({ ...search, [e.target.name]: [e.target.value] });
+  };
+
+  const handleSubmit = (e) => {};
 
   return (
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
         <div className={h.searchContainer}>
-          {isAuthenticated && <input type="text" placeholder="search" />}
+          {isAuthenticated && (
+            <form onSubmit={() => console.log("test")}>
+              <input
+                type="text"
+                placeholder="search"
+                name="hashtag"
+                onChange={handleChange}
+              />
+            </form>
+          )}
         </div>
         <div className={h.header}>
           <span></span>
