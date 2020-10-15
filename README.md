@@ -40,7 +40,8 @@ What's the Move is a communication application utilizng hashtags to see what is 
 2. open your terminal in the root directory of project and run the following:
 
 ```html
-npm install npm run dev
+npm install
+npm run dev
 ```
 
 you will need to make sure the server side code has been compiled before using the application in the browser
