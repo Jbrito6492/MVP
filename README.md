@@ -20,6 +20,7 @@ What's the Move is a communication application utilizng hashtags to see what is 
 #### Tech Stack
 
 - React.js
+- Redux
 - Node.js
 - Express.js
 - MongoDB
