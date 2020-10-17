@@ -31,14 +31,22 @@ export const hideMap = () => async (dispatch, getState, api) => {
   dispatch({ type: HIDE_MAP });
 };
 
-export const SET_HASHTAG = 'set_hashtag';
-export const setHashtag = (hashtag) => async (dispatch, getState, api) => {
+export const INCREMENT_HASHTAG = 'increment_hashtag';
+export const DECREMENT_HASHTAG = 'decrement_hashtag';
+export const incrementHashtag = (hashtag) => async (dispatch, getState, api) => {
   const res = await api.post('/hashtag', hashtag);
   dispatch({
-    type: SET_HASHTAG,
+    type: INCREMENT_HASHTAG,
     payload: res.data
   });
 };
+export const decrementHashtag = () => async (dispatch, getState, api) => {
+  const res = await api.patch('/hashtag');
+  dispatch({
+    type: DECREMENT_HASHTAG,
+    payload: res
+  })
+}
 
 
 export const CHANGE_THEME_DARK = 'change_theme_dark';

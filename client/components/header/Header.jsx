@@ -12,7 +12,7 @@ import {
   createUser,
   endSession,
   getLocation,
-  setHashtag,
+  incrementHashtag,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
 import { toDarkMode, toLightMode } from "../../store/actions/index.js";
@@ -31,7 +31,7 @@ const Header = ({ setShowNavigation, showNavigation }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setHashtag(search));
+    dispatch(incrementHashtag(search));
   };
 
   return (

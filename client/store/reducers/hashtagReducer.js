@@ -1,10 +1,14 @@
-import { SET_HASHTAG } from "../actions/index.js";
+import { INCREMENT_HASHTAG, DECREMENT_HASHTAG } from "../actions/index.js";
 
 export default (state = null, action) => {
   switch (action.type) {
-    case SET_HASHTAG:
+    case INCREMENT_HASHTAG:
       return {
         ...state, ...action.payload.data
+      };
+    case DECREMENT_HASHTAG:
+      return {
+        ...state, ...action.payload
       };
     default:
       return state;
