@@ -4,9 +4,8 @@ exports.createHashtag = (req, res) => {
   const { hashtag } = req.body;
   let options = { upsert: true, new: true, setDefaultsOnInsert: true };
   Hashtag.findOneAndUpdate({ hashtag }, { $inc: { activeUsers: 1 } }, options).exec()
-    .then(result => {
-      console.log(result);
-      res.sendStatus(200);
+    .then(({ activeUsers, hashtag }) => {
+      res.json({ activeUsers, hashtag });
     })
     .catch(err => {
       console.log(err)

@@ -22,16 +22,17 @@ import h from "../../css/header.css";
 const Header = ({ setShowNavigation, showNavigation }) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  const [search, setSearch] = useState({ hashtag: "#" });
+  const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
-    console.log(search)
+    console.log(search);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(incrementHashtag(search));
+    setSearch("");
   };
 
   return (

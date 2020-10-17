@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { startSession } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { BiSend } from "react-icons/bi";
-import { BsTrash2 } from "react-icons/bs";
 import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   connectSocket,
