@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startSession } from "../../store/actions/index.js";
+import { startSession, fetchHashtags } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { BiSend } from "react-icons/bi";
 import { HiOutlinePaperClip } from "react-icons/hi";
@@ -17,14 +17,17 @@ import styled from "styled-components";
 import profilePic from "../../images/example-profile.png";
 
 const Room = (props) => {
+  const dispatch = useDispatch();
   const { username } = useSelector((state) => state.auth);
-  const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
-  const [room, setRoom] = useState(rooms[0]);
+  const [hashtag, setHashtag] = useState([]);
+  const [room, setRoom] = useState(null);
   const [state, setMessage] = useState({ username, message: "" });
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
+    setHashtag(() => dispatch(fetchHashtags()));
+
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
       console.log("data", data);
@@ -45,7 +48,7 @@ const Room = (props) => {
     setMessage((prevMessage) => ({ ...prevMessage, message: "" }));
     setIsTyping(false);
   };
-
+  console.log("testing", hashtag);
   return (
     <>
       <div className={r.newMessageContainer}>

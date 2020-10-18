@@ -13,5 +13,6 @@ router.post('/logout', userController.logout)
 // hashtag
 router.post('/hashtag', hashtagController.createHashtag)
 router.patch('hashtag', hashtagController.deleteHashtag)
+router.get('/hashtag', hashtagController.getHashtags)
 
 module.exports = router;
