@@ -10,12 +10,13 @@
 
 - [Description](#description)
 - [How To Use](#how-to-use)
+- [Installation](#installation)
 
 ---
 
 ## Description
 
-What's the Move is a communication application utilizng hashtags to see what is trending in the area, and connect with others.
+> What's the Move is a communication application utilizng hashtags to see what is trending in the area, and connect with others.
 
 #### Tech Stack
 
@@ -45,7 +46,7 @@ npm install
 npm run dev
 ```
 
-you will need to make sure the server side code has been compiled before using the application in the browser
+> you will need to make sure the server side code has been compiled before using the application in the browser
 
 [Back To The Top](#read-me)
 

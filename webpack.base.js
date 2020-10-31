@@ -12,7 +12,7 @@ module.exports = {
           presets: ['@babel/preset-react',
             ['@babel/preset-env', { targets: { browsers: ['last 2 versions'] } }]],
           plugins: [
-            ["@babel/plugin-proposal-decorators", { legacy: true }], ["@babel/plugin-proposal-class-properties"]
+            ['@babel/plugin-proposal-decorators', { legacy: true }], ["@babel/plugin-proposal-class-properties"]
           ]
         }
       },
@@ -50,4 +50,4 @@ module.exports = {
   plugins: [
     new Dotenv()
   ]
-}
+};
