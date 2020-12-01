@@ -1,4 +1,5 @@
-const User = require('../models/user.js');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User.js');
 
 exports.retrieve = (req, res) => {
   User.find({})
@@ -44,9 +45,9 @@ exports.saveLocation = (req, res) => {
   res.sendStatus(200);
 }
 
-exports.createAccount = (req, res) => {
+exports.signUp = async (req, res) => {
   const { username, password } = req.body;
-  User.create({
+  await User.create({
     username,
     password
   })
@@ -58,7 +59,7 @@ exports.createAccount = (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.json({ err: err.message })
+      res.status(422).send(err.message);
     });
-}
+};
 

@@ -10,17 +10,17 @@ const LoginForm = (props) => {
   const [state, setState] = useState({
     username: "",
     password: "",
-    joined: false,
+    isMember: false,
   });
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const handleJoin = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
     dispatch(createUser(state));
-    setState({ ...state, joined: true });
+    setState({ ...state, isMember: true });
   };
 
   const handleLogin = (e) => {
@@ -33,7 +33,7 @@ const LoginForm = (props) => {
       <div className={classes.chatFormContainer}>
         <form
           className={classes.chatForm}
-          onSubmit={state.joined ? handleLogin : handleJoin}
+          onSubmit={state.isMember ? handleLogin : handleSignUp}
         >
           <h1>Login</h1>
           <div className={classes.inputContainer}>
@@ -56,13 +56,13 @@ const LoginForm = (props) => {
             />
           </div>
           <div>
-            {state.joined ? (
+            {state.isMember ? (
               <button onClick={handleLogin} type="submit">
                 LogIn
               </button>
             ) : (
-              <button onClick={handleJoin} type="submit">
-                Join
+              <button onClick={handleSignUp} type="submit">
+                SignUp
               </button>
             )}
             {props.isAuthenticated ? <Redirect to="/home" /> : null}
