@@ -45,6 +45,7 @@
     "ignore-styles": "^5.0.1",
     "install": "^0.13.0",
     "isomorphic-loader": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
     "node-localstorage": "^2.1.6",
