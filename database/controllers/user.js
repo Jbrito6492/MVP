@@ -52,6 +52,8 @@ exports.signUp = async (req, res) => {
     password
   })
     .then(({ _id }) => {
+      // const token = jwt.sign({ userId: _id, 'WEB_TOKEN'});
+      // res.send({ token });
       res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
         token: `${_id}`,
         username
