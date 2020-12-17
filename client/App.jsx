@@ -6,7 +6,7 @@ import { startSession } from "./store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import s from "./css/app.css";
 
-function App(props) {
+function App({ route }) {
   const dispatch = useDispatch();
   const { isAuthenticated, theme } = useSelector(
     (state) => ({
@@ -18,7 +18,7 @@ function App(props) {
 
   return (
     <div style={theme} className={s.body}>
-      {renderRoutes(props.route.routes)}
+      {renderRoutes(route.routes)}
       {!isAuthenticated ? <Redirect to="/login" /> : null}
     </div>
   );

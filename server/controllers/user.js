@@ -47,13 +47,12 @@ exports.saveLocation = (req, res) => {
 
 exports.signUp = async (req, res) => {
   const { username, password } = req.body;
+  console.log('request body', req.body)
   await User.create({
     username,
     password
   })
     .then(({ _id }) => {
-      // const token = jwt.sign({ userId: _id, 'WEB_TOKEN'});
-      // res.send({ token });
       res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
         token: `${_id}`,
         username

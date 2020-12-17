@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, startSession } from "../store/actions/index.js";
-import { Link, Redirect, Route } from "react-router-dom";
+// import { createUser, startSession } from "../store/actions/index.js";
+// import { Link, Redirect, Route } from "react-router-dom";
 import Header from "../components/header/Header.jsx";
 import LoginForm from "../components/login/LoginForm.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
