@@ -17,10 +17,11 @@ const LoginForm = (props) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    dispatch(createUser(state));
-    setState({ ...state, isMember: true });
+    dispatch(createUser(state)).then(() => {
+      setState({ ...state, isMember: true });
+    });
   };
 
   const handleLogin = (e) => {
@@ -41,6 +42,7 @@ const LoginForm = (props) => {
               placeholder="username"
               name="username"
               type="text"
+              autoComplete="off"
               onChange={handleChange}
               required
             />

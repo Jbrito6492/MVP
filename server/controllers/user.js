@@ -1,16 +1,4 @@
-const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
-
-exports.retrieve = (req, res) => {
-  User.find({})
-    .then(results => {
-      res.json(results);
-    })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
-}
 
 exports.authenticate = (req, res) => {
   const { session_id } = req.cookies;
@@ -29,6 +17,17 @@ exports.authenticate = (req, res) => {
         isAuthenticated: false
       });
     })
+}
+
+exports.retrieve = (req, res) => {
+  User.find({})
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 }
 
 exports.logout = (req, res) => {
