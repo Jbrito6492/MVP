@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const userController = require('../../database/controllers/user.js');
-const hashtagController = require('../../database/controllers/hashtag.js');
+const userController = require('../controllers/user.js');
+const hashtagController = require('../controllers/hashtag.js');
 
 router.get('/users', userController.retrieve)
 router.post('/coords', userController.saveLocation)

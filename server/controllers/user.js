@@ -1,16 +1,4 @@
-const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
-
-exports.retrieve = (req, res) => {
-  User.find({})
-    .then(results => {
-      res.json(results);
-    })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
-}
 
 exports.authenticate = (req, res) => {
   const { session_id } = req.cookies;
@@ -31,6 +19,17 @@ exports.authenticate = (req, res) => {
     })
 }
 
+exports.retrieve = (req, res) => {
+  User.find({})
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+}
+
 exports.logout = (req, res) => {
   try {
     res.sendStatus(200)
@@ -47,13 +46,12 @@ exports.saveLocation = (req, res) => {
 
 exports.signUp = async (req, res) => {
   const { username, password } = req.body;
+  console.log('request body', req.body)
   await User.create({
     username,
     password
   })
     .then(({ _id }) => {
-      // const token = jwt.sign({ userId: _id, 'WEB_TOKEN'});
-      // res.send({ token });
       res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
         token: `${_id}`,
         username
