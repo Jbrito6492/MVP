@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startSession, fetchHashtags } from "../../store/actions/index.js";
+import { startSession } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { BiSend } from "react-icons/bi";
+import { BsTrash2 } from "react-icons/bs";
 import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   connectSocket,
   disconnectSocket,
   subscribeToChat,
   sendMessage,
-} from "../../helpers/socketio.js";
+} from "../../helpers/socketio.client.js";
 import Map from "../map/Map.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import r from "../../css/room.css";
@@ -17,26 +18,23 @@ import styled from "styled-components";
 import profilePic from "../../images/example-profile.png";
 
 const Room = (props) => {
-  const dispatch = useDispatch();
   const { username } = useSelector((state) => state.auth);
-  const [hashtag, setHashtag] = useState([]);
-  const [room, setRoom] = useState(null);
+  const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
+  const [room, setRoom] = useState(rooms[0]);
   const [state, setMessage] = useState({ username, message: "" });
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    setHashtag(() => dispatch(fetchHashtags()));
-
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
       console.log("data", data);
       if (err) return;
-      setChat((prevChats) => [...prevChats, data.message]);
+      setChat((prevChats) => [...prevChats, data]);
     });
     return () => {
       console.log("clean up");
-      setChat((prevChats) => []);
+      setChat([]);
       disconnectSocket();
     };
   }, [room]);
@@ -44,11 +42,12 @@ const Room = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, message } = state;
+    console.log(state);
     sendMessage(room, username, message);
     setMessage((prevMessage) => ({ ...prevMessage, message: "" }));
-    setIsTyping(false);
+    // setIsTyping(false);
   };
-  console.log("testing", hashtag);
+
   return (
     <>
       <div className={r.newMessageContainer}>
@@ -86,7 +85,6 @@ const Room = (props) => {
           value={state.message}
           onChange={(e) => {
             setMessage({ ...state, [e.target.name]: e.target.value });
-            setIsTyping(true);
           }}
           required
         />

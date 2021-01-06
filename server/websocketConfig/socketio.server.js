@@ -15,7 +15,7 @@ module.exports = socketConfig = (app, port) => {
     socket.on('chat', data => {
       const { username, message, room } = data;
       console.log(`username: ${username}, msg: ${message}, room: ${room}`);
-      io.to(room).emit('chat', data);
+      io.to(room).emit('chat', message, username);
     })
   })
   server.listen(port, () => {
