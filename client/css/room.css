@@ -86,8 +86,10 @@
 }
 
 .messageTime {
+  display: flex;
   font-size: 1.3rem;
   color: #777;
+  justify-content: flex-end;
 }
 
 .messageText {
