@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startSession } from "../../store/actions/index.js";
+import { startSession, getDate } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { BiSend } from "react-icons/bi";
 import { BsTrash2 } from "react-icons/bs";
 import { HiOutlinePaperClip } from "react-icons/hi";
+import dayjs from "dayjs";
 import {
   connectSocket,
   disconnectSocket,
@@ -18,17 +19,18 @@ import styled from "styled-components";
 import profilePic from "../../images/example-profile.png";
 
 const Room = (props) => {
+  const dispatch = useDispatch();
   const { username } = useSelector((state) => state.auth);
   const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
   const [room, setRoom] = useState(rooms[0]);
-  const [state, setMessage] = useState({ username, message: "" });
+  const [state, setState] = useState({ username, message: "" });
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
+    dispatch(getDate());
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
-      console.log("data", data);
       if (err) return;
       setChat((prevChats) => [...prevChats, data]);
     });
@@ -37,15 +39,19 @@ const Room = (props) => {
       setChat([]);
       disconnectSocket();
     };
+    console.log("chat", chat);
   }, [room]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, message } = state;
-    console.log(state);
-    sendMessage(room, username, message);
-    setMessage((prevMessage) => ({ ...prevMessage, message: "" }));
-    // setIsTyping(false);
+    let now = dayjs();
+    sendMessage(room, username, message, now.format("h:mm:ss a"));
+    setState((prevState) => ({
+      ...prevState,
+      message: "",
+    }));
+    setIsTyping(false);
   };
 
   return (
@@ -58,8 +64,8 @@ const Room = (props) => {
           <div className={r.messageContent}>
             {chat.map((message, index) => (
               <div key={index} className={r.youMessageContainer}>
-                <div className={r.messageText}>{message}</div>
-                <div className={r.messageTime}>Oct 10</div>
+                <div className={r.messageText}>{message.message}</div>
+                <div className={r.messageTime}>{message.date}</div>
               </div>
             ))}
             {isTyping && (
@@ -84,7 +90,7 @@ const Room = (props) => {
           name="message"
           value={state.message}
           onChange={(e) => {
-            setMessage({ ...state, [e.target.name]: e.target.value });
+            setState({ ...state, [e.target.name]: e.target.value });
           }}
           required
         />

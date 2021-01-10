@@ -46,7 +46,6 @@ exports.saveLocation = (req, res) => {
 
 exports.signUp = async (req, res) => {
   const { username, password } = req.body;
-  console.log('request body', req.body)
   await User.create({
     username,
     password

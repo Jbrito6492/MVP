@@ -17,11 +17,13 @@ const db = require('./database/index.js');
 const socketConfig = require('./websocketConfig/socketio.server.js');
 const port = process.env.PORT || 5000;
 
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   const store = createStore(req);
   const promises = matchRoutes(Routes, req.path).map(({ route }) => (

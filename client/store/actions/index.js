@@ -56,7 +56,10 @@ export const fetchHashtags = () => async (dispatch, getState, api) => {
   });
 };
 
-
+export const GET_DATE = 'get_date';
+export const getDate = () => (dispatch, getState, api) => {
+  dispatch({ type: GET_DATE });
+};
 
 export const CHANGE_THEME_DARK = 'change_theme_dark';
 export const CHANGE_THEME_LIGHT = 'change_theme_light';

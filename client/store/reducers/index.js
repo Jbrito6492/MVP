@@ -5,6 +5,7 @@ import coords from './locationReducer.js';
 import theme from './themeReducer.js';
 import map from './mapReducer.js';
 import hashtag from './hashtagReducer.js';
+import date from './dateReducer.js';
 
 export default combineReducers({
   users,
@@ -12,5 +13,6 @@ export default combineReducers({
   coords,
   theme,
   map,
-  hashtag
+  hashtag,
+  date
 });
