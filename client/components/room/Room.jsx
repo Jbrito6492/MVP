@@ -12,11 +12,9 @@ import {
   subscribeToChat,
   sendMessage,
 } from "../../helpers/socketio.client.js";
-import Map from "../map/Map.jsx";
+import ChatView from "./ChatView.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
-import r from "../../css/room.css";
-import styled from "styled-components";
-import profilePic from "../../images/example-profile.png";
+import styles from "../../css/room.css";
 
 const Room = (props) => {
   const dispatch = useDispatch();
@@ -24,6 +22,7 @@ const Room = (props) => {
   const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
   const [room, setRoom] = useState(rooms[0]);
   const [state, setState] = useState({ username, message: "" });
+  const [isUser, setIsUser] = useState(false);
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -56,34 +55,11 @@ const Room = (props) => {
 
   return (
     <>
-      <div className={r.newMessageContainer}>
+      <div className={styles.newMessageContainer}>
         <Link to="/">+</Link>
       </div>
-      <div className={r.chatMessageList}>
-        <div className={`${r.youMessage} ${r.messageRow}`}>
-          <div className={r.messageContent}>
-            {chat.map((message, index) => (
-              <div key={index} className={r.youMessageContainer}>
-                <div className={r.messageText}>{message.message}</div>
-                <div className={r.messageTime}>{message.date}</div>
-              </div>
-            ))}
-            {isTyping && (
-              <div className={r.youMessageContainer}>
-                <div className={`${r.loading} ${r.messageText}`}></div>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className={`${r.messageRow} ${r.otherMessage}`}>
-          <div className={r.messageContent}>
-            <img src={profilePic} />
-            <div className={r.messageText}>whats happening</div>
-            <div className={r.messageTime}>Oct 10</div>
-          </div>
-        </div>
-      </div>
-      <form className={r.chatForm} onSubmit={handleSubmit}>
+      <ChatView isTyping={isTyping} chat={chat} username={state.username} />
+      <form className={styles.chatForm} onSubmit={handleSubmit}>
         <input
           placeholder="send it"
           type="text"
@@ -94,11 +70,11 @@ const Room = (props) => {
           }}
           required
         />
-        <HiOutlinePaperClip className={r.chatFormIcon} />
-        <BiSend className={r.chatFormSendIcon} onClick={handleSubmit} />
+        <HiOutlinePaperClip className={styles.chatFormIcon} />
+        <BiSend className={styles.chatFormSendIcon} onClick={handleSubmit} />
       </form>
     </>
   );
 };
 
-export default withStyles(r)(Room);
+export default withStyles(styles)(Room);
