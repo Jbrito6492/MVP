@@ -1,82 +1,49 @@
-.chatFormContainer {
-  grid-area: mainContent;
-  background: #111111;
-  scrollbar-width: none;
-  border-bottom: #292929;
-  border-right: 1px solid #292929;
+.container {
   display: flex;
-  flex-direction: row;
+  background: #1D1D1D;
   justify-content: center;
-  justify-items: center;
-  background: #1D1D1D;
-  padding: 30px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer {
-  grid-area: footer;
-  background: #242424;
-  width: 100vw;
-}
-
-.leftPane {
-  background: #1D1D1D;
-  grid-area: leftPane;
-}
-
-.chatForm h1 {
+.customform, label {
   color: #eee;
   font-size: 18px;
   font-weight: bold;
-  padding: 0 15px;
+  padding-top: 15px;
 }
 
-.chatForm {
+.customform {
   display: flex;
+  background: #1D1D1D;
   align-items: center;
   outline: none;
-  color: #330;
   border-radius: 4px;
   letter-spacing: 1.4px;
-  min-width: 120px;
-  text-transform: uppercase;
   white-space: normal;
   justify-content: center;
 }
 
-.chatForm input {
-  text-align: center;
+input {
   color: #eee;
-  display: flex;
-  justify-content: center;
-  outline: none;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #ddd !important;
-  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px !important;
   background: transparent;
-  font-size: 16px;
 }
 
-.chatForm input:focus {
-  border-bottom: 2px solid #C38FFF !important;
-}
-
-.chatForm button {
-  background: #C38FFF;
+p {
   color: #eee;
-  padding: 17px 10px;
-  font-size: 14px;
-  border-radius: 500px;
-  border-width: 0;
-  letter-spacing: 2px;
-  min-width: 160px;
-  text-transform: uppercase;
-  white-space: normal;
+  padding-bottom: 7px;
 }
 
-.inputContainer {
-  padding: 0 15px;
+.buttoncontainer {
+  padding-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background: #C38FFF !important;
+  color: #eee;
+  font-size: 20px !important;
 }
 
 ::-webkit-scrollbar {

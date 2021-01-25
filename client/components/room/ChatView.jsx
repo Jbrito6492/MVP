@@ -8,9 +8,10 @@ const ChatView = ({ isTyping, chat, username }) => {
     <div className={styles.chatMessageList}>
       <div className={styles.messageContent}>
         {chat.map((message, index) => {
+          console.log(message);
           return username === message.username ? (
             <div className={`${styles.youMessage} ${styles.messageRow}`}>
-              <div key={index} className={styles.youMessageContainer}>
+              <div key={message.id} className={styles.youMessageContainer}>
                 <div className={styles.messageText}>{message.message}</div>
                 <div className={styles.messageTime}>{message.date}</div>
               </div>

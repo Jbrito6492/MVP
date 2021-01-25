@@ -6,6 +6,7 @@ import theme from './themeReducer.js';
 import map from './mapReducer.js';
 import hashtag from './hashtagReducer.js';
 import date from './dateReducer.js';
+import nav from './navigationReducer.js'
 
 export default combineReducers({
   users,
@@ -14,5 +15,6 @@ export default combineReducers({
   theme,
   map,
   hashtag,
-  date
+  date,
+  nav
 });

@@ -1,26 +1,28 @@
 .footerLeft {
+  grid-area: footer;
   background: #242424;
   display: grid;
   grid: 40px / 40px;
   align-content: center;
-  grid-area: footer;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 10px;
   padding: 0 15px;
 }
 
 .footerLeft a {
-  display: grid;
-  place-content: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #C38FFF;
   border-radius: 100%;
   color: #1D1D1D;
   text-decoration: none;
-  font-size: 3.6rem
+  font-size: 3.8rem;
+  flex-direction: column;
+  padding-bottom: 4px;
 }
 
 .footerRight {
   grid-area: chatForm;
   background: #242424;
-  width: 100vw;
 }

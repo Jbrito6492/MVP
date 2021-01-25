@@ -25,12 +25,10 @@
 
 .reactIcon {
   display: flex;
-  grid-row: span 2;
   align-items: center;
-  height: 40px;
-  width: 40px;
+  justify-content: center;
+  width: 75px;
   padding: 0 25px;
-  border-radius: 100%;
 }
 
 .navText {

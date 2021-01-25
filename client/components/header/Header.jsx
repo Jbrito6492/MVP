@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CgPin } from "react-icons/cg";
 import { FaMoon, FaBars } from "react-icons/fa";
@@ -15,13 +15,18 @@ import {
   incrementHashtag,
 } from "../../store/actions/index.js";
 import { Link, withRouter } from "react-router-dom";
-import { toDarkMode, toLightMode } from "../../store/actions/index.js";
+import {
+  toDarkMode,
+  toLightMode,
+  showNavigation,
+  hideNavigation,
+} from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
-import h from "../../css/header.css";
+import classes from "../../css/header.css";
 
-const Header = ({ setShowNavigation, showNavigation }) => {
+const Header = ({ showNavMenu, isAuthenticated }) => {
   const dispatch = useDispatch();
-  const { isAuthenticated, username } = useSelector((state) => state.auth);
+  const { username } = useSelector((state) => state.auth);
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
@@ -38,7 +43,7 @@ const Header = ({ setShowNavigation, showNavigation }) => {
   return (
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
-        <div className={h.searchContainer}>
+        <div className={classes.searchContainer}>
           {isAuthenticated && (
             <form onSubmit={handleSubmit}>
               <input
@@ -50,12 +55,19 @@ const Header = ({ setShowNavigation, showNavigation }) => {
             </form>
           )}
         </div>
-        <div className={h.header}>
+        <div className={classes.header}>
           <span></span>
-          <div className={h.headerIconContainer}>
-            <div className={h.headerIcon}>
+          <div className={classes.headerIconContainer}>
+            <div className={classes.headerIcon}>
               {isAuthenticated && (
-                <Link to="#" onClick={() => setShowNavigation(!showNavigation)}>
+                <Link
+                  to="#"
+                  onClick={() =>
+                    showNavMenu
+                      ? dispatch(hideNavigation())
+                      : dispatch(showNavigation())
+                  }
+                >
                   <FaBars size={34} />
                 </Link>
               )}
@@ -67,4 +79,4 @@ const Header = ({ setShowNavigation, showNavigation }) => {
   );
 };
 
-export default withStyles(h)(Header);
+export default withStyles(classes)(Header);

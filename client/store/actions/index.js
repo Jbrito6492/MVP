@@ -70,6 +70,15 @@ export const toLightMode = () => (dispatch, getState, api) => {
   dispatch({ type: CHANGE_THEME_LIGHT });
 }
 
+export const SHOW_NAV = 'show_nav';
+export const HIDE_NAV = 'hide_nav';
+export const showNavigation = (dispatch, getState, api) => {
+  dispatch({ type: SHOW_NAV });
+}
+export const hideNavigation = () => (dispatch, getState, api) => {
+  dispatch({ type: HIDE_NAV });
+}
+
 /////////////////////////////////////
 /////////  AUTHENTICATION  /////////
 ////////////////////////////////////
@@ -85,7 +94,7 @@ export const startSession = () => async (dispatch, getState, api) => {
 
 export const CREATE_USER = 'create_user';
 export const createUser = (credentials) => async (dispatch, getState, api) => {
-  const res = await api.post('/authenticate', credentials)
+  const res = await api.post('/signup', credentials)
   dispatch({
     type: CREATE_USER,
     payload: res

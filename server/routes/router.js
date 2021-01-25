@@ -7,7 +7,7 @@ router.post('/coords', userController.saveLocation)
 
 // authentication
 router.get('/authenticate', userController.authenticate)
-router.post('/authenticate', userController.signUp)
+router.post('/signup', userController.signUp)
 router.post('/logout', userController.logout)
 
 // hashtag

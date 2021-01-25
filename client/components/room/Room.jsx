@@ -16,15 +16,13 @@ import ChatView from "./ChatView.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import styles from "../../css/room.css";
 
-const Room = (props) => {
+const Room = ({ username }) => {
   const dispatch = useDispatch();
-  const { username } = useSelector((state) => state.auth);
   const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
   const [room, setRoom] = useState(rooms[0]);
   const [state, setState] = useState({ username, message: "" });
   const [isUser, setIsUser] = useState(false);
   const [chat, setChat] = useState([]);
-  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     dispatch(getDate());
@@ -38,7 +36,6 @@ const Room = (props) => {
       setChat([]);
       disconnectSocket();
     };
-    console.log("chat", chat);
   }, [room]);
 
   const handleSubmit = (e) => {
@@ -50,7 +47,6 @@ const Room = (props) => {
       ...prevState,
       message: "",
     }));
-    setIsTyping(false);
   };
 
   return (

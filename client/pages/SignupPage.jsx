@@ -1,24 +1,21 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Header from "../components/header/Header.jsx";
-import Carousel from "../components/carousel/Carousel.jsx";
 import AuthForm from "../components/form/AuthForm.jsx";
+import Carousel from "../components/carousel/Carousel.jsx";
 import Footer from "../components/footer/Footer.jsx";
-import { startSession } from "../store/actions";
 import { Link } from "react-router-dom";
+import { createUser } from "../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
 
-const LogInPage = (props) => {
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+const SignupPage = (props) => {
   const [customText, setCustomText] = useState(
-    "Thank you for being a part of our community."
+    "We'll never share your info with anyone else."
   );
-  const [buttonText, setButtonText] = useState("Sign In");
+  const [buttonText, setButtonText] = useState("Sign Up");
 
-  const handleSignin = () => {
-    dispatch(startSession());
+  const handleSignup = (state) => {
+    dispatch(createUser(state));
   };
 
   return (
@@ -28,10 +25,10 @@ const LogInPage = (props) => {
         isAuthenticated={isAuthenticated}
         customText={customText}
         buttonText={buttonText}
-        handleSubmit={handleSignin}
+        handleSubmit={handleSignup}
       >
-        <Link to="/main">
-          <button className="btn btn-primary">Sign In</button>
+        <Link to="/login">
+          <button className="btn btn-primary">Sign Up</button>
         </Link>
       </AuthForm>
       <Carousel />
@@ -45,6 +42,6 @@ function loadData() {
 }
 
 export default {
-  component: withStyles(classes)(LogInPage),
+  component: withStyles(classes)(SignupPage),
   loadData,
 };

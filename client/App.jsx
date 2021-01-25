@@ -3,7 +3,7 @@ import { renderRoutes } from "react-router-config";
 import { Redirect } from "react-router";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import withStyles from "isomorphic-style-loader/withStyles";
-import s from "./css/app.css";
+import classes from "./css/app.css";
 
 function App({ route }) {
   const { isAuthenticated, theme } = useSelector(
@@ -15,11 +15,17 @@ function App({ route }) {
   );
 
   return (
-    <div style={theme} className={s.body}>
+    <div style={theme} className={classes.body}>
       {renderRoutes(route.routes)}
-      {!isAuthenticated ? <Redirect to="/login" /> : null}
     </div>
   );
 }
 
-export default withStyles(s)(App);
+function loadData() {
+  console.log("data loading");
+}
+
+export default {
+  component: withStyles(classes)(App),
+  loadData,
+};

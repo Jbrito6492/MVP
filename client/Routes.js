@@ -2,20 +2,30 @@ import React from 'react';
 import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
 import LogInPage from './pages/LogInPage.jsx';
-import Map from './components/map/Map.jsx';
+import SignUpPage from './pages/SignUpPage.jsx';
+import UserPage from './pages/UserPage.jsx';
 
 export default [
   {
-    component: App,
+    ...App,
     routes: [
       {
-        component: LogInPage,
-        path: '/login',
+        ...HomePage,
+        path: '/',
         exact: true
       },
       {
-        component: HomePage,
-        path: '/home'
+        ...LogInPage,
+        path: '/login'
+
+      },
+      {
+        ...SignUpPage,
+        path: '/signup'
+      },
+      {
+        ...UserPage,
+        path: '/main'
       }
     ]
   }

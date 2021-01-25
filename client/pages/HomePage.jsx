@@ -1,42 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { startSession } from "../store/actions/index.js";
-import Room from "../components/room/Room.jsx";
-import UserList from "../components/user_list/UserList.jsx";
 import Header from "../components/header/Header.jsx";
-import { Link, Redirect } from "react-router-dom";
 import Navigation from "../components/navigation/Navigation.jsx";
 import ConversationList from "../components/room/ConversationList.jsx";
-import Map from "../components/map/Map.jsx";
+import Footer from "../components/footer/Footer.jsx";
+import Carousel from "../components/carousel/Carousel.jsx";
 
-import ReactCSSTransitionGroup from "react-transition-group";
-
-import r from "../css/app.css";
+import classes from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
-const HomePage = (props) => {
-  const showMap = useSelector((state) => state.map);
+function HomePage(props) {
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [showNavigation, setShowNavigation] = useState(false);
-
-  const renderLeftPane = () => {
-    return showNavigation ? <Navigation /> : <ConversationList />;
-  };
 
   const renderView = () => {
     return (
       <>
-        <div className={r.appContainer}>
+        <div className={classes.appContainer}>
           <Header
             setShowNavigation={setShowNavigation}
             showNavigation={showNavigation}
+            isAuthenticated={isAuthenticated}
           />
-          {renderLeftPane()}
-          {showMap ? <Map /> : <Room />}
+          <Navigation isAuthenticated={isAuthenticated} />
+          <Carousel />
+          <Footer />
         </div>
       </>
     );
   };
   return <div>{renderView()}</div>;
-};
+}
 
-export default withStyles(r)(HomePage);
+function loadData() {
+  console.log("load data");
+}
+
+export default { component: withStyles(classes)(HomePage), loadData };

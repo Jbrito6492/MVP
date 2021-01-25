@@ -46,6 +46,9 @@ exports.saveLocation = (req, res) => {
 
 exports.signUp = async (req, res) => {
   const { username, password } = req.body;
+  console.log('username:', username)
+  console.log('password:', password)
+
   await User.create({
     username,
     password
@@ -53,7 +56,8 @@ exports.signUp = async (req, res) => {
     .then(({ _id }) => {
       res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
         token: `${_id}`,
-        username
+        username,
+        isAuthenticated: false
       });
     })
     .catch(err => {

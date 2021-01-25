@@ -1,8 +1,9 @@
 import io from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
 let socket;
 
 export const connectSocket = (room) => {
-  socket = io('http://localhost:5000');
+  socket = io('http://localhost:5000', { transports: ['websocket', 'polling', 'flashsocket'] });
   console.log('connecting socket...');
   if (socket && room) socket.emit('join', room);
 }
@@ -21,5 +22,5 @@ export const subscribeToChat = (cb) => {
 }
 
 export const sendMessage = (room, username, message, date) => {
-  if (socket) socket.emit('chat', { room, username, message, date });
+  if (socket) socket.emit('chat', { id: uuidv4(), room, username, message, date });
 }
