@@ -16,7 +16,7 @@
 
 ## Description
 
-> What's the Move is a communication application utilizng hashtags to see what is trending in the area, and connect with others.
+> What's the Move is a server-side rendered communication application utilizng hashtags to see what is trending in the area, and connect with others.
 
 #### Tech Stack
 
@@ -32,7 +32,7 @@
 
 ## How To Use
 
-1. log-in with a random password (encryption and salt has not yet been added to passwords on server)
+1. create an account and log in
 2. begin a hashtag trend by searching one
 3. make some plans!
 
@@ -43,9 +43,16 @@
 
 ```html
 npm install
+
 npm run dev
 ```
+3. open a second terminal and run the following:
 
+```html
+npm run server
+```
+
+## Troubleshooting
 > you will need to make sure the server side code has been compiled before using the application in the browser
 
 [Back To The Top](#read-me)
