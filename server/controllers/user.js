@@ -19,6 +19,26 @@ exports.authenticate = (req, res) => {
     })
 }
 
+exports.signIn = (req, res) => {
+  const { username, password } = req.body;
+  console.log('username:', username)
+  console.log('password:', password)
+  User.find({ username })
+    .then((username) => {
+      res.json({
+        username,
+        isAuthenticated: true,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({
+        msg: 'invalid credentials',
+        isAuthenticated: false
+      });
+    })
+}
+
 exports.retrieve = (req, res) => {
   User.find({})
     .then(results => {

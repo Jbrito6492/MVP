@@ -54,7 +54,7 @@ const Room = ({ username }) => {
       <div className={styles.newMessageContainer}>
         <Link to="/">+</Link>
       </div>
-      <ChatView isTyping={isTyping} chat={chat} username={state.username} />
+      <ChatView chat={chat} username={state.username} />
       <form className={styles.chatForm} onSubmit={handleSubmit}>
         <input
           placeholder="send it"

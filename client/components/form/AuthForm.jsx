@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import classes from "../../css/loginForm.css";
 import { createUser, startSession } from "../../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
+import { Link } from "react-router-dom";
 
 const AuthForm = ({
   handleSubmit,
   isAuthenticated,
   customText,
   buttonText,
-  children,
+  page,
 }) => {
+  const { token } = isAuthenticated;
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -25,7 +27,7 @@ const AuthForm = ({
         <form
           className={classes.chatform}
           onSubmit={(e) => {
-            e.preventDeafault();
+            e.preventDefault();
             handleSubmit(state);
           }}
         >
@@ -58,7 +60,16 @@ const AuthForm = ({
               required
             />
           </div>
-          <div className={classes.buttoncontainer}>{children}</div>
+          <div className={classes.buttoncontainer}>
+            <Link
+              to={page === "login" ? "/main" : "/login"}
+              onClick={() => handleSubmit(state)}
+            >
+              <p className={`btn btn-primary ${classes.buttontext}`}>
+                {buttonText}
+              </p>
+            </Link>
+          </div>
         </form>
       </div>
     </>

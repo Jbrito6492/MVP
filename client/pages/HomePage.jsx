@@ -11,15 +11,14 @@ import withStyles from "isomorphic-style-loader/withStyles";
 
 function HomePage(props) {
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const [showNavigation, setShowNavigation] = useState(false);
+  const showNavigation = useSelector((state) => state.nav);
 
   const renderView = () => {
     return (
       <>
         <div className={classes.appContainer}>
           <Header
-            setShowNavigation={setShowNavigation}
-            showNavigation={showNavigation}
+            showNavMenu={showNavigation}
             isAuthenticated={isAuthenticated}
           />
           <Navigation isAuthenticated={isAuthenticated} />

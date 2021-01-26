@@ -72,7 +72,7 @@ export const toLightMode = () => (dispatch, getState, api) => {
 
 export const SHOW_NAV = 'show_nav';
 export const HIDE_NAV = 'hide_nav';
-export const showNavigation = (dispatch, getState, api) => {
+export const showNavigation = () => (dispatch, getState, api) => {
   dispatch({ type: SHOW_NAV });
 }
 export const hideNavigation = () => (dispatch, getState, api) => {
@@ -84,8 +84,8 @@ export const hideNavigation = () => (dispatch, getState, api) => {
 ////////////////////////////////////
 
 export const START_SESSION = 'start_session';
-export const startSession = () => async (dispatch, getState, api) => {
-  const res = await api.get('/authenticate')
+export const startSession = (credentials) => async (dispatch, getState, api) => {
+  const res = await api.post('/login', credentials)
   dispatch({
     type: START_SESSION,
     payload: res

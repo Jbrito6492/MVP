@@ -11,11 +11,19 @@ import classes from "../css/app.css";
 const UserPage = (props) => {
   const showNavigation = useSelector((state) => state.nav);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
+  console.log("testing", showNavigation);
   return (
     <>
       <div className={classes.appContainer}>
-        <Header showNavMenu={showNavigation} />
-        <ConversationList />
+        <Header
+          showNavMenu={showNavigation}
+          isAuthenticated={isAuthenticated}
+        />
+        {showNavigation ? (
+          <Navigation isAuthenticated={isAuthenticated} />
+        ) : (
+          <ConversationList />
+        )}
         <Room username={username} />
       </div>
     </>

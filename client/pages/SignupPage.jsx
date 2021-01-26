@@ -3,7 +3,7 @@ import Header from "../components/header/Header.jsx";
 import AuthForm from "../components/form/AuthForm.jsx";
 import Carousel from "../components/carousel/Carousel.jsx";
 import Footer from "../components/footer/Footer.jsx";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { createUser } from "../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
@@ -16,6 +16,7 @@ const SignupPage = (props) => {
 
   const handleSignup = (state) => {
     dispatch(createUser(state));
+    <Redirect to="/login" />;
   };
 
   return (
@@ -26,10 +27,9 @@ const SignupPage = (props) => {
         customText={customText}
         buttonText={buttonText}
         handleSubmit={handleSignup}
+        page="signup"
       >
-        <Link to="/login">
-          <button className="btn btn-primary">Sign Up</button>
-        </Link>
+        <button >Sign Up</button>
       </AuthForm>
       <Carousel />
       <Footer />
