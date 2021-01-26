@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/the_move', { useNewUrlParser: true,  useUnifiedTopology: true} )
+mongoose.connect('mongodb://localhost/the_move', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 const db = mongoose.connection;
 

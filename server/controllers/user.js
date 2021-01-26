@@ -1,42 +1,53 @@
 const User = require('../models/User.js');
+const bcrypt = require('bcryptjs');
 
-exports.authenticate = (req, res) => {
-  const { session_id } = req.cookies;
-  User.findById(session_id, 'username')
-    .then(({ username, _id }) => {
-      res.json({
-        id: _id, username,
-        isAuthenticated: true,
-        token: session_id
-      });
+exports.register = async (req, res) => {
+  const { username, password, email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (user) return res.redirect('/');
+    const hashedPW = await bcrypt.hash(password, 12);
+    await User.create({
+      username,
+      email,
+      password: hashedPW
     })
-    .catch(err => {
-      console.log(err);
-      res.json({
-        msg: 'invalid credentials',
-        isAuthenticated: false
-      });
-    })
+    res.status(200).json({
+      username,
+      isAuthenticated: false
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(422).send(err.message);
+  }
 }
 
-exports.signIn = (req, res) => {
-  const { username, password } = req.body;
-  console.log('username:', username)
-  console.log('password:', password)
-  User.find({ username })
-    .then((username) => {
-      res.json({
-        username,
-        isAuthenticated: true,
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.json({
-        msg: 'invalid credentials',
-        isAuthenticated: false
-      });
-    })
+exports.signIn = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.redirect('/');
+    const isAuthenticated = await bcrypt.compare(password, user.password);
+    if (!isAuthenticated) return res.redirect('/');
+    res.json({
+      username: user.username,
+      isAuthenticated,
+    });
+  } catch (err) {
+    console.log(err);
+    res.json({
+      msg: 'invalid credentials',
+      isAuthenticated: false
+    });
+  }
+}
+
+exports.authenticate = (req, res, next) => {
+  if (req.session.isAuthenticated) {
+    next();
+  } else {
+    res.redirect('/');
+  }
 }
 
 exports.retrieve = (req, res) => {
@@ -64,25 +75,8 @@ exports.saveLocation = (req, res) => {
   res.sendStatus(200);
 }
 
-exports.signUp = async (req, res) => {
-  const { username, password } = req.body;
-  console.log('username:', username)
-  console.log('password:', password)
 
-  await User.create({
-    username,
-    password
-  })
-    .then(({ _id }) => {
-      res.cookie('session_id', `${_id}`, { sameSite: 'strict' }).json({
-        token: `${_id}`,
-        username,
-        isAuthenticated: false
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(422).send(err.message);
-    });
-};
+
+
+
 

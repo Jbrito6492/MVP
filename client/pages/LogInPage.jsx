@@ -37,11 +37,7 @@ const LogInPage = (props) => {
   );
 };
 
-function loadData() {
-  console.log("i am loading data");
-}
 
 export default {
   component: withStyles(classes)(LogInPage),
-  loadData,
 };

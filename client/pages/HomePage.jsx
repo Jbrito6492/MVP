@@ -37,7 +37,7 @@ function HomePage(props) {
 }
 
 function loadData() {
-  console.log("load data");
+  console.log("loading data from home page");
 }
 
 export default { component: withStyles(classes)(HomePage), loadData };
