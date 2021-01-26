@@ -1,3 +1,30 @@
+/////////////////////////////////////
+/////////  AUTHENTICATION  /////////
+////////////////////////////////////
+
+export const START_SESSION = 'start_session';
+export const startSession = (credentials) => async (dispatch, getState, api) => {
+  const res = await api.post('/login', credentials)
+  dispatch({
+    type: START_SESSION,
+    payload: res
+  });
+};
+
+export const CREATE_USER = 'create_user';
+export const createUser = (credentials) => async (dispatch, getState, api) => {
+  const res = await api.post('/register', credentials)
+  dispatch({
+    type: CREATE_USER,
+    payload: res
+  });
+};
+
+export const END_SESSION = 'end_session';
+export const endSession = () => (dispatch, getState, api) => {
+  dispatch({ type: END_SESSION });
+};
+
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers = () => async (dispatch, getState, api) => {
   const res = await api.get('/users');
@@ -78,30 +105,3 @@ export const showNavigation = () => (dispatch, getState, api) => {
 export const hideNavigation = () => (dispatch, getState, api) => {
   dispatch({ type: HIDE_NAV });
 }
-
-/////////////////////////////////////
-/////////  AUTHENTICATION  /////////
-////////////////////////////////////
-
-export const START_SESSION = 'start_session';
-export const startSession = (credentials) => async (dispatch, getState, api) => {
-  const res = await api.post('/login', credentials)
-  dispatch({
-    type: START_SESSION,
-    payload: res
-  });
-};
-
-export const CREATE_USER = 'create_user';
-export const createUser = (credentials) => async (dispatch, getState, api) => {
-  const res = await api.post('/signup', credentials)
-  dispatch({
-    type: CREATE_USER,
-    payload: res
-  });
-};
-
-export const END_SESSION = 'end_session';
-export const endSession = () => (dispatch, getState, api) => {
-  dispatch({ type: END_SESSION });
-};

@@ -22,13 +22,14 @@ exports.register = async (req, res) => {
   }
 }
 
-exports.signIn = async (req, res) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
     if (!user) return res.redirect('/');
     const isAuthenticated = await bcrypt.compare(password, user.password);
     if (!isAuthenticated) return res.redirect('/');
+    req.session.isAuthenticated = true;
     res.json({
       username: user.username,
       isAuthenticated,
@@ -61,19 +62,6 @@ exports.retrieve = (req, res) => {
     });
 }
 
-exports.logout = (req, res) => {
-  try {
-    res.sendStatus(200)
-  } catch (err) {
-    console.log(err)
-    res.sendStatus(500)
-  }
-}
-
-exports.saveLocation = (req, res) => {
-  console.log(req.body)
-  res.sendStatus(200);
-}
 
 
 

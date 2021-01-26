@@ -14,6 +14,7 @@ const AuthForm = ({
   const { token } = isAuthenticated;
   const [state, setState] = useState({
     username: "",
+    email: "",
     password: "",
   });
 
@@ -33,10 +34,10 @@ const AuthForm = ({
         >
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
-              Username
+              Email
             </label>
             <input
-              name="username"
+              name="email"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -47,6 +48,21 @@ const AuthForm = ({
               <p>{customText}</p>
             </div>
           </div>
+          {page === "signup" && (
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Username
+              </label>
+              <input
+                name="username"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
               Password

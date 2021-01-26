@@ -38,6 +38,6 @@ export default (req, store) => {
     <script>window.INITIAL_STATE = ${serialize(store.getState())}
     </script>
     </body>
-  </html>
+</html>
 `;
 };

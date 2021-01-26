@@ -1,11 +1,11 @@
 import React from "react";
 import { renderRoutes } from "react-router-config";
-import { Redirect } from "react-router";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "./css/app.css";
 
 function App({ route }) {
+  const dispatch = useDispatch();
   const { isAuthenticated, theme } = useSelector(
     (state) => ({
       isAuthenticated: state.auth.isAuthenticated,
