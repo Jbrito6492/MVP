@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Header from "../components/header/Header.jsx";
 import AuthForm from "../components/form/AuthForm.jsx";
 import Carousel from "../components/carousel/Carousel.jsx";
 import Footer from "../components/footer/Footer.jsx";
-import { Redirect } from "react-router-dom";
 import { createUser } from "../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
 
 const SignupPage = (props) => {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [customText, setCustomText] = useState(
     "We'll never share your info with anyone else."
   );
@@ -16,7 +18,6 @@ const SignupPage = (props) => {
 
   const handleSignup = (state) => {
     dispatch(createUser(state));
-    <Redirect to="/login" />;
   };
 
   return (
@@ -29,7 +30,7 @@ const SignupPage = (props) => {
         handleSubmit={handleSignup}
         page="signup"
       >
-        <button >Sign Up</button>
+        <button>Sign Up</button>
       </AuthForm>
       <Carousel />
       <Footer />
