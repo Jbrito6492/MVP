@@ -1,4 +1,6 @@
 node_modules
 server/build
+public/client.bundle.js
+public/main.js.map
 .env*
 .vscode
