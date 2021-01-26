@@ -4,14 +4,16 @@ import Header from "../components/header/Header.jsx";
 import Navigation from "../components/navigation/Navigation.jsx";
 import ConversationList from "../components/room/ConversationList.jsx";
 import Room from "../components/room/Room.jsx";
+import Map from "../components/map/Map.jsx";
 import Footer from "../components/footer/Footer.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
 
 const UserPage = (props) => {
   const showNavigation = useSelector((state) => state.nav);
+  const showMap = useSelector((state) => state.map);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  console.log("testing", showNavigation);
+
   return (
     <>
       <div className={classes.appContainer}>
@@ -24,7 +26,7 @@ const UserPage = (props) => {
         ) : (
           <ConversationList />
         )}
-        <Room username={username} />
+        {showMap ? <Map /> : <Room username={username} />}
       </div>
     </>
   );

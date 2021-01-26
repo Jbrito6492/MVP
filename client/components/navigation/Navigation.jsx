@@ -7,11 +7,12 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { FaMoon } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { IoMdCreate } from "react-icons/io";
+import { BsChatQuote } from "react-icons/bs";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { SiOpenstreetmap } from "react-icons/si";
 import { Link, Redirect } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { endSession, showMap, hideMap } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../../css/navbar.css";
@@ -40,6 +41,15 @@ const Navigation = ({ isAuthenticated }) => {
                     <SiOpenstreetmap size={35} color={"#C38FFF"} />
                   </div>
                   <div>Map</div>
+                </Link>
+              </li>
+
+              <li className={`${classes.navText} ${classes.navRow}`}>
+                <Link to="#" onClick={() => dispatch(hideMap())}>
+                  <div className={classes.reactIcon}>
+                    <BsChatQuote size={35} color={"#C38FFF"} />
+                  </div>
+                  <div>Chat</div>
                 </Link>
               </li>
 
