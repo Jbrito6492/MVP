@@ -11,6 +11,7 @@
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [Installation](#installation)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -42,10 +43,9 @@
 2. open your terminal in the root directory of project and run the following:
 
 ```html
-npm install
-
-npm run dev
+npm install npm run dev
 ```
+
 3. open a second terminal and run the following:
 
 ```html
@@ -53,6 +53,7 @@ npm run server
 ```
 
 ## Troubleshooting
+
 > you will need to make sure the server side code has been compiled before using the application in the browser
 
 [Back To The Top](#read-me)
