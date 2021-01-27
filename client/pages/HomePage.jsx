@@ -7,11 +7,12 @@ import Footer from "../components/footer/Footer.jsx";
 import Carousel from "../components/carousel/Carousel.jsx";
 import Room from "../components/room/Room.jsx";
 import Map from "../components/map/Map.jsx";
+import { getLocation } from "../store/actions";
 
 import classes from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
-function HomePage(props) {
+const HomePage = (props) => {
   const { isAuthenticated, username } = useSelector((state) => state.auth);
   const showMap = useSelector((state) => state.map);
   const showNavigation = useSelector((state) => state.nav);
@@ -34,10 +35,8 @@ function HomePage(props) {
     );
   };
   return <div>{renderView()}</div>;
-}
+};
 
-function loadData() {
-  console.log("loading data from home page");
-}
-
-export default { component: withStyles(classes)(HomePage), loadData };
+export default {
+  component: withStyles(classes)(HomePage),
+};

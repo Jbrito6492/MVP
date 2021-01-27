@@ -21,9 +21,14 @@ export const createUser = (credentials) => async (dispatch, getState, api) => {
 };
 
 export const END_SESSION = 'end_session';
-export const endSession = () => (dispatch, getState, api) => {
+export const endSession = () => async (dispatch, getState, api) => {
+  const res = await api.post('/logout');
   dispatch({ type: END_SESSION });
 };
+
+/////////////////////////////////////
+///////////////  User  /////////////
+///////////////////////////////////
 
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers = () => async (dispatch, getState, api) => {
@@ -34,20 +39,25 @@ export const fetchUsers = () => async (dispatch, getState, api) => {
   });
 };
 
+//////////////////////////////////////
+//////////////// Map  ////////////////
+/////////////////////////////////////
 export const GET_LOCATION = 'get_location';
-export function getLocation() {
-  return dispatch => {
-    const geolocation = navigator.geolocation;
-    geolocation.getCurrentPosition((position) => {
-      const { latitude: lat, longitude: lng } = position.coords;
-      dispatch({
-        type: GET_LOCATION,
-        payload: { lat, lng }
-      });
+export const getLocation = () => async (dispatch, getState, api) => {
+  const geolocation = await navigator.geolocation;
+  geolocation.getCurrentPosition((position) => {
+    const { latitude: lat, longitude: lng } = position.coords;
+    dispatch({
+      type: GET_LOCATION,
+      payload: { lat, lng }
     });
-  };
+  });
 };
 
+export const FIND_USERS = 'find_users';
+export const findUsers = (coords) => async (dispatch, getState, api) => {
+
+}
 
 export const HIDE_MAP = 'hide_map';
 export const SHOW_MAP = 'show_map';
@@ -58,6 +68,9 @@ export const hideMap = () => async (dispatch, getState, api) => {
   dispatch({ type: HIDE_MAP });
 };
 
+/////////////////////////////////////
+////////////  Hashtags  ////////////
+////////////////////////////////////
 export const INCREMENT_HASHTAG = 'increment_hashtag';
 export const DECREMENT_HASHTAG = 'decrement_hashtag';
 export const FETCH_HASHTAGS = 'fetch_hashtags'
@@ -83,11 +96,17 @@ export const fetchHashtags = () => async (dispatch, getState, api) => {
   });
 };
 
+//////////////////////////////////////
+/////////////// Date  ////////////////
+/////////////////////////////////////
 export const GET_DATE = 'get_date';
 export const getDate = () => (dispatch, getState, api) => {
   dispatch({ type: GET_DATE });
 };
 
+//////////////////////////////////////
+/////////////// Theme  ///////////////
+/////////////////////////////////////
 export const CHANGE_THEME_DARK = 'change_theme_dark';
 export const CHANGE_THEME_LIGHT = 'change_theme_light';
 export const toDarkMode = () => (dispatch, getState, api) => {
@@ -97,6 +116,9 @@ export const toLightMode = () => (dispatch, getState, api) => {
   dispatch({ type: CHANGE_THEME_LIGHT });
 }
 
+///////////////////////////////////
+//////////  Navigation  //////////
+//////////////////////////////////
 export const SHOW_NAV = 'show_nav';
 export const HIDE_NAV = 'hide_nav';
 export const showNavigation = () => (dispatch, getState, api) => {

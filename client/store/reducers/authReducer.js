@@ -5,7 +5,6 @@ import {
 } from '../actions/index.js';
 
 const initialState = {
-  token: null,
   isAuthenticated: false,
   username: null
 }
@@ -18,7 +17,6 @@ export default (state = initialState, action) => {
       };
     case END_SESSION:
       return {
-        token: null,
         isAuthenticated: false,
         username: null
       };

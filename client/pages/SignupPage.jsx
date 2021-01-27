@@ -29,9 +29,7 @@ const SignupPage = (props) => {
         buttonText={buttonText}
         handleSubmit={handleSignup}
         page="signup"
-      >
-        <button>Sign Up</button>
-      </AuthForm>
+      />
       <Carousel />
       <Footer />
     </div>

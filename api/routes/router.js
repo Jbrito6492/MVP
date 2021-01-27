@@ -9,6 +9,7 @@ router.get('/users', userController.retrieve);
 router.get('/main', userController.authenticate);
 router.post('/register', userController.register);
 router.post('/login', userController.login);
+router.post('/logout', userController.logout);
 
 // hashtag
 router.post('/hashtag', hashtagController.createHashtag);
