@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import classes from "../../css/loginForm.css";
 import { createUser, startSession } from "../../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
@@ -24,7 +28,7 @@ const AuthForm = ({
 
   return (
     <>
-      <div className={`container-fluid ${classes.container}`}>
+      <Container className={classes.container} fixed>
         <form
           className={classes.chatform}
           onSubmit={(e) => {
@@ -32,62 +36,78 @@ const AuthForm = ({
             handleSubmit(state);
           }}
         >
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email
-            </label>
-            <input
-              name="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              onChange={handleChange}
-              required
-            />
-            <div id="emailHelp" className="form-text">
-              <p>{customText}</p>
-            </div>
-          </div>
+          <Typography className={classes.label} component="h1" variant="h5">
+            Email
+          </Typography>
+          <TextField
+            className={classes.textfield}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            onChange={handleChange}
+            autoFocus
+          />
+
           {page === "signup" && (
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+            <>
+              <Typography className={classes.label} component="h1" variant="h5">
                 Username
-              </label>
-              <input
+              </Typography>
+              <TextField
+                className={classes.textfield}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
                 name="username"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                label="Username"
+                autoFocus
                 onChange={handleChange}
                 required
               />
-            </div>
+            </>
           )}
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <Typography className={classes.label} component="h1" variant="h5">
+            Password
+          </Typography>
+          <TextField
+            className={classes.textfield}
+            variant="outlined"
+            margin="normal"
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            onChange={handleChange}
+            autoComplete="current-password"
+            required
+            fullWidth
+          />
           <div className={classes.buttoncontainer}>
             <Link
               to={page === "login" ? "/main" : "/login"}
               onClick={() => handleSubmit(state)}
+              style={{ textDecoration: "none" }}
             >
-              <p className={`btn btn-primary ${classes.buttontext}`}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.buttontext}
+              >
                 {buttonText}
-              </p>
+              </Button>
             </Link>
           </div>
         </form>
-      </div>
+      </Container>
     </>
   );
 };
