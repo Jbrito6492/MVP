@@ -26,7 +26,7 @@ const UserPage = (props) => {
           <ConversationList />
         )}
         {showMap && isAuthenticated && <Map />}
-        {isAuthenticated && <Room username={username} />}
+        {isAuthenticated && !showMap && <Room username={username} />}
       </div>
     </>
   );

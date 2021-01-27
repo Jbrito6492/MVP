@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  color: #c38fff;
+  font-size: 18px;
+`;
 const Slider = (props) => {
-  const [state, setState] = useState({ value: 50 });
+  const [state, setState] = useState({ value: 0 });
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: [e.target.value] });
@@ -12,7 +15,7 @@ const Slider = (props) => {
   return (
     <Styles className="container">
       <label className="value">
-        {state.value}
+        {state.value} miles radius
         <input
           type="range"
           min={0}

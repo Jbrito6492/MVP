@@ -43,15 +43,17 @@ export const fetchUsers = () => async (dispatch, getState, api) => {
 //////////////// Map  ////////////////
 /////////////////////////////////////
 export const GET_LOCATION = 'get_location';
-export const getLocation = () => async (dispatch, getState, api) => {
-  const geolocation = await navigator.geolocation;
-  geolocation.getCurrentPosition((position) => {
-    const { latitude: lat, longitude: lng } = position.coords;
-    dispatch({
-      type: GET_LOCATION,
-      payload: { lat, lng }
+export function getLocation() {
+  return dispatch => {
+    const geolocation = navigator.geolocation;
+    geolocation.getCurrentPosition((position) => {
+      const { latitude: lat, longitude: lng } = position.coords;
+      dispatch({
+        type: GET_LOCATION,
+        payload: { lat, lng }
+      });
     });
-  });
+  };
 };
 
 export const FIND_USERS = 'find_users';

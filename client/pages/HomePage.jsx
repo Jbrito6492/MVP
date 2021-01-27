@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Header from "../components/header/Header.jsx";
 import Navigation from "../components/navigation/Navigation.jsx";
@@ -7,8 +7,6 @@ import Footer from "../components/footer/Footer.jsx";
 import Carousel from "../components/carousel/Carousel.jsx";
 import Room from "../components/room/Room.jsx";
 import Map from "../components/map/Map.jsx";
-import { getLocation } from "../store/actions";
-
 import classes from "../css/app.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 

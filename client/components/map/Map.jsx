@@ -10,7 +10,7 @@ import {
 import { getLocation } from "../../store/actions/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../footer/Footer.jsx";
-
+import Slider from "../slider/Slider.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../../css/map.css";
 
@@ -18,7 +18,7 @@ const libraries = ["places"];
 const mapContainerStyle = {
   width: "750px",
   height: "750px",
-  borderRadius: "7px"
+  borderRadius: "7px",
 };
 
 const options = {
@@ -92,7 +92,9 @@ const Map = (props) => {
           ) : null}
         </GoogleMap>
       </div>
-      <Footer />
+      <Footer>
+        <Slider />
+      </Footer>
     </>
   );
 };
