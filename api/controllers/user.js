@@ -26,9 +26,11 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.redirect('/');
+    if (!user) throw new Error('user not found');
+
     const isAuthenticated = await bcrypt.compare(password, user.password);
-    if (!isAuthenticated) return res.redirect('/');
+    if (!isAuthenticated) throw new Error('invalid password');
+
     req.session.isAuthenticated = true;
     res.json({
       username: user.username,
@@ -36,7 +38,7 @@ exports.login = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.json({
+    res.status(422).json({
       msg: 'invalid credentials',
       isAuthenticated: false
     });

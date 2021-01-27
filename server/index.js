@@ -21,7 +21,6 @@ app.use(express.static('public'));
 app.use('/api', proxy('http://localhost:3000'));
 
 app.get('*', (req, res) => {
-  console.log(req.session);
   const store = createStore(req);
   const promises = matchRoutes(Routes, req.path).map(({ route }) => (
     route.loadData ? route.loadData(store) : null

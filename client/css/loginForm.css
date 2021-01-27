@@ -26,6 +26,7 @@
   background: #eee !important;
   border-bottom: 1px solid #ddd;
   background: transparent;
+  min-width: 250px;
 }
 
 p {

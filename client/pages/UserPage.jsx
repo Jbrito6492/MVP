@@ -13,7 +13,6 @@ const UserPage = (props) => {
   const showNavigation = useSelector((state) => state.nav);
   const showMap = useSelector((state) => state.map);
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-
   return (
     <>
       <div className={classes.appContainer}>
@@ -26,7 +25,8 @@ const UserPage = (props) => {
         ) : (
           <ConversationList />
         )}
-        {showMap ? <Map /> : <Room username={username} />}
+        {showMap && isAuthenticated && <Map />}
+        {isAuthenticated && <Room username={username} />}
       </div>
     </>
   );
