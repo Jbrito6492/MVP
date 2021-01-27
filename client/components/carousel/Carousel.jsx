@@ -14,8 +14,9 @@ function ControlledCarousel(props) {
         container
         item
         xs={12}
-        direction="row"
+        direction="column"
         justify="center"
+        align="center"
         className={classes.carousel}
       >
         <Carousel>
