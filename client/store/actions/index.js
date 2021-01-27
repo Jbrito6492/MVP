@@ -70,6 +70,14 @@ export const hideMap = () => async (dispatch, getState, api) => {
   dispatch({ type: HIDE_MAP });
 };
 
+export const SET_RADIUS_IN_MILES = 'set_radius_in_miles';
+export const setRadiusInMiles = (obj) => async (dispatch, getState, api) => {
+  const res = await api.post('/mapradius', obj);
+  dispatch({
+    type: SET_RADIUS_IN_MILES,
+    payload: res
+  })
+}
 /////////////////////////////////////
 ////////////  Hashtags  ////////////
 ////////////////////////////////////

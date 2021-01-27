@@ -30,8 +30,8 @@ const options = {
 const Map = (props) => {
   const dispatch = useDispatch();
   const location = useSelector((state) => state.coords);
+  const { radius } = useSelector((state) => state.map);
   const [marker, setMarker] = useState({ location, visible: false });
-
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries,
@@ -86,7 +86,7 @@ const Map = (props) => {
               <Circle
                 options={{ fillColor: "red" }}
                 center={{ lat: marker.location.lat, lng: marker.location.lng }}
-                radius={1200}
+                radius={radius}
               />
             </div>
           ) : null}

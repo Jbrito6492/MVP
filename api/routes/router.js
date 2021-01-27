@@ -18,4 +18,6 @@ router.get('/hashtag', hashtagController.getHashtags);
 
 // map
 router.post('/coords', mapController.saveLocation);
+router.post('/mapradius', mapController.saveRadius);
+
 module.exports = router;
