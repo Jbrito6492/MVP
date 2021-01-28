@@ -36,7 +36,7 @@ const Navigation = ({ isAuthenticated }) => {
               </li>
 
               <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="#" onClick={() => dispatch(showMap())}>
+                <Link to="/" onClick={() => dispatch(showMap())}>
                   <div className={classes.reactIcon}>
                     <SiOpenstreetmap size={35} color={"#C38FFF"} />
                   </div>
@@ -45,7 +45,7 @@ const Navigation = ({ isAuthenticated }) => {
               </li>
 
               <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="#" onClick={() => dispatch(hideMap())}>
+                <Link to="/main" onClick={() => dispatch(hideMap())}>
                   <div className={classes.reactIcon}>
                     <BsChatQuote size={35} color={"#C38FFF"} />
                   </div>

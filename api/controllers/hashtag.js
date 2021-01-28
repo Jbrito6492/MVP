@@ -1,39 +1,35 @@
-const Hashtag = require('../models/hashtag.js');
+const User = require('../models/User.js');
 
-exports.createHashtag = (req, res) => {
-  const { hashtag } = req.body;
-  let options = { upsert: true, new: true, setDefaultsOnInsert: true, useFindAndModify: false };
-  Hashtag.findOneAndUpdate({ hashtag }, { $inc: { activeUsers: 1 } }, options).exec()
-    .then(({ activeUsers, hashtag }) => {
-      res.json({ activeUsers, hashtag });
-    })
-    .catch(err => {
-      console.log(err)
-      res.sendStatus(500);
-    })
+exports.createHashtag = async (req, res) => {
+  const { search, email, location } = req.body;
+  const { hashtag } = search;
+  try {
+    // create #
+    const user = await User.findOne({ email });
+    user.hashtag = hashtag;
+    user.location = location;
+    user.save();
+    res.json({
+      hashtag
+    });
+    // if connection is lost erase this data as well as location from db
+  } catch (err) {
+    console.log(err);
+    res.status(422).send(err.message);
+  }
 }
 
 exports.deleteHashtag = (req, res) => {
   const { hashtag } = req.body;
-  let options = { upsert: true, new: true, setDefaultsOnInsert: true, useFindAndModify: false };
-  Hashtag.findOneAndUpdate({ hashtag }, { $inc: { activeUsers: -1 } }, options).exec()
-    .then(result => {
-      console.log(result);
-      res.sendStatus(200);
-    })
-    .catch(err => {
-      console.log(err)
-      res.sendStatus(500);
-    })
+
 }
 
-exports.getHashtags = (req, res) => {
-  Hashtag.find({}).exec()
-    .then(result => {
-      res.json(result)
-    })
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    })
+exports.getHashtags = async (req, res) => {
+  const users = await User.find({ hashtag: { $exists: true, $ne: null } });
+  let activeHashtags = [];
+  for (let i = 0; i < users.length; i++) {
+    if (activeHashtags.length === 5) return;
+    activeHashtags.push(users[i].hashtag);
+  }
+  res.json({ activeHashtags });
 }

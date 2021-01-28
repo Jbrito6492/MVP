@@ -13,7 +13,12 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  location: {
+    longitude: { type: String },
+    latitude: { type: String }
+  },
+  hashtag: String
 });
 
 const user = mongoose.model('User', userSchema);

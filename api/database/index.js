@@ -4,6 +4,8 @@ mongoose.connect('mongodb://localhost/the_move', { useNewUrlParser: true, useUni
 
 const db = mongoose.connection;
 
+mongoose.set('useFindAndModify', false);
+
 db.on('error', () => {
   console.log('mongoose connection error');
 });

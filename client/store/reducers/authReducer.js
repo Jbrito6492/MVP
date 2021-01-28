@@ -6,7 +6,8 @@ import {
 
 const initialState = {
   isAuthenticated: false,
-  username: null
+  username: null,
+  email: null
 }
 
 export default (state = initialState, action) => {
@@ -18,7 +19,8 @@ export default (state = initialState, action) => {
     case END_SESSION:
       return {
         isAuthenticated: false,
-        username: null
+        username: null,
+        email: null
       };
     case CREATE_USER:
       return {

@@ -35,6 +35,7 @@ exports.login = async (req, res) => {
     res.json({
       username: user.username,
       isAuthenticated,
+      email: user.email
     });
   } catch (err) {
     console.log(err);

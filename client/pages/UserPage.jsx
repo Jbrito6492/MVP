@@ -4,7 +4,6 @@ import Header from "../components/header/Header.jsx";
 import Navigation from "../components/navigation/Navigation.jsx";
 import ConversationList from "../components/room/ConversationList.jsx";
 import Room from "../components/room/Room.jsx";
-import Map from "../components/map/Map.jsx";
 import Footer from "../components/footer/Footer.jsx";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
@@ -25,8 +24,7 @@ const UserPage = (props) => {
         ) : (
           <ConversationList />
         )}
-        {showMap && isAuthenticated && <Map />}
-        {isAuthenticated && !showMap && <Room username={username} />}
+        {isAuthenticated && <Room username={username} />}
       </div>
     </>
   );

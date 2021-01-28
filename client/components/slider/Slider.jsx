@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setRadiusInMiles } from "../../store/actions";
 import { BiSend } from "react-icons/bi";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ const Styles = styled.div`
 `;
 const Slider = (props) => {
   const dispatch = useDispatch();
+  const location = useSelector((state) => state.coords);
   const [state, setState] = useState({ value: 0 });
 
   const handleChange = (e) => {
@@ -20,8 +21,7 @@ const Slider = (props) => {
 
   const handleClick = () => {
     const { value } = state;
-    dispatch(setRadiusInMiles({ radius: value }));
-    setRadiusInMeters(value);
+    dispatch(setRadiusInMiles({ radius: value, location }));
   };
 
   return (

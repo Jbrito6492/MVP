@@ -10,6 +10,10 @@ import classes from "../../css/header.css";
 
 const Header = ({ showNavMenu, isAuthenticated }) => {
   const dispatch = useDispatch();
+  const { email } = useSelector((state) => state.auth);
+  const { lng: longitude, lat: latitude } = useSelector(
+    (state) => state.coords
+  );
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
@@ -19,7 +23,9 @@ const Header = ({ showNavMenu, isAuthenticated }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(incrementHashtag(search));
+    dispatch(
+      incrementHashtag({ search, email, location: { longitude, latitude } })
+    );
     setSearch("");
   };
 

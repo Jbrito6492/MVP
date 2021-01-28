@@ -52,6 +52,7 @@
     "i": "^0.3.6",
     "ignore-styles": "^5.0.1",
     "install": "^0.13.0",
+    "is-online": "^9.0.0",
     "isomorphic-loader": "^4.1.0",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",

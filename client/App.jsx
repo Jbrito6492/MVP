@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { renderRoutes } from "react-router-config";
 import { useDispatch, useSelector } from "react-redux";
-import { getLocation } from "./store/actions";
+import { getLocation, fetchHashtags } from "./store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "./css/app.css";
+import isOnline from "is-online";
 
 function App({ route }) {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function App({ route }) {
 
   useEffect(() => {
     dispatch(getLocation());
+    dispatch(fetchHashtags());
   }, []);
 
   return (
@@ -20,7 +22,11 @@ function App({ route }) {
     </div>
   );
 }
+const loadData = async () => {
+  return await isOnline();
+};
 
 export default {
   component: withStyles(classes)(App),
+  loadData,
 };

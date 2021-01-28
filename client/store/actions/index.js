@@ -61,6 +61,14 @@ export const findUsers = (coords) => async (dispatch, getState, api) => {
 
 }
 
+export const GET_DISTANCE_BETWEEN_USERS = 'get_distance_between_users';
+export const getDistanceBetweenUsers = () => async (dispatch, getState, api) => {
+  dispatch({
+    type: GET_DISTANCE_BETWEEN_USERS,
+    payload: res
+  });
+}
+
 export const HIDE_MAP = 'hide_map';
 export const SHOW_MAP = 'show_map';
 export const showMap = () => async (dispatch, getState, api) => {
