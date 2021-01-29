@@ -21,7 +21,6 @@ exports.createHashtag = async (req, res) => {
 
 exports.deleteHashtag = (req, res) => {
   const { hashtag } = req.body;
-
 }
 
 exports.getHashtags = async (req, res) => {

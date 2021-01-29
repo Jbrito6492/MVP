@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -12,9 +13,8 @@ function ControlledCarousel(props) {
   const [items, setItems] = useState(activeHashtags);
   // const items = ["#nightout", "#chill", "#studybuddy"];
   useEffect(() => {
-    console.log(activeHashtags)
     setItems(activeHashtags);
-  }, [activeHashtags]);
+  }, [items, activeHashtags]);
   return (
     <>
       <Grid
@@ -39,11 +39,21 @@ function ControlledCarousel(props) {
 }
 
 const Item = ({ hashtag }) => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
   return (
     <>
       <Container>
         <p>{hashtag}</p>
-        <Button className={classes.button}>Check it out!</Button>
+        {isAuthenticated && (
+          <Link to="/main">
+            <Button
+              className={classes.button}
+              onClick={console.log("link to room")}
+            >
+              Check it out!
+            </Button>
+          </Link>
+        )}
       </Container>
     </>
   );

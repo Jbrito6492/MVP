@@ -14,13 +14,13 @@ import withStyles from "isomorphic-style-loader/withStyles";
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  const { activeHashtags } = useSelector((state) => state.hashtag);
+  const [hashtags, setHashtags] = useState([]);
   const { showMap } = useSelector((state) => state.map);
   const showNavigation = useSelector((state) => state.nav);
 
   useEffect(() => {
     dispatch(fetchHashtags());
-  }, []);
+  }, [hashtags, setHashtags]);
 
   const renderView = () => {
     return (
@@ -33,7 +33,7 @@ const HomePage = (props) => {
           <Navigation isAuthenticated={isAuthenticated} />
           {showMap && <Map />}
           {!showMap && <Carousel />}
-          <Footer />
+          {!showMap && <Footer />}
         </div>
       </>
     );
