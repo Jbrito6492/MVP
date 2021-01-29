@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IconContext } from "react-icons";
-import { incrementHashtag } from "../../store/actions/index.js";
+import { incrementHashtag, fetchHashtags } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { showNavigation, hideNavigation } from "../../store/actions/index.js";
@@ -14,19 +14,23 @@ const Header = ({ showNavMenu, isAuthenticated }) => {
   const { lng: longitude, lat: latitude } = useSelector(
     (state) => state.coords
   );
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState({ hashtag: "" });
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
-    console.log(search);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       incrementHashtag({ search, email, location: { longitude, latitude } })
-    );
-    setSearch("");
+    )
+      .then(() => {
+        dispatch(fetchHashtags());
+      })
+      .catch((err) => console.log(err.message));
+
+    setSearch({ ...search, hashtag: "" });
   };
 
   return (
@@ -37,6 +41,7 @@ const Header = ({ showNavMenu, isAuthenticated }) => {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
+                value={search.hashtag}
                 placeholder="search"
                 name="hashtag"
                 onChange={handleChange}

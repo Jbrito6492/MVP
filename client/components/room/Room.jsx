@@ -11,7 +11,7 @@ import {
   disconnectSocket,
   subscribeToChat,
   sendMessage,
-} from "../../helpers/socketio.client.js";
+} from "../../../socketio/socketio.client.js";
 import ChatView from "./ChatView.jsx";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";

@@ -14,13 +14,9 @@ import withStyles from "isomorphic-style-loader/withStyles";
 const HomePage = (props) => {
   const dispatch = useDispatch();
   const { isAuthenticated, username } = useSelector((state) => state.auth);
-  const [hashtags, setHashtags] = useState([]);
   const { showMap } = useSelector((state) => state.map);
   const showNavigation = useSelector((state) => state.nav);
 
-  useEffect(() => {
-    dispatch(fetchHashtags());
-  }, [hashtags, setHashtags]);
 
   const renderView = () => {
     return (
