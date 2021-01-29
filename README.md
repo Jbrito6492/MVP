@@ -43,7 +43,9 @@
 2. open your terminal in the root directory of project and run the following:
 
 ```html
-npm install npm run dev
+npm install
+
+npm run dev
 ```
 
 3. open a second terminal and run the following:
