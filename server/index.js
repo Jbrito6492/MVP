@@ -11,7 +11,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 
-const socketConfig = require('./websocketConfig/socketio.server.js');
+const socketConfig = require('../socketio/socketio.server.js');
 const port = process.env.PORT || 5000;
 
 app.use(cors());
