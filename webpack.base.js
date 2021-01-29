@@ -2,6 +2,11 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   module: {
     rules: [
       {
