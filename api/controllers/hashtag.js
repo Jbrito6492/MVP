@@ -30,5 +30,5 @@ exports.getHashtags = async (req, res) => {
     if (activeHashtags.length === 5) return;
     activeHashtags.push(users[i].hashtag);
   }
-  res.json({ activeHashtags });
+  res.json(activeHashtags);
 }

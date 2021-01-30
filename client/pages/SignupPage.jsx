@@ -10,7 +10,7 @@ import classes from "../css/app.css";
 
 const SignupPage = (props) => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.user);
   const [customText, setCustomText] = useState(
     "We'll never share your info with anyone else."
   );

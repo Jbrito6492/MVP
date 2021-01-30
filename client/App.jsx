@@ -8,12 +8,11 @@ import isOnline from "is-online";
 
 function App({ route }) {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme);
 
   useEffect(() => {
     dispatch(getLocation());
-    dispatch(fetchHashtags());
   }, []);
 
   return (

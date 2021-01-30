@@ -1,5 +1,5 @@
 /////////////////////////////////////
-/////////  AUTHENTICATION  /////////
+//////  AUTHENTICATION/ USER  //////
 ////////////////////////////////////
 
 export const START_SESSION = 'start_session';
@@ -25,10 +25,6 @@ export const endSession = () => async (dispatch, getState, api) => {
   const res = await api.post('/logout');
   dispatch({ type: END_SESSION });
 };
-
-/////////////////////////////////////
-///////////////  User  /////////////
-///////////////////////////////////
 
 export const FETCH_USERS = 'fetch_users';
 export const fetchUsers = () => async (dispatch, getState, api) => {

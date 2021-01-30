@@ -11,7 +11,7 @@ import classes from "../css/app.css";
 
 const LogInPage = (props) => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.user);
   const [customText, setCustomText] = useState(
     "Thank you for being a part of our community."
   );

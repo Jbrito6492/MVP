@@ -10,9 +10,9 @@ import classes from "../../css/header.css";
 
 const Header = ({ showNavMenu, isAuthenticated }) => {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.auth);
+  const { email } = useSelector((state) => state.user);
   const { lng: longitude, lat: latitude } = useSelector(
-    (state) => state.coords
+    (state) => state.user.location
   );
   const [search, setSearch] = useState("");
 

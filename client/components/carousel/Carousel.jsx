@@ -9,7 +9,7 @@ import classes from "../../css/carousel.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 function ControlledCarousel(props) {
-  const { activeHashtags } = useSelector((state) => state.hashtag);
+  const activeHashtags = useSelector((state) => state.hashtags);
   const [items, setItems] = useState(activeHashtags);
   // const items = ["#nightout", "#chill", "#studybuddy"];
   useEffect(() => {
@@ -39,7 +39,7 @@ function ControlledCarousel(props) {
 }
 
 const Item = ({ hashtag }) => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.user);
   return (
     <>
       <Container>
