@@ -5,3 +5,4 @@ public/main.js.map
 public/vendors*
 .env*
 .vscode
+*go

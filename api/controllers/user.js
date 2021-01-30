@@ -29,6 +29,7 @@ exports.login = async (req, res) => {
     if (!user) throw new Error('user not found');
 
     const isAuthenticated = await bcrypt.compare(password, user.password);
+
     if (!isAuthenticated) throw new Error('invalid password');
 
     req.session.isAuthenticated = true;

@@ -1,20 +1,20 @@
 import { INCREMENT_HASHTAG, DECREMENT_HASHTAG, FETCH_HASHTAGS } from "../actions/index.js";
 
-const initialState = [];
+const initialState = { hashtags: [] };
 export default (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_HASHTAG:
-      return [
-        ...state, ...action.payload.data
-      ];
+      return {
+        ...state, hashtags: action.payload.data
+      };
     case DECREMENT_HASHTAG:
-      return [
-        ...state, ...action.payload.data
-      ];
+      return {
+        ...state, hashtags: action.payload.data
+      };
     case FETCH_HASHTAGS:
-      return [
-        ...state, ...action.payload.data
-      ];
+      return {
+        ...state, hashtags: action.payload.data
+      };
     default:
       return state;
   };

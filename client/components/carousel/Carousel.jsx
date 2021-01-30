@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHashtags } from "../../store/actions";
 import { Link, Redirect } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import Container from "@material-ui/core/Container";
@@ -9,12 +10,14 @@ import classes from "../../css/carousel.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 function ControlledCarousel(props) {
-  const activeHashtags = useSelector((state) => state.hashtags);
-  const [items, setItems] = useState(activeHashtags);
-  // const items = ["#nightout", "#chill", "#studybuddy"];
+  const dispatch = useDispatch();
+  const { hashtags } = useSelector((state) => state.hashtags);
+  const [items, setItems] = useState(hashtags);
+
   useEffect(() => {
-    setItems(activeHashtags);
-  }, [items, activeHashtags]);
+    dispatch(fetchHashtags());
+    setItems(hashtags);
+  }, [items]);
 
   return (
     <>

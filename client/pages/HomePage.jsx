@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header/Header.jsx";
 import Navigation from "../components/navigation/Navigation.jsx";
@@ -13,15 +13,9 @@ import withStyles from "isomorphic-style-loader/withStyles";
 
 const HomePage = (props) => {
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const { isAuthenticated, username } = useSelector((state) => state.user);
-  const [hashtags, setHashtags] = useState([]);
-=======
-  const { isAuthenticated, username } = useSelector((state) => state.auth);
->>>>>>> d85b08e657b0163f3ad97830bcf52bde3b6991cf
   const { showMap } = useSelector((state) => state.map);
   const showNavigation = useSelector((state) => state.nav);
-
 
   const renderView = () => {
     return (
