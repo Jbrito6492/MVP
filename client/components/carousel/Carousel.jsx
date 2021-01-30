@@ -15,6 +15,7 @@ function ControlledCarousel(props) {
   useEffect(() => {
     setItems(activeHashtags);
   }, [items, activeHashtags]);
+
   return (
     <>
       <Grid
