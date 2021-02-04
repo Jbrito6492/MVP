@@ -15,9 +15,12 @@ function ControlledCarousel(props) {
   const [items, setItems] = useState(hashtags);
 
   useEffect(() => {
-    dispatch(fetchHashtags());
-    setItems(hashtags);
-  }, [items]);
+    dispatch(fetchHashtags())
+      .then(() => {
+        setItems(hashtags);
+      })
+      .catch((err) => console.log(err));
+  }, [dispatch, items]);
 
   return (
     <>
@@ -31,7 +34,7 @@ function ControlledCarousel(props) {
         className={classes.carousel}
       >
         <Carousel>
-          {items.map((item, index) => (
+          {hashtags.map((item, index) => (
             <div key={index} className={classes.item}>
               <Item hashtag={`#${item}`} />
             </div>

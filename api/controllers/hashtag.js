@@ -9,9 +9,7 @@ exports.createHashtag = async (req, res) => {
     user.hashtag = hashtag;
     user.location = location;
     user.save();
-    res.json({
-      hashtag
-    });
+    res.send(hashtag);
     // if connection is lost erase this data as well as location from db
   } catch (err) {
     console.log(err);

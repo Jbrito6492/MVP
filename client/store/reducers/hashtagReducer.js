@@ -4,8 +4,9 @@ const initialState = { hashtags: [] };
 export default (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_HASHTAG:
+      const hashtags = state.hashtags.concat(action.payload.data);
       return {
-        ...state, hashtags: action.payload.data
+        ...state, hashtags
       };
     case DECREMENT_HASHTAG:
       return {
