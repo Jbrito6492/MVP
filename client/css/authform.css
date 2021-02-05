@@ -37,13 +37,14 @@ p {
 .buttoncontainer {
   padding-top: 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .buttontext {
   background: #C38FFF !important;
   color: #eee;
   font-size: 18px !important;
+  min-width: 120px;
 }
 
 ::-webkit-scrollbar {

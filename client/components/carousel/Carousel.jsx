@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHashtags } from "../../store/actions";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import Item from "./Item.jsx";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import classes from "../../css/carousel.css";
 import withStyles from "isomorphic-style-loader/withStyles";
 

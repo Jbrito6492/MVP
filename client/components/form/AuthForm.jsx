@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import classes from "../../css/loginForm.css";
+import classes from "../../css/authform.css";
 import { createUser, startSession } from "../../store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import { Link } from "react-router-dom";
@@ -90,6 +90,17 @@ const AuthForm = ({
             fullWidth
           />
           <div className={classes.buttoncontainer}>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button
+                type="reset"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.buttontext}
+              >
+                Back
+              </Button>
+            </Link>
             <Link
               to={page === "login" ? "/main" : "/login"}
               onClick={() => handleSubmit(state)}
