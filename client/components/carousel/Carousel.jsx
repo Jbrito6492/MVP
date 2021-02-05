@@ -12,15 +12,10 @@ import withStyles from "isomorphic-style-loader/withStyles";
 function ControlledCarousel(props) {
   const dispatch = useDispatch();
   const { hashtags } = useSelector((state) => state.hashtags);
-  const [items, setItems] = useState(hashtags);
 
   useEffect(() => {
-    dispatch(fetchHashtags())
-      .then(() => {
-        setItems(hashtags);
-      })
-      .catch((err) => console.log(err));
-  }, [dispatch, items]);
+    dispatch(fetchHashtags());
+  }, []);
 
   return (
     <>
@@ -58,7 +53,6 @@ const Item = ({ hashtag }) => {
             <Button
               className={classes.button}
               onClick={() => {
-                console.log("current hashtag:", hashtag);
                 dispatch(navigateToRoom(hashtag));
               }}
             >

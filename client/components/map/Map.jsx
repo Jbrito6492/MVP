@@ -65,8 +65,8 @@ const Map = (props) => {
     <>
       <div className={classes.mapContainer}>
         <GoogleMap
-          mapContainerStyle={mapContainerStyle}
           zoom={10}
+          mapContainerStyle={mapContainerStyle}
           center={location}
           options={options}
           onClick={onMapClick}
@@ -98,5 +98,4 @@ const Map = (props) => {
     </>
   );
 };
-
 export default withStyles(classes)(Map);
