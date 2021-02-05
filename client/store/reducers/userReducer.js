@@ -21,9 +21,8 @@ export default (state = initialState, action) => {
       };
     case END_SESSION:
       return {
+        ...state,
         isAuthenticated: false,
-        username: null,
-        email: null
       };
     case CREATE_USER:
       return {
