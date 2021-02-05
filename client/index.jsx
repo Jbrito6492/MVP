@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 import axios from "axios";
 import Routes from "./Routes.js";
 import reducers from "./store/reducers/index.js";
-import { ChakraProvider } from "@chakra-ui/react";
 import StyleContext from "isomorphic-style-loader/StyleContext";
 
 const axiosInstance = axios.create({
@@ -34,9 +33,7 @@ ReactDOM.hydrate(
   <StyleContext.Provider value={{ insertCss }}>
     <Provider store={store}>
       <BrowserRouter>
-        <ChakraProvider>
-          <div>{renderRoutes(Routes)}</div>
-        </ChakraProvider>
+        <div>{renderRoutes(Routes)}</div>
       </BrowserRouter>
     </Provider>
   </StyleContext.Provider>,
