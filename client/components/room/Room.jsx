@@ -15,21 +15,8 @@ import {
 import ChatView from "./ChatView.jsx";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
 import withStyles from "isomorphic-style-loader/withStyles";
 import styles from "../../css/room.css";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1D1D1D",
-    },
-    secondary: {
-      main: "#C38FFF",
-    },
-  },
-});
 
 const Room = ({ username }) => {
   const dispatch = useDispatch();
@@ -68,11 +55,9 @@ const Room = ({ username }) => {
   return (
     <>
       <div className={styles.newMessageContainer}>
-        <ThemeProvider theme={theme}>
-          <Fab color="secondary" aria-label="add">
-            <AddIcon color="main" fontSize="large" />
-          </Fab>
-        </ThemeProvider>
+        <Fab style={{ color: "#C38FFF" }} aria-label="add">
+          <AddIcon style={{ color: "#1D1D1D" }} fontSize="large" />
+        </Fab>
       </div>
       <ChatView chat={chat} username={state.username} />
       <form className={styles.chatForm} onSubmit={handleSubmit}>
