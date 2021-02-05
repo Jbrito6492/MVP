@@ -35,7 +35,6 @@ const Room = ({ username }) => {
     });
 
     return () => {
-      console.log("clean up");
       setChat([]);
       disconnectSocket();
     };

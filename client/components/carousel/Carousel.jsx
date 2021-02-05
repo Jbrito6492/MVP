@@ -13,7 +13,11 @@ function ControlledCarousel(props) {
   const { hashtags } = useSelector((state) => state.hashtags);
 
   useEffect(() => {
-    dispatch(fetchHashtags());
+    let isMounted = true;
+    if (isMounted) dispatch(fetchHashtags());
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
