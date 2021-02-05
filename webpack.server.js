@@ -8,14 +8,14 @@ const config = {
     entry: './server/index.js',
     optimization: {
         splitChunks: {
-            chunks: 'all'
-        }
+            chunks: 'all',
+        },
     },
     output: {
         filename: 'server.bundle.js',
         path: path.join(__dirname, 'server', 'build')
     },
-    externals: [nodeExternals()]
+    externals: [nodeExternals()],
 }
 
 module.exports = merge(baseConfig, config);

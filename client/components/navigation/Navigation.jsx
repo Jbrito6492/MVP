@@ -8,7 +8,7 @@ import { IoMdCreate } from "react-icons/io";
 import { BsChatQuote } from "react-icons/bs";
 import { RiLightbulbFlashLine } from "react-icons/ri";
 import { SiOpenstreetmap } from "react-icons/si";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useDispatch } from "react-redux";
 import { endSession } from "../../store/actions/index.js";
