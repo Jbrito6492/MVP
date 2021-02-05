@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchHashtags } from "../../store/actions";
+import { fetchHashtags, navigateToRoom } from "../../store/actions";
 import { Link, Redirect } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import Container from "@material-ui/core/Container";
@@ -46,7 +46,9 @@ function ControlledCarousel(props) {
 }
 
 const Item = ({ hashtag }) => {
+  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
+
   return (
     <>
       <Container>
@@ -55,7 +57,10 @@ const Item = ({ hashtag }) => {
           <Link to="/main">
             <Button
               className={classes.button}
-              onClick={console.log("link to room")}
+              onClick={() => {
+                console.log("current hashtag:", hashtag);
+                dispatch(navigateToRoom(hashtag));
+              }}
             >
               Check it out!
             </Button>

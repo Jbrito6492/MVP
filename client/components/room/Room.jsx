@@ -33,19 +33,20 @@ const theme = createMuiTheme({
 
 const Room = ({ username }) => {
   const dispatch = useDispatch();
-  const rooms = ["StudyBuddy", "NetflixAndChill", "Excercise"];
-  const [room, setRoom] = useState(rooms[0]);
+  const { room } = useSelector((state) => state.hashtags);
   const [state, setState] = useState({ username, message: "" });
   const [isUser, setIsUser] = useState(false);
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
     dispatch(getDate());
+
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
       if (err) return;
       setChat((prevChats) => [...prevChats, data]);
     });
+
     return () => {
       console.log("clean up");
       setChat([]);

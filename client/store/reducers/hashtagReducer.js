@@ -1,12 +1,13 @@
-import { INCREMENT_HASHTAG, DECREMENT_HASHTAG, FETCH_HASHTAGS } from "../actions/index.js";
+import { INCREMENT_HASHTAG, DECREMENT_HASHTAG, FETCH_HASHTAGS, NAVIGATE_TO_ROOM } from "../actions/index.js";
 
-const initialState = { hashtags: [] };
+const initialState = { hashtags: [], room: null };
 export default (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_HASHTAG:
-      const hashtags = state.hashtags.concat(action.payload.data);
+      const { hashtag: room } = action.payload.data
+      const hashtags = state.hashtags.concat(room);
       return {
-        ...state, hashtags
+        ...state, hashtags, room
       };
     case DECREMENT_HASHTAG:
       return {
@@ -16,6 +17,10 @@ export default (state = initialState, action) => {
       return {
         ...state, hashtags: action.payload.data
       };
+    case NAVIGATE_TO_ROOM:
+      return {
+        ...state, room: action.payload.data
+      }
     default:
       return state;
   };

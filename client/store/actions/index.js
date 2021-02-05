@@ -110,6 +110,17 @@ export const fetchHashtags = () => async (dispatch, getState, api) => {
   });
 };
 
+export const NAVIGATE_TO_ROOM = 'navigate_to_room';
+export const navigateToRoom = (room) => async (dispatch, getState, api) => {
+  const res = await api.post('/room', { room });
+  dispatch({
+    type: NAVIGATE_TO_ROOM,
+    payload: res
+  });
+};
+
+
+
 //////////////////////////////////////
 /////////////// Date  ////////////////
 /////////////////////////////////////

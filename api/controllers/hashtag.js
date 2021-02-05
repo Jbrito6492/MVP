@@ -9,7 +9,7 @@ exports.createHashtag = async (req, res) => {
     user.hashtag = hashtag;
     user.location = location;
     user.save();
-    res.send(hashtag);
+    res.json({ hashtag });
     // if connection is lost erase this data as well as location from db
   } catch (err) {
     console.log(err);
@@ -19,6 +19,7 @@ exports.createHashtag = async (req, res) => {
 
 exports.deleteHashtag = (req, res) => {
   const { hashtag } = req.body;
+  res.end();
 }
 
 exports.getHashtags = async (req, res) => {
@@ -29,4 +30,9 @@ exports.getHashtags = async (req, res) => {
     activeHashtags.push(users[i].hashtag);
   }
   res.json(activeHashtags);
+}
+
+exports.setRoom = (req, res) => {
+  const { room } = req.body;
+  res.send(room.substring(1));
 }
