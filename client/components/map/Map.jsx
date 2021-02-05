@@ -29,7 +29,7 @@ const options = {
 
 const Map = (props) => {
   const dispatch = useDispatch();
-  const location = useSelector((state) => state.coords);
+  const { location } = useSelector((state) => state.user);
   const { radius } = useSelector((state) => state.map);
   const [marker, setMarker] = useState({ location, visible: false });
   const { isLoaded, loadError } = useLoadScript({
@@ -39,7 +39,7 @@ const Map = (props) => {
 
   useEffect(() => {
     dispatch(getLocation());
-  }, []);
+  }, [location]);
 
   const onMapClick = useCallback(
     (e) => {
@@ -49,6 +49,7 @@ const Map = (props) => {
       };
       const { lat, lng } = coords;
       setMarker({ ...marker, visible: true, location: { lat, lng } });
+      console.log(marker)
     },
     [marker]
   );
@@ -65,8 +66,8 @@ const Map = (props) => {
     <>
       <div className={classes.mapContainer}>
         <GoogleMap
-          zoom={10}
           mapContainerStyle={mapContainerStyle}
+          zoom={10}
           center={location}
           options={options}
           onClick={onMapClick}
@@ -98,4 +99,5 @@ const Map = (props) => {
     </>
   );
 };
+
 export default withStyles(classes)(Map);
