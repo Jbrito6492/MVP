@@ -1,6 +1,4 @@
 import React from "react";
-import Map from "../map/Map.jsx";
-import Slider from "../slider/Slider.jsx";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -13,7 +11,7 @@ import { SiOpenstreetmap } from "react-icons/si";
 import { Link, Redirect } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { useDispatch } from "react-redux";
-import { endSession, showMap, hideMap } from "../../store/actions/index.js";
+import { endSession } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../../css/navbar.css";
 
@@ -27,7 +25,7 @@ const Navigation = ({ isAuthenticated }) => {
           {isAuthenticated && (
             <ul>
               <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="/" onClick={() => dispatch(hideMap())}>
+                <Link to="/">
                   <div className={classes.reactIcon}>
                     <AiFillHome size={35} color={"#C38FFF"} />
                   </div>
@@ -36,16 +34,7 @@ const Navigation = ({ isAuthenticated }) => {
               </li>
 
               <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="/" onClick={() => dispatch(showMap())}>
-                  <div className={classes.reactIcon}>
-                    <SiOpenstreetmap size={35} color={"#C38FFF"} />
-                  </div>
-                  <div>Map</div>
-                </Link>
-              </li>
-
-              <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="/main" onClick={() => dispatch(hideMap())}>
+                <Link to="/main">
                   <div className={classes.reactIcon}>
                     <BsChatQuote size={35} color={"#C38FFF"} />
                   </div>

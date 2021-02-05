@@ -10,7 +10,6 @@ import classes from "../css/app.css";
 
 const UserPage = (props) => {
   const showNavigation = useSelector((state) => state.nav);
-  const { showMap } = useSelector((state) => state.map);
   const { isAuthenticated, username } = useSelector((state) => state.user);
   return (
     <>

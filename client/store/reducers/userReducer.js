@@ -9,7 +9,7 @@ const initialState = {
   isAuthenticated: false,
   username: null,
   email: null,
-  location: { lng: -34.397, lat: 150.644 },
+  location: { lng: 40.7128, lat: -74.0060 },
   users: []
 }
 
