@@ -15,7 +15,6 @@ const AuthForm = ({
   buttonText,
   page,
 }) => {
-  const { token } = isAuthenticated;
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -102,7 +101,9 @@ const AuthForm = ({
               </Button>
             </Link>
             <Link
-              to={page === "login" ? "/main" : "/login"}
+              to={
+                page === "login" ? (isAuthenticated ? "/main" : "/") : "/login"
+              }
               onClick={() => handleSubmit(state)}
               style={{ textDecoration: "none" }}
             >

@@ -12,6 +12,9 @@ function generateCookie(app) {
     secret: 'gAjPTE7GNMgDw92',
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      sameSite: true,
+    },
     store
   }));
 }

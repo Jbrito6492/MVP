@@ -12,10 +12,10 @@ router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 
 // hashtag
-router.post('/hashtag', hashtagController.createHashtag);
+router.post('/hashtag', userController.authenticate, hashtagController.createHashtag);
 router.patch('/hashtag', hashtagController.deleteHashtag);
 router.get('/hashtag', hashtagController.getHashtags);
-router.post('/room', hashtagController.setRoom);
+router.post('/room', userController.authenticate, hashtagController.setRoom);
 
 // map
 
