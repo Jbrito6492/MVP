@@ -15,6 +15,7 @@ const config = {
     usedExports: true,
     concatenateModules: true,
     sideEffects: false,
+    runtimeChunk: 'single',
   },
   output: {
     filename: 'client.bundle.js',
