@@ -17,7 +17,7 @@
 
 ## Description
 
-> What's the Move is a server-side rendered communication application utilizng hashtags to see what is trending in the area, and connect with others.
+> What's the Move is a server-side rendered communication application utilizng hashtags to see what is trending in order to connect with others.
 
 #### Tech Stack
 

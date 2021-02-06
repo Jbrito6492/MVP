@@ -27,7 +27,6 @@ const Room = ({ username }) => {
 
   useEffect(() => {
     dispatch(getDate());
-
     if (room) connectSocket(room);
     subscribeToChat((err, data) => {
       if (err) return;

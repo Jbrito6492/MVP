@@ -11,6 +11,7 @@ import classes from "../../css/header.css";
 const Header = ({ showNavMenu, isAuthenticated }) => {
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.user);
+  const { room } = useSelector((state) => state.hashtags);
   const { lng: longitude, lat: latitude } = useSelector(
     (state) => state.user.location
   );
@@ -50,7 +51,7 @@ const Header = ({ showNavMenu, isAuthenticated }) => {
           )}
         </div>
         <div className={classes.header}>
-          <span></span>
+          <span>{room && <div>{`#${room}`}</div>}</span>
           <div className={classes.headerIconContainer}>
             <div className={classes.headerIcon}>
               <Link

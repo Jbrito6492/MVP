@@ -10,14 +10,14 @@ import { RiLightbulbFlashLine } from "react-icons/ri";
 import { SiOpenstreetmap } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { endSession } from "../../store/actions/index.js";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../../css/navbar.css";
 
 const Navigation = ({ isAuthenticated }) => {
   const dispatch = useDispatch();
-
+  const { room } = useSelector((state) => state.hashtags);
   const nav = (
     <>
       <IconContext.Provider value={{ color: "#C38FFF" }}>
@@ -33,14 +33,16 @@ const Navigation = ({ isAuthenticated }) => {
                 </Link>
               </li>
 
-              <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="/main">
-                  <div className={classes.reactIcon}>
-                    <BsChatQuote size={35} color={"#C38FFF"} />
-                  </div>
-                  <div>Chat</div>
-                </Link>
-              </li>
+              {room && (
+                <li className={`${classes.navText} ${classes.navRow}`}>
+                  <Link to="/main">
+                    <div className={classes.reactIcon}>
+                      <BsChatQuote size={35} color={"#C38FFF"} />
+                    </div>
+                    <div>Chat</div>
+                  </Link>
+                </li>
+              )}
 
               <li className={`${classes.navText} ${classes.navRow}`}>
                 <Link to="/" onClick={() => dispatch(endSession())}>
