@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header/Header.jsx";
 import Navigation from "../components/navigation/Navigation.jsx";
-import ConversationList from "../components/room/ConversationList.jsx";
 import Room from "../components/room/Room.jsx";
 import Footer from "../components/footer/Footer.jsx";
+import Loadable from "react-loadable";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "../css/app.css";
+
+const AsyncConversationList = Loadable({
+  loader: () => import("../components/room/ConversationList.jsx"),
+  loading() {
+    return <Navigation />;
+  },
+});
 
 const UserPage = (props) => {
   const showNavigation = useSelector((state) => state.nav);
@@ -21,7 +28,7 @@ const UserPage = (props) => {
         {showNavigation ? (
           <Navigation isAuthenticated={isAuthenticated} />
         ) : (
-          <ConversationList />
+          <AsyncConversationList />
         )}
         {isAuthenticated && <Room username={username} />}
       </div>

@@ -6,7 +6,7 @@ const config = {
   target: 'web',
   entry: './client/index.jsx',
   optimization: {
-    minimize: true,
+    minimize: false,
     namedModules: true,
     namedChunks: true,
     removeAvailableModules: true,
@@ -15,7 +15,6 @@ const config = {
     usedExports: true,
     concatenateModules: true,
     sideEffects: false,
-    runtimeChunk: 'single',
   },
   output: {
     filename: 'client.bundle.js',
