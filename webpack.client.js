@@ -6,6 +6,7 @@ const config = {
   target: 'web',
   entry: './client/index.jsx',
   optimization: {
+    minimize: true,
     namedModules: true,
     namedChunks: true,
     removeAvailableModules: true,

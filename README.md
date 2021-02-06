@@ -45,14 +45,9 @@
 ```html
 npm install
 
-npm run dev
+npm run prod
 ```
 
-3. open a second terminal and run the following:
-
-```html
-npm run server
-```
 
 ## Troubleshooting
 

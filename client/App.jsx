@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { renderRoutes } from "react-router-config";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { getLocation, fetchHashtags } from "./store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "./css/app.css";
@@ -18,6 +19,7 @@ function App({ route }) {
   return (
     <div style={theme} className={classes.body}>
       {renderRoutes(route.routes)}
+      {!isAuthenticated && <Redirect to="/" />}
     </div>
   );
 }

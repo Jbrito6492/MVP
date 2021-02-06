@@ -52,23 +52,6 @@ const Navigation = ({ isAuthenticated }) => {
                   <div>Log Out</div>
                 </Link>
               </li>
-              <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="#">
-                  <div className={classes.reactIcon}>
-                    <RiLightbulbFlashLine size={35} color={"#C38FFF"} />
-                  </div>
-                  <div>Light Mode</div>
-                </Link>
-              </li>
-
-              <li className={`${classes.navText} ${classes.navRow}`}>
-                <Link to="#">
-                  <div className={classes.reactIcon}>
-                    <FaMoon size={35} color={"#C38FFF"} />
-                  </div>
-                  <div>Dark Mode</div>
-                </Link>
-              </li>
             </ul>
           )}
           {!isAuthenticated && (

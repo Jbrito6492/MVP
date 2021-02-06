@@ -69,7 +69,6 @@ const Room = ({ username }) => {
           }}
           required
         />
-        <HiOutlinePaperClip className={styles.chatFormIcon} />
         <BiSend className={styles.chatFormSendIcon} onClick={handleSubmit} />
       </form>
     </>
