@@ -45,7 +45,7 @@
 ```html
 npm install
 
-npm run prod
+npm run dev
 ```
 
 

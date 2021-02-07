@@ -13,7 +13,7 @@ import { ChunkExtractor } from '@loadable/server';
 
 export default (req, store) => {
   const statsFile = path.resolve('public', 'loadable-stats.json');
-  const extractor = new ChunkExtractor({ statsFile });
+  const extractor = new ChunkExtractor({ statsFile }, ['5.chunk.js']);
   const scriptTags = extractor.getScriptTags();
   const linkTags = extractor.getLinkTags();
   const styleTags = extractor.getStyleTags();

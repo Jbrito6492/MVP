@@ -9,7 +9,7 @@ const config = {
   entry: './client/index.jsx',
   output: {
     filename: 'client.bundle.js',
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
     sourceMapFilename: "[name].js.map",
     path: path.join(__dirname, 'public')
   },
