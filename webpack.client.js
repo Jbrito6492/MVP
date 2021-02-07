@@ -16,6 +16,7 @@ const config = {
   devtool: "cheap-module-eval-source-map",
   plugins: [
     new LoadablePlugin(),
+    new TerserPlugin()
   ]
 }
 
