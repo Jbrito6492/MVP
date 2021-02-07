@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { renderRoutes } from "react-router-config";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -6,6 +6,7 @@ import { getLocation, fetchHashtags } from "./store/actions";
 import withStyles from "isomorphic-style-loader/withStyles";
 import classes from "./css/app.css";
 import isOnline from "is-online";
+import Loadable from "react-loadable";
 
 function App({ route }) {
   const dispatch = useDispatch();

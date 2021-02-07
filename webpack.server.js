@@ -6,11 +6,6 @@ const nodeExternals = require('webpack-node-externals');
 const config = {
     target: 'node',
     entry: './server/index.js',
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-        },
-    },
     output: {
         filename: 'server.bundle.js',
         path: path.join(__dirname, 'server', 'build')

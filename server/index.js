@@ -10,7 +10,6 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
-
 const socketConfig = require('../socketio/socketio.server.js');
 const port = process.env.PORT || 5000;
 

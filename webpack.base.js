@@ -1,7 +1,9 @@
 const Dotenv = require('dotenv-webpack');
+const LoadablePlugin = require('@loadable/webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -9,10 +11,15 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
+          babelrc: false,
           presets: ['@babel/preset-react',
             ['@babel/preset-env', { targets: { browsers: ['last 2 versions'] } }]],
           plugins: [
-            ['@babel/plugin-proposal-decorators', { legacy: true }], ["@babel/plugin-proposal-class-properties"]
+            require("@babel/plugin-proposal-class-properties"),
+            require("react-loadable/babel"),
+            require("@babel/plugin-syntax-dynamic-import"),
+            require("@babel/plugin-proposal-object-rest-spread"),
+            require("@loadable/babel-plugin"),
           ]
         }
       },
@@ -48,6 +55,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv(),
+    new CleanWebpackPlugin(),
+    new LoadablePlugin(),
   ]
 };

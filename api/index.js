@@ -16,5 +16,5 @@ generateCookie(app);
 app.use('/', router);
 
 app.listen(port, () => {
-  console.log(`api server running on port ${port}`);
+  console.log('api proxy running');
 });
