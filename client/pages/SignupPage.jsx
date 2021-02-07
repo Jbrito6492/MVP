@@ -36,6 +36,4 @@ const SignupPage = (props) => {
   );
 };
 
-export default {
-  component: withStyles(classes)(SignupPage),
-};
+export default withStyles(classes)(SignupPage);

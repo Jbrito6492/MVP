@@ -32,6 +32,4 @@ const HomePage = (props) => {
   return <div>{renderView()}</div>;
 };
 
-export default {
-  component: withStyles(classes)(HomePage),
-};
+export default withStyles(classes)(HomePage);

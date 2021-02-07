@@ -37,6 +37,4 @@ const LogInPage = (props) => {
   );
 };
 
-export default {
-  component: withStyles(classes)(LogInPage),
-};
+export default withStyles(classes)(LogInPage);

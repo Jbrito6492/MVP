@@ -19,8 +19,8 @@ function App({ route }) {
 
   return (
     <div style={theme} className={classes.body}>
-      {renderRoutes(route.routes)}
       {!isAuthenticated && <Redirect to="/" />}
+      {renderRoutes(route.routes)}
     </div>
   );
 }

@@ -36,8 +36,5 @@ const UserPage = (props) => {
   );
 };
 
-function loadData() {
-  console.log("data from user page loading");
-}
 
-export default { component: withStyles(classes)(UserPage), loadData };
+export default withStyles(classes)(UserPage);

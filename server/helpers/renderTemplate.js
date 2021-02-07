@@ -31,22 +31,20 @@ export default (req, store) => {
     ));
 
   const title = 'Whats the Move?';
+
   return `
 <!DOCTYPE html>
   <html lang="en">
     <head>
-     <title>${title}</title>
      <meta charset="UTF-8">
-     </script>
+     <title>${title}</title>
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-     <style>${[...css].join('')}
-     </style>
+     <style>${[...css].join('')}</style>
     </head>
     <body>
     <div id="root">${html}</div>
     ${scriptTags}
-    <script>window.INITIAL_STATE = ${serialize(store.getState())}
-    </script>
+    <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
     </body>
 </html>
 `;

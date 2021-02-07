@@ -1,31 +1,40 @@
 import React from 'react';
 import App from './App.jsx';
+import loadable from "@loadable/component";
 import HomePage from './pages/HomePage.jsx';
-import LogInPage from './pages/LogInPage.jsx';
-import SignUpPage from './pages/SignUpPage.jsx';
-import UserPage from './pages/UserPage.jsx';
-import Loadable from 'react-loadable';
+
+const AsyncLogInPage = loadable(() =>
+  import("./pages/LogInPage.jsx")
+);
+
+const AsyncSignUpPage = loadable(() =>
+  import("./pages/SignUpPage.jsx")
+);
+
+const AsyncUserPage = loadable(() =>
+  import("./pages/UserPage.jsx")
+);
 
 export default [
   {
     ...App,
     routes: [
       {
-        ...HomePage,
+        component: HomePage,
         path: '/',
         exact: true
       },
       {
-        ...LogInPage,
+        component: AsyncLogInPage,
         path: '/login'
 
       },
       {
-        ...SignUpPage,
+        component: AsyncSignUpPage,
         path: '/signup'
       },
       {
-        ...UserPage,
+        component: AsyncUserPage,
         path: '/main'
       }
     ]
