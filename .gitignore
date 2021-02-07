@@ -6,4 +6,3 @@ public/vendors*
 public/*
 .env*
 .vscode
-*go

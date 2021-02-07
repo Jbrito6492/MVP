@@ -21,6 +21,7 @@ const ChatView = ({ isTyping, chat, username }) => {
             </div>
           ) : (
             <div className={`${styles.messageRow} ${styles.otherMessage}`}>
+              <div className={styles.messageTime}>{message.username}</div>
               <div className={styles.messageContent}>
                 <img src={profilePic} />
                 <div className={styles.messageText}>{message.message}</div>
