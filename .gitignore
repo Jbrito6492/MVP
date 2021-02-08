@@ -1,5 +1,9 @@
 node_modules
-server/build
+server/build/images
+server/build/1*
+server/build/2*
+server/build/3*
+server/build/4*
 public/client.bundle.js
 public/main.js.map
 public/vendors*
