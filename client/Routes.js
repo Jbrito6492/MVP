@@ -8,7 +8,7 @@ const AsyncLogInPage = loadable(() =>
 );
 
 const AsyncSignUpPage = loadable(() =>
-  import("./pages/SignUpPage.jsx")
+  import("./pages/SignupPage.jsx")
 );
 
 const AsyncUserPage = loadable(() =>

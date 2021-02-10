@@ -4,7 +4,7 @@ import { startSession, getDate } from "../../store/actions/index.js";
 import { Link } from "react-router-dom";
 import { BiSend } from "react-icons/bi";
 import { BsTrash2 } from "react-icons/bs";
-import { HiOutlinePaperClip } from "react-icons/hi";
+import { HiOutlineEmojiHappy } from "react-icons/hi";
 import dayjs from "dayjs";
 import {
   connectSocket,
@@ -69,6 +69,7 @@ const Room = ({ username }) => {
           }}
           required
         />
+        <HiOutlineEmojiHappy className={styles.chatFormIcon} />
         <BiSend className={styles.chatFormSendIcon} onClick={handleSubmit} />
       </form>
     </>
