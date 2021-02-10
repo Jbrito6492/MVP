@@ -2,10 +2,8 @@ const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   optimization: {
-    nodeEnv: 'production',
-    minimize: true,
     splitChunks: {
       cacheGroups: {
         commons: {
